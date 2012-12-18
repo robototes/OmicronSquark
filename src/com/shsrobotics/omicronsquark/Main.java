@@ -7,12 +7,22 @@
 
 package com.shsrobotics.omicronsquark;
 
-
+import com.shsrobotics.omicronsquark.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import com.shsrobotics.omicronsquark.commands.*;
 
+/**
+ * @author Christensen, Bixby
+ * @author Devgun, Dilraj
+ * @author McCartan, Cory
+ * @author Notarangelo, Max
+ * @author Orth, Max
+ *
+ * @mentors
+ *
+ * @version 1.0
+ */
 public class Main extends IterativeRobot {
 
       Command stateMachine;
