@@ -20,6 +20,10 @@ public class DriveTrain extends Subsystem implements Maps {
 	    robotDrive.arcadeDrive(forward, turn);
       }
 
+      public void stop() {
+	    robotDrive.stopMotor();
+      }
+
       public void initDefaultCommand() {
 	    setDefaultCommand(new DriveWithJoysticks());
       }
