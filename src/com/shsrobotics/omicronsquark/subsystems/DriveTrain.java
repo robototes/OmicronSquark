@@ -49,6 +49,11 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	    setSetpoint(angle);
       }
 
+      public double distanceLeft() {
+	    return getSetpoint() - encoder.getDistance();
+      }
+
+
       protected void usePIDOutput(double output) {
 	    if (turning) {  // changes output depending on whether rotateTo or driveTo was called.
 		 robotDrive.arcadeDrive(0.0, output);
