@@ -30,7 +30,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
       }
 
       public void driveTo(double distance) { // in feet
-	    turning = false;
+	    turning = false; // tells usePIDOutput() whether to make robot turn or go forward.
 	    encoder.reset();
 	    setSetpointRange(0, Constants.fieldLength);
 	    double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.Encoder.pulsesPerRevolution;
@@ -40,7 +40,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
       }
 
       public void rotateTo(double angle) { // in degrees
-	    turning = true;
+	    turning = true; // tells usePIDOutput() whether to make robot turn or go forward.
 	    encoder.reset();
 	    setSetpointRange(-360, 360);
 	    double distancePerPulse = 360 * (Robot.Drive.wheelDiameter / Robot.Drive.Encoder.pulsesPerRevolution / Robot.Drive.robotWidth);
@@ -50,7 +50,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
       }
 
       protected void usePIDOutput(double output) {
-	    if (turning) {
+	    if (turning) {  // changes output depending on whether rotateTo or driveTo was called.
 		 robotDrive.arcadeDrive(0.0, output);
 	    } else {
 		 robotDrive.arcadeDrive(output, 0.0);

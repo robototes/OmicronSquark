@@ -3,11 +3,11 @@ package com.shsrobotics.omicronsquark;
 import edu.wpi.first.wpilibj.Joystick;
 
 public interface Maps {
-      Joystick joystick = new Joystick(1);
+      Joystick joystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
 
       public static final class Robot {
 	    public static final class Drive {
-		  public static final int
+		  public static final int // ports that motors, sensors, etc. are plugged into
 			  leftWheels = 1,
 			  rightWheels = 1;
 		  public static final double
