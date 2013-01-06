@@ -7,8 +7,10 @@ public interface Maps {
 
       public static final class Robot {
 	    public static final int
-		    leftWheels = 1,
-		    rightWheels = 1;
+		    frontLeftWheel = 1,
+		    frontRightWheel = 1,
+		    rearLeftWheel = 1,
+		    rearRightWheel = 1;
       }
 
       public static final class Constants {

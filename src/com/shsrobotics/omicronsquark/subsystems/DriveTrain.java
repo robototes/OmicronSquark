@@ -9,15 +9,15 @@ import com.sun.squawk.util.MathUtils;
 
 public class DriveTrain extends Subsystem implements Maps {
 
-      private RobotDrive robotDrive = new RobotDrive(Robot.leftWheels, Robot.rightWheels);
+      private RobotDrive robotDrive = new RobotDrive(Robot.frontLeftWheel, Robot.rearLeftWheel, Robot.frontRightWheel, Robot.rearRightWheel);
       private double scalingFactor = MathUtils.pow(1 - Constants.joystickThreshold, -3);
 
-      public void drive(double forward, double turn) {
-	    forward = MathUtils.pow(forward, 3);
-		  forward = (forward > Constants.joystickThreshold) ? (forward - Constants.joystickThreshold) * scalingFactor : 0.0;
-	    turn = MathUtils.pow(turn, 3);
-		  turn = (turn > Constants.joystickThreshold) ? (turn - Constants.joystickThreshold) * scalingFactor : 0.0;
-	    robotDrive.arcadeDrive(forward, turn);
+      public void drive(double x, double y, double z) {
+	    x = MathUtils.pow(x, 3);
+		  x = (x > Constants.joystickThreshold) ? (x - Constants.joystickThreshold) * scalingFactor : 0.0;
+	    y = MathUtils.pow(y, 3);
+		  y = (y > Constants.joystickThreshold) ? (y - Constants.joystickThreshold) * scalingFactor : 0.0;
+	    robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
       }
 
       public void stop() {
