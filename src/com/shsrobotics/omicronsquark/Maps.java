@@ -25,7 +25,7 @@ public interface Maps {
 			I = 0.03,
 			D = 0;
 		  public static final boolean
-			encoderreverseDirection = false;
+			encoderReverseDirection = false;
 	    }
       }
 

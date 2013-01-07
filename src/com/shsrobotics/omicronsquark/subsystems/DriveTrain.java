@@ -3,14 +3,14 @@ package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
 import com.shsrobotics.omicronsquark.commands.*;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
 
-      private RobotDrive robotDrive = new RobotDrive(Robot.frontLeftWheel, Robot.rearLeftWheel, Robot.frontRightWheel, Robot.rearRightWheel);
+      private RobotDrive robotDrive = new RobotDrive(Robot.Drive.frontLeftWheel, Robot.Drive.rearLeftWheel, Robot.Drive.frontRightWheel, Robot.Drive.rearRightWheel);
       private Encoder encoder = new Encoder(Robot.Drive.encoderASource, Robot.Drive.encoderBSource, Robot.Drive.encoderReverseDirection);
 
       private double scalingFactor = MathUtils.pow(1 - Constants.joystickThreshold, -3);
@@ -39,7 +39,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	    state = MOVING_X;
 	    encoder.reset();
 	    setSetpointRange(0, Constants.fieldLength);
-	    double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.Encoder.pulsesPerRevolution;
+	    double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.encoderPulsesPerRevolution;
 	    encoder.setDistancePerPulse(distancePerPulse);
 	    enable(); // enables PID
 	    setSetpoint(distance);
@@ -49,7 +49,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	    state = MOVING_Y;
 	    encoder.reset();
 	    setSetpointRange(0, Constants.fieldLength);
-	    double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.Encoder.pulsesPerRevolution;
+	    double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.encoderPulsesPerRevolution;
 	    encoder.setDistancePerPulse(distancePerPulse);
 	    enable(); // enables PID
 	    setSetpoint(distance);
@@ -59,7 +59,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	    state = TURNING;
 	    encoder.reset();
 	    setSetpointRange(-360, 360);
-	    double distancePerPulse = 360 * (Robot.Drive.wheelDiameter / Robot.Drive.Encoder.pulsesPerRevolution / Robot.Drive.robotWidth);
+	    double distancePerPulse = 360 * (Robot.Drive.wheelDiameter / Robot.Drive.encoderPulsesPerRevolution / Robot.Drive.robotWidth);
 	    encoder.setDistancePerPulse(distancePerPulse);
 	    enable(); // enables PID
 	    setSetpoint(angle);
