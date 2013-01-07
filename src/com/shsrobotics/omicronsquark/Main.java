@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Main extends IterativeRobot implements Maps {
 
 	Command stateMachine;
+	// chooser buttons put on SmartDashboard for configuring robot options
 	SendableChooser robotPlacement;
 	SendableChooser autonomousScore;
 
