@@ -19,6 +19,7 @@ public class Main extends IterativeRobot implements Maps {
 
 	Command stateMachine;
 	SendableChooser robotPlacement;
+	SendableChooser autonomousScore;
 
 	public void robotInit() {
 		robotPlacement = new SendableChooser();
@@ -28,12 +29,19 @@ public class Main extends IterativeRobot implements Maps {
 		robotPlacement.addObject("Far Left Corner", new Integer(Constants.farLeftCorner));
 		SmartDashboard.putData("Initial Robot Placement", robotPlacement);
 
+		autonomousScore = new SendableChooser();
+		autonomousScore.addDefault("Score during Autonomous", new Integer(Constants.scoreImmediately));
+		autonomousScore.addObject("Wait five seconds before scoring", new Integer(Constants.fiveSecondDelay));
+		autonomousScore.addObject("Do not score during Autonomous", new Integer(Constants.doNotScore));
+		SmartDashboard.putData("Autonomous Scoring Options", autonomousScore);
+
 		CommandBase.init(); // set up subsystems
 	}
 
 	public void autonomousInit() {
-		Integer selected = (Integer) robotPlacement.getSelected();
-		stateMachine = new StateMachine(selected.intValue());
+		Integer placement = (Integer) robotPlacement.getSelected();
+		Integer scoringOptions = (Integer) autonomousScore.getSelected();
+		stateMachine = new StateMachine(placement.intValue(), scoringOptions.intValue());
 		stateMachine.start();
 	}
 

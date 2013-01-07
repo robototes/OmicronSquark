@@ -38,7 +38,10 @@ public interface Maps {
 			nearLeftCorner = 0,
 			nearRightCorner = 1,
 			farLeftCorner = 2,
-			farRightCorner = 3;
+			farRightCorner = 3,
+			scoreImmediately = 0,
+			fiveSecondDelay = 1,
+			doNotScore = 2;
     }
 
     public static final class Buttons {
