@@ -21,6 +21,6 @@ public class DriveWithJoysticks extends CommandBase implements Maps {
       protected void end() { }
 
       protected void interrupted() {
-	    driveTrain.drive(0, 0, 0);
+	    driveTrain.drive(0.0, 0.0, 0.0);
       }
 }

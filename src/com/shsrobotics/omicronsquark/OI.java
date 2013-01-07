@@ -17,7 +17,7 @@ public class OI implements Maps {
 	    return joystick.getZ() * getScale();
       }
       public double getScale() {
-	    return joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Constants.normalScale : Constants.driveCoordinateScale;
+	    return joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : Robot.Drive.driveCoordinateScale;
       }
 }
 
