@@ -1,9 +1,7 @@
 _MACOSX/*
 build/*
 j2meclasses/*
-suite/*
 nbproject/private/*
 
 *.tmp
-*.jar
 *.class
