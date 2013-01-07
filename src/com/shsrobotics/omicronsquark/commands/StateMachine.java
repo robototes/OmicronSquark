@@ -6,27 +6,18 @@ import com.shsrobotics.omicronsquark.Maps;
 
 public class StateMachine extends CommandGroup implements Maps {
 
-    public StateMachine() { // make to-do list
-
-    }
-
-    // Called just before autonomous runs
-    protected void initialize() {
-
-    }
-
-    // Called repeatedly during autonomous
-    protected void execute() {
-
-    }
-
-    // Called once at the end of to-do list
-    protected void end() {
-
-    }
-
-    // called if not done when autonomous ends
-    protected void interrupted() {
-
-    }
+	public StateMachine(int placement) { // make to-do list
+		switch (placement) {
+			case Constants.nearRightCorner:
+				break;
+			case Constants.nearLeftCorner:
+				break;
+			case Constants.farRightCorner:
+				break;
+			case Constants.farLeftCorner:
+				break;
+			default:
+				break;
+		}
+	}
 }

@@ -7,19 +7,19 @@ import com.shsrobotics.omicronsquark.subsystems.DriveTrain;
 
 public abstract class CommandBase extends Command {
 
-      public static OI oi;
+	public static OI oi;
 
-      public static DriveTrain driveTrain = new DriveTrain();
+	public static DriveTrain driveTrain = new DriveTrain();
 
-      public static void init() {
-	    oi = new OI(); // REQUIRED
-      }
+	public static void init() {
+		oi = new OI(); // REQUIRED
+	}
 
-      public CommandBase(String name) {
-	    super(name);
-      }
+	public CommandBase(String name) {
+		super(name);
+	}
 
-      public CommandBase() {
-	    super();
-      }
+	public CommandBase() {
+		super();
+	}
 }
