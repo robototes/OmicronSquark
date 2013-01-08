@@ -20,7 +20,7 @@ public class Main extends IterativeRobot implements Maps {
 	Command stateMachine;
 	// chooser buttons put on SmartDashboard for configuring robot options
 	SendableChooser robotPlacement;
-	SendableChooser autonomousScore;
+	SendableChooser autonomousScoreing;
 
 	public void robotInit() {
 		robotPlacement = new SendableChooser();
@@ -30,18 +30,18 @@ public class Main extends IterativeRobot implements Maps {
 		robotPlacement.addObject("Far Left Corner", new Integer(Constants.farLeftCorner));
 		SmartDashboard.putData("Initial Robot Placement", robotPlacement);
 
-		autonomousScore = new SendableChooser();
-		autonomousScore.addDefault("Score during Autonomous", new Integer(Constants.scoreImmediately));
-		autonomousScore.addObject("Wait five seconds before scoring", new Integer(Constants.fiveSecondDelay));
-		autonomousScore.addObject("Do not score during Autonomous", new Integer(Constants.doNotScore));
-		SmartDashboard.putData("Autonomous Scoring Options", autonomousScore);
+		autonomousScoreing = new SendableChooser();
+		autonomousScoreing.addDefault("Score during Autonomous", new Integer(Constants.scoreImmediately));
+		autonomousScoreing.addObject("Wait five seconds before scoring", new Integer(Constants.fiveSecondDelay));
+		autonomousScoreing.addObject("Do not score during Autonomous", new Integer(Constants.doNotScore));
+		SmartDashboard.putData("Autonomous Scoring Options", autonomousScoreing);
 
 		CommandBase.init(); // set up subsystems
 	}
 
 	public void autonomousInit() {
 		Integer placement = (Integer) robotPlacement.getSelected();
-		Integer scoringOptions = (Integer) autonomousScore.getSelected();
+		Integer scoringOptions = (Integer) autonomousScoreing.getSelected();
 		stateMachine = new StateMachine(placement.intValue(), scoringOptions.intValue());
 		stateMachine.start();
 	}
