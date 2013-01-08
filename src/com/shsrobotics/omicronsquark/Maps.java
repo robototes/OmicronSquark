@@ -33,6 +33,7 @@ public interface Maps {
 			joystickThreshold = 0.1,
 			fieldLength = 54, // feet
 			scoringDelay = 5.0, //seconds
+			cameraViewAngle = 45, // degrees
 			significanceLevel_Distance = 0.1, // feet
 			significanceLevel_Angle = 2; //degrees
 		public static final int
