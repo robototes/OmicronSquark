@@ -11,17 +11,17 @@ public class Camera extends Subsystem implements Maps {
 	private AxisCamera camera = AxisCamera.getInstance();
 	private boolean computing = false;
 	private int numberOfDisks = 0;
+	private ColorImage currentImage;
 
 	public void getDiskCount() {
 		ParticleAnalysisReport[] particles = null;
 		computing = true;
 		try {
-			ColorImage color = camera.getImage();
-			BinaryImage white = color.thresholdHSL(0, 360, 0, 10, 70, 100);
+			currentImage = camera.getImage();
+			BinaryImage white = currentImage.thresholdHSL(0, 360, 0, 10, 70, 100);
 			white.removeSmallObjects(true, 4);
 			white.convexHull(true);
 			particles = white.getOrderedParticleAnalysisReports();
-			color.free();
 			white.free();
 		} catch (AxisCameraException ex) {
 		} catch (NIVisionException ex) { }
@@ -35,6 +35,12 @@ public class Camera extends Subsystem implements Maps {
 
 	public int getResult() {
 		return numberOfDisks;
+	}
+
+	public void free() {
+		try {
+			currentImage.free();
+		} catch (NIVisionException ex) { }
 	}
 
 	public void initDefaultCommand() {
