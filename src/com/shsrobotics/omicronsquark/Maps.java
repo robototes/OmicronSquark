@@ -32,6 +32,7 @@ public interface Maps {
 		public static final double
 			joystickThreshold = 0.1,
 			fieldLength = 54, // feet
+			scoringDelay = 5.0, //seconds
 			significanceLevel_Distance = 0.1, // feet
 			significanceLevel_Angle = 2; //degrees
 		public static final int
@@ -40,7 +41,7 @@ public interface Maps {
 			farLeftCorner = 2,
 			farRightCorner = 3,
 			scoreImmediately = 0,
-			fiveSecondDelay = 1,
+			scoreAfterDelay = 1,
 			doNotScore = 2;
     }
 

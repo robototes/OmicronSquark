@@ -32,7 +32,7 @@ public class Main extends IterativeRobot implements Maps {
 
 		autonomousScore = new SendableChooser();
 		autonomousScore.addDefault("Score during Autonomous", new Integer(Constants.scoreImmediately));
-		autonomousScore.addObject("Wait five seconds before scoring", new Integer(Constants.fiveSecondDelay));
+		autonomousScore.addObject("Wait " + Constants.scoringDelay + " seconds before scoring", new Integer(Constants.scoreAfterDelay));
 		autonomousScore.addObject("Do not score during Autonomous", new Integer(Constants.doNotScore));
 		SmartDashboard.putData("Autonomous Scoring Options", autonomousScore);
 

@@ -9,8 +9,8 @@ public class StateMachine extends CommandGroup implements Maps {
 
 	public StateMachine(int placement, int scoringOptions) { // make to-do list
 		if (scoringOptions != Constants.doNotScore) { // put flying discs into 1-point goal
-			if (scoringOptions == Constants.fiveSecondDelay) {
-				addSequential(new WaitCommand(5.0)); // wait 5 seconds before starting
+			if (scoringOptions == Constants.scoreAfterDelay) {
+				addSequential(new WaitCommand(Constants.scoringDelay)); // wait  before starting
 			}
 			switch (placement) {
 				case Constants.nearRightCorner:
