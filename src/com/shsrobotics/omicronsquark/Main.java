@@ -19,11 +19,11 @@ public class Main extends IterativeRobot implements Maps {
 	Command stateMachine;
 
 	public void robotInit() {
+		stateMachine = new StateMachine();
 		CommandBase.init(); // set up subsystems
 	}
 
 	public void autonomousInit() {
-		stateMachine = new StateMachine();
 		stateMachine.start();
 	}
 
