@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.image.*;
 public class Camera extends Subsystem implements Maps {
 	private AxisCamera camera = AxisCamera.getInstance();
 
-	private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle);
+private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle / 2);
 
 	public double getThrowingAngle() {
 		double angle = 0;
