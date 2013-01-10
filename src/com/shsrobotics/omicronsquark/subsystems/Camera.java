@@ -10,16 +10,16 @@ import edu.wpi.first.wpilibj.image.*;
 public class Camera extends Subsystem implements Maps {
 	private AxisCamera camera = AxisCamera.getInstance();
 
-	private double normalizedDistance = 1 / Math.tan(Constants.cameraViewAngle);
+	private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle);
 
 	public double getThrowingAngle() {
 		double angle = 0;
 		try {
 			ColorImage color = camera.getImage();
 			BinaryImage white = color.thresholdHSL(0, 360, 0, 10, 70, 100);
-			white.removeSmallObjects(true, 4);
 			white.convexHull(true);
-			ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(5); // get at most the five goals
+			white.removeSmallObjects(true, 4);
+			ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(5); // get the five goals
 			white.free();
 			double maxHeight = -1;
 			for (int i = 0; i < particles.length; i++) {
@@ -28,7 +28,7 @@ public class Camera extends Subsystem implements Maps {
 					maxHeight = y;
 				}
 			}
-			angle = MathUtils.atan(maxHeight / normalizedDistance);
+			angle = MathUtils.atan(maxHeight * inverseNormalizedDistance);
 		} catch (AxisCameraException ex) {
 		} catch (NIVisionException ex) { }
 		return angle;
