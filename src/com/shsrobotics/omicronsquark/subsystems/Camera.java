@@ -22,12 +22,12 @@ private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle / 
 			ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(5); // get the five goals
 			white.free();
 			double maxHeight = -1;
-                        int topGoalIndex = -1;
+			int topGoalIndex = -1;
 			for (int i = 0; i < particles.length; i++) {
 				double y = particles[i].center_mass_y_normalized;
 				if (y > maxHeight) {
 					maxHeight = y;
-                                        topGoalIndex = i;
+					topGoalIndex = i;
 				}
 			}
 			angle = MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistance);
