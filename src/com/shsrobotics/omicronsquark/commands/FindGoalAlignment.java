@@ -5,7 +5,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,33 +12,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class FindGoalAlignment extends CommandBase implements Maps
 {
-    public FindGoalAlignment()
-    {
+    public FindGoalAlignment() {
         requires(camera);
     }
     
-    protected void initialize()
-    {
+    protected void initialize() {
+        System.out.println(camera.getAlignmentAngle());
+    }
+    
+    protected void execute() {
         
     }
     
-    protected void execute()
-    {
-        
-    }
-    
-    protected void interrupted()
-    {
+    protected void interrupted() {
         ;
     }
     
-    protected void end()
-    {
+    protected void end() {
         
     }
     
-    protected boolean isFinished()
-    {
+    protected boolean isFinished() {
         return true;
     }
 }

@@ -1,6 +1,7 @@
 package com.shsrobotics.omicronsquark;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public interface Maps {
 	Joystick joystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
@@ -46,9 +47,12 @@ public interface Maps {
 			doNotScore = 2;
     }
 
-    public static final class Buttons {
-		// buttons that are only read for values
-		public static final int
-			scaleDriveCoordinates = 1;
+    public static final class Buttons {        
+        public static final JoystickButton alignButton = new JoystickButton(joystick, 2);
+        
+        // buttons that are only read for values
+        public static final int
+                scaleDriveCoordinates = 1,
+                moveCamera = 2;
     }
 }
