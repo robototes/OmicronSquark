@@ -1,4 +1,7 @@
-j2meclasses\*
-suite\*
-build\*
-nbproject\private\private.xml
+_MACOSX/*
+build/*
+j2meclasses/*
+nbproject/private/*
+
+*.tmp
+*.class
