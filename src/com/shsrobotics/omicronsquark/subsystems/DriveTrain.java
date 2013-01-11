@@ -13,7 +13,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	private RobotDrive robotDrive = new RobotDrive(Robot.Drive.frontLeftWheel, Robot.Drive.rearLeftWheel, Robot.Drive.frontRightWheel, Robot.Drive.rearRightWheel);
 	private Encoder encoder = new Encoder(Robot.Drive.encoderASource, Robot.Drive.encoderBSource, Robot.Drive.encoderReverseDirection);
 
-	private double scalingFactor = MathUtils.pow(1 - Constants.joystickThreshold, -3);
 	private static final int MOVING_X = 1;
 	private static final int MOVING_Y = 2;
 	private static final int TURNING = 3;
@@ -37,7 +36,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	public void driveX(double distance) { // in feet
 		state = MOVING_X;
 		encoder.reset();
-		setSetpointRange(0, Constants.fieldLength);
+		setInputRange(0, Constants.fieldLength);
 		double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.encoderPulsesPerRevolution;
 		encoder.setDistancePerPulse(distancePerPulse);
 		enable(); // enables PID
@@ -47,7 +46,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	public void driveY(double distance) { // in feet
 		state = MOVING_Y;
 		encoder.reset();
-		setSetpointRange(0, Constants.fieldLength);
+		setInputRange(0, Constants.fieldLength);
 		double distancePerPulse = Math.PI * (Robot.Drive.wheelDiameter / 12) / Robot.Drive.encoderPulsesPerRevolution;
 		encoder.setDistancePerPulse(distancePerPulse);
 		enable(); // enables PID
@@ -57,7 +56,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	public void rotateTo(double angle) { // in degrees
 		state = TURNING;
 		encoder.reset();
-		setSetpointRange(-360, 360);
+		setInputRange(-360, 360);
 		double distancePerPulse = 360 * (Robot.Drive.wheelDiameter / Robot.Drive.encoderPulsesPerRevolution / Robot.Drive.robotWidth);
 		encoder.setDistancePerPulse(distancePerPulse);
 		enable(); // enables PID
