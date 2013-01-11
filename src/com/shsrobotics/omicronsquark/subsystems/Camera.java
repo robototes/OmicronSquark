@@ -12,7 +12,7 @@ public class Camera extends Subsystem implements Maps {
 
 private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle / 2);
 
-	public double getThrowingAngle() {
+	public double getAlignmentAngle() {
 		double angle = 0;
 		try {
 			ColorImage color = camera.getImage();
@@ -22,13 +22,15 @@ private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle / 
 			ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(5); // get the five goals
 			white.free();
 			double maxHeight = -1;
+                        int topGoalIndex = -1;
 			for (int i = 0; i < particles.length; i++) {
 				double y = particles[i].center_mass_y_normalized;
 				if (y > maxHeight) {
 					maxHeight = y;
+                                        topGoalIndex = i;
 				}
 			}
-			angle = MathUtils.atan(maxHeight * inverseNormalizedDistance);
+			angle = MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistance);
 		} catch (AxisCameraException ex) {
 		} catch (NIVisionException ex) { }
 		return angle;
