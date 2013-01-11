@@ -29,9 +29,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	public void drive(double x, double y, double z) {
 		disable(); // disables PID
 		x = MathUtils.pow(x, 3);
-		  x = (x > Constants.joystickThreshold) ? (x - Constants.joystickThreshold) * scalingFactor : 0.0;
 		y = MathUtils.pow(y, 3);
-		  y = (y > Constants.joystickThreshold) ? (y - Constants.joystickThreshold) * scalingFactor : 0.0;
+		z = MathUtils.pow(z, 3);
 		robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
 	}
 
