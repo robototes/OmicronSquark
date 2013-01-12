@@ -62,7 +62,7 @@ public interface Maps {
         public static final JoystickButton 
             alignButton = new JoystickButton(joystick, 2),
             moveCamera = new JoystickButton(joystick, 3);
-
+        
         // buttons that are only read for values
         public static final int
                 scaleDriveCoordinates = 1;

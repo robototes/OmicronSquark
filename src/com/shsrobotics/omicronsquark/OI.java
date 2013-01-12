@@ -1,13 +1,11 @@
 
 package com.shsrobotics.omicronsquark;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.*;
 
 public class OI implements Maps {
 
-	public double getX() {
+    public double getX() {
 		return joystick.getX() * getScale();
 	}
 	public double getY() {

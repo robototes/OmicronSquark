@@ -55,8 +55,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
             return gyroscope.getAngle();
 	}
 
-	public void initDefaultCommand() {
-            setDefaultCommand(new DriveWithJoysticks());
-	}
+	public void initDefaultCommand() { }
 }
 

@@ -3,6 +3,7 @@ package com.shsrobotics.omicronsquark.subsystems;
 import com.shsrobotics.omicronsquark.Maps;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -64,6 +65,7 @@ public class Camera extends Subsystem implements Maps {
         } catch (NIVisionException ex) { }
         return angle;
     }
+
 
     public void initDefaultCommand() { }
 }
