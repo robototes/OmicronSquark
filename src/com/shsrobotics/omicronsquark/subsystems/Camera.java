@@ -20,7 +20,7 @@ public class Camera extends Subsystem implements Maps {
 
 
     public Camera() {
-        camera.writeResolution(AxisCamera.ResolutionT.k320x240);
+        camera.writeResolution(AxisCamera.ResolutionT.k160x120);
     }
 
     public double getAlignmentAngle() {
@@ -28,10 +28,8 @@ public class Camera extends Subsystem implements Maps {
         try {
             ColorImage color = camera.getImage();
             BinaryImage white = color.thresholdHSL(80, 240, 25, 255, 15, 255);
-            white = white.convexHull(false);
-            white = white.convexHull(false);
+            white = white.convexHull(true);
             white = white.removeSmallObjects(true, 2);
-            color.write("CurrentColorImage.jpeg");
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get the five goals
             white.free();
             color.free();
