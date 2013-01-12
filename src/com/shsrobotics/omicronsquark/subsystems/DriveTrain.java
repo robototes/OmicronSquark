@@ -53,8 +53,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	}
 
 	protected double returnPIDInput() {
-            return CommandBase.camera.pidGet();
-//            return gyroscope.getAngle();
+            return gyroscope.getAngle();
 	}
 
 	public void initDefaultCommand() { }
