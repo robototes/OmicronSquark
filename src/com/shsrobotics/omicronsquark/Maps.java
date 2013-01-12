@@ -29,8 +29,8 @@ public interface Maps {
         }
         public static final class Camera {
             public static final int
-                horizontalServo = 1,
-                verticalServo= 2;
+                horizontalServo = 10,
+                verticalServo= 9;
         }
     }
 
