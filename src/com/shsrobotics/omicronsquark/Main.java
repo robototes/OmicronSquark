@@ -56,5 +56,6 @@ public class Main extends IterativeRobot implements Maps {
 
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+                CommandBase.driveTrain.getAngle();
 	}
 }
