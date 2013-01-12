@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import com.shsrobotics.omicronsquark.commands.CommandBase;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
 
@@ -52,7 +53,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 	}
 
 	protected double returnPIDInput() {
-            return gyroscope.getAngle();
+            return CommandBase.camera.pidGet();
+//            return gyroscope.getAngle();
 	}
 
 	public void initDefaultCommand() { }
