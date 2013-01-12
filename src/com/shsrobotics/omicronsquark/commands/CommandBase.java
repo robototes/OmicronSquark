@@ -7,20 +7,20 @@ import com.shsrobotics.omicronsquark.subsystems.*;
 
 public abstract class CommandBase extends Command {
 
-	public static OI oi;
+    public static OI oi;
 
-	public static Camera camera = new Camera();
-        public static DriveTrain driveTrain = new DriveTrain();
+    public static Camera camera = new Camera();
+    public static DriveTrain driveTrain = new DriveTrain();
 
-	public static void init() {
-		oi = new OI(); // REQUIRED
-	}
+    public static void init() {
+        oi = new OI(); // REQUIRED
+    }
 
-	public CommandBase(String name) {
-		super(name);
-	}
+    public CommandBase(String name) {
+        super(name);
+    }
 
-	public CommandBase() {
-		super();
-	}
+    public CommandBase() {
+        super();
+    }
 }
