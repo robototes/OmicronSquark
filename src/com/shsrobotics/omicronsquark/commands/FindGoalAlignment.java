@@ -5,6 +5,7 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,7 +18,7 @@ public class FindGoalAlignment extends CommandBase implements Maps
     }
     
     protected void initialize() {
-        System.out.println(camera.getAlignmentAngle());
+        SmartDashboard.putNumber("shooting angle", camera.getAlignmentAngle());
     }
     
     protected void execute() {
