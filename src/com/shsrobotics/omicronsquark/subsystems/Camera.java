@@ -14,9 +14,8 @@ import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 public class Camera extends Subsystem implements Maps {
 	private AxisCamera camera = AxisCamera.getInstance();
 
-    private static Servo rotateHorizontal = new Servo(1);
-    private static Servo rotateVertical = new Servo(2);
-
+    private static Servo rotateHorizontal = new Servo(Robot.Camera.horizontalServo);
+    private static Servo rotateVertical = new Servo(Robot.Camera.verticalServo);
 
     private double inverseNormalizedDistance = Math.tan(Constants.cameraViewAngle / 2);
 

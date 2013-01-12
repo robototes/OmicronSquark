@@ -1,12 +1,13 @@
 
 package com.shsrobotics.omicronsquark;
 
-import com.shsrobotics.omicronsquark.commands.FindGoalAlignment;
+import com.shsrobotics.omicronsquark.commands.*;
 
 public class OI implements Maps {
     
         public OI() {
             Buttons.alignButton.whenPressed(new FindGoalAlignment());
+            Buttons.moveCamera.whileHeld(new MoveCameraWithJoystick());
         }        
 
 	public double getX() {
