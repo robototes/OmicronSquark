@@ -39,9 +39,13 @@ public interface Maps {
             joystickThreshold = 0.1,
             fieldLength = 54, // feet
             scoringDelay = 5.0, //seconds
-            cameraViewAngle = 45, // degrees
+            cameraHorizontalViewAngle = 54, // degrees
             significanceLevel_Distance = 0.1, // feet
             significanceLevel_Angle = 2, //degrees
+			significanceLevel_Percent = 5, //percent
+			tallGoalsWidth = 54, //inches
+			tallestGoalHeight = 12, //inches
+			mediumGoalHeight = 21, //inches
             servoJoystickScaling = 0.01;
 
         public static final int
@@ -54,10 +58,10 @@ public interface Maps {
             doNotScore = 2;
     }
 
-    public static final class Buttons {        
+    public static final class Buttons {
         public static final JoystickButton alignButton = new JoystickButton(joystick, 2);
         public static final JoystickButton moveCamera = new JoystickButton(joystick, 3);
-        
+
         // buttons that are only read for values
         public static final int
                 scaleDriveCoordinates = 1;
