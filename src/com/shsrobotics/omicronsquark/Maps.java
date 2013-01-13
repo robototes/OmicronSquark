@@ -59,8 +59,6 @@ public interface Maps {
     }
 
     public static final class Buttons {
-        public static final JoystickButton alignButton = new JoystickButton(joystick, 2);
-
         // buttons that are only read for values
         public static final int
                 scaleDriveCoordinates = 1;

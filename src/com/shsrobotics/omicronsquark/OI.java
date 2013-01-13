@@ -4,12 +4,8 @@ package com.shsrobotics.omicronsquark;
 import com.shsrobotics.omicronsquark.commands.*;
 
 public class OI implements Maps {
-    
-        public OI() {
-            Buttons.alignButton.whenPressed(new FindGoalAlignment());
-        }        
 
-	public double getX() {
+    public double getX() {
 		return joystick.getX() * getScale();
 	}
 	public double getY() {

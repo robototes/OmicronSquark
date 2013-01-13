@@ -1,7 +1,6 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
-import com.shsrobotics.omicronsquark.commands.MoveCameraWithJoystick;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
@@ -73,7 +72,5 @@ public class Camera extends Subsystem implements Maps {
         rotateVertical.setAngle(rotateVertical.getAngle() + verticalChange);
     }
 
-    public void initDefaultCommand() {
-        setDefaultCommand(new MoveCameraWithJoystick());
-    }
+    public void initDefaultCommand() { }
 }
