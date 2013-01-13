@@ -60,7 +60,6 @@ public interface Maps {
 
     public static final class Buttons {
         public static final JoystickButton alignButton = new JoystickButton(joystick, 2);
-        public static final JoystickButton moveCamera = new JoystickButton(joystick, 3);
 
         // buttons that are only read for values
         public static final int
