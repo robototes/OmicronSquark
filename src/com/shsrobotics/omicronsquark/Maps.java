@@ -13,11 +13,11 @@ public interface Maps {
     public static final class Robot {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
-                frontLeftWheel = 1,
-                frontRightWheel = 2,
-                rearLeftWheel = 3,
-                rearRightWheel = 4,
-                gyroscope = 10;
+                frontLeftWheel = 3,
+                frontRightWheel = 4,
+                rearLeftWheel = 1,
+                rearRightWheel = 2,
+                gyroscope = 1;
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
@@ -70,10 +70,11 @@ public interface Maps {
 
     public static final class Buttons {
         public static final JoystickButton 
-            alignButton = new JoystickButton(joystick, 2);
+            alignRobot = new JoystickButton(joystick, 2),
+            stayAtRotation = new JoystickButton(joystick, 3);
         
         // buttons that are only read for values
         public static final int
-                scaleDriveCoordinates = 1;
+            scaleDriveCoordinates = 1;
     }
 }

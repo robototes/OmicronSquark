@@ -58,6 +58,7 @@ public class Camera extends Subsystem implements Maps {
             }
             System.out.println("Of " + particles.length + " particles, the horizontal angle to the highest one is " + angle + " degrees.");
             SmartDashboard.putNumber("Horizontal Angle to Target", angle);
+            if (angle == Double.NEGATIVE_INFINITY) return angle;
             switch (goalTypes[topGoalIndex]) {
                 case Constants.lowGoal:
                     SmartDashboard.putString("Goal Type", "Low Goal");

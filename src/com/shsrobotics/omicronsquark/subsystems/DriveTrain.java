@@ -2,9 +2,12 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
+import com.shsrobotics.omicronsquark.commands.StayAtConstantAngularDisplacement;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,11 +16,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     private RobotDrive robotDrive = new RobotDrive(Robot.Drive.frontLeftWheel, Robot.Drive.rearLeftWheel, Robot.Drive.frontRightWheel, Robot.Drive.rearRightWheel);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
 
-    private double scalingFactor = MathUtils.pow(1 - Constants.joystickThreshold, -3);
-
     public DriveTrain() {
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(0, 259);
+        gyroscope.setSensitivity(0.0125);
     }
 
     public void stop() {
@@ -27,10 +29,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     public void drive(double x, double y, double z) {
         disable(); // disables PID
         x = MathUtils.pow(x, 3);
-          x = (x > Constants.joystickThreshold) ? (x - Constants.joystickThreshold) * scalingFactor : 0.0;
         y = MathUtils.pow(y, 3);
-          y = (y > Constants.joystickThreshold) ? (y - Constants.joystickThreshold) * scalingFactor : 0.0;
-        robotDrive.mecanumDrive_Cartesian(x, y, z, gyroscope.getAngle());
+        robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
         SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
     }
 
@@ -39,7 +39,9 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     public void rotateTo(double angle) { // in degrees
+        Watchdog.getInstance().setEnabled(false);
         gyroscope.reset();
+        Watchdog.getInstance().setEnabled(true);
         setSetpoint(angle);
         enable(); // enables PID
         
@@ -51,12 +53,11 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 
     protected double returnPIDInput() {
         SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
-        SmartDashboard.putNumber("gyroscope value: ", gyroscope.pidGet());
         return gyroscope.getAngle();
     }
 
     public void initDefaultCommand() {
-        //new StayAtConstantRotation(); //DriveWithJoysticks();
+        setDefaultCommand(new DriveWithJoysticks());
     }
 }
 

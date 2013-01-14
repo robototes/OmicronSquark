@@ -6,20 +6,21 @@ import com.shsrobotics.omicronsquark.commands.*;
 public class OI implements Maps {
 
     public OI() {
-        Buttons.alignButton.whenPressed(new AlignToGoal());
+        Buttons.alignRobot.whenPressed(new AlignToGoal());
+        Buttons.stayAtRotation.whenPressed(new StayAtConstantAngularDisplacement());
     }
     
     public double getX() {
         return joystick.getX() * getScale();
     }
     public double getY() {
-             return joystick.getY() * getScale();
+        return joystick.getY() * getScale();
     }
     public double getZ() {
-              return joystick.getZ() * getScale();
+        return joystick.getZ() * getScale();
     }
     public double getScale() {
-              return joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : Robot.Drive.driveCoordinateScale;
+        return !joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : Robot.Drive.driveCoordinateScale;
     }
 }
 

@@ -3,6 +3,7 @@ package com.shsrobotics.omicronsquark.commands;
 import com.shsrobotics.omicronsquark.OI;
 import com.shsrobotics.omicronsquark.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public abstract class CommandBase extends Command {
 
@@ -13,7 +14,8 @@ public abstract class CommandBase extends Command {
 
     public static void init() {
         oi = new OI(); // REQUIRED
-        driveTrain.rotateTo(2);
+        SmartDashboard.putData(driveTrain);
+        SmartDashboard.putData("PID", driveTrain.getPIDController());
     }
 
     public CommandBase(String name) {
