@@ -62,11 +62,10 @@ public class Main extends IterativeRobot implements Maps {
     }
 
     public void teleopInit() {
-        stateMachine.cancel();
+        if (stateMachine != null) stateMachine.cancel();
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        CommandBase.driveTrain.getAngle();
     }
 }

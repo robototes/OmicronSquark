@@ -14,9 +14,9 @@ public interface Maps {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
                 frontLeftWheel = 1,
-                frontRightWheel = 1,
-                rearLeftWheel = 1,
-                rearRightWheel = 1,
+                frontRightWheel = 2,
+                rearLeftWheel = 3,
+                rearRightWheel = 4,
                 gyroscope = 1;
             public static final double
                 driveCoordinateScale = 0.5,
@@ -43,11 +43,17 @@ public interface Maps {
             cameraHorizontalViewAngle = 54, // degrees
             significanceLevel_Distance = 0.1, // feet
             significanceLevel_Angle = 2, //degrees
-            significanceLevel_Percent = 20, //percent
-            minAspectRatio = 12 / 54, // inches
-            maxAspectRatio = 21 / 24, // inches
+            significanceLevel_Percent = 15, //percent            
             servoJoystickScaling = 0.01;
-
+        
+        
+        public static final class aspectRatios {
+            public static final double
+                lowGoal = 29 / 24,
+                middleGoal = 54 / 21,
+                highGoal = 54 / 12;
+        }
+        
         public static final int
             nearLeftCorner = 0,
             nearRightCorner = 1,
@@ -55,13 +61,16 @@ public interface Maps {
             farRightCorner = 3,
             scoreImmediately = 0,
             scoreAfterDelay = 1,
-            doNotScore = 2;
+            doNotScore = 2,
+            failsAspectRatioTest = 0,
+            lowGoal = 1,
+            middleGoal = 2,
+            highGoal = 3;
     }
 
     public static final class Buttons {
         public static final JoystickButton 
-            alignButton = new JoystickButton(joystick, 2),
-            moveCamera = new JoystickButton(joystick, 3);
+            alignButton = new JoystickButton(joystick, 2);
         
         // buttons that are only read for values
         public static final int

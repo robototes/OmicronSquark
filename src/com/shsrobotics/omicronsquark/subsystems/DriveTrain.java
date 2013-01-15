@@ -2,10 +2,12 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
 
@@ -29,6 +31,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         y = MathUtils.pow(y, 3);
           y = (y > Constants.joystickThreshold) ? (y - Constants.joystickThreshold) * scalingFactor : 0.0;
         robotDrive.mecanumDrive_Cartesian(x, y, z, gyroscope.getAngle());
+        SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
     }
 
     public double distanceLeft() {
@@ -39,20 +42,19 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         gyroscope.reset();
         enable(); // enables PID
         setSetpoint(angle);
-    }
-
-    public double getAngle() {
-        return gyroscope.getAngle();
-    }
+    }    
 
     protected void usePIDOutput(double output) {
         robotDrive.mecanumDrive_Cartesian(0.0, 0.0, output, 0.0);		
     }
 
     protected double returnPIDInput() {
+        SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
         return gyroscope.getAngle();
     }
 
-    public void initDefaultCommand() { }
+    public void initDefaultCommand() {
+        new DriveWithJoysticks();
+    }
 }
 

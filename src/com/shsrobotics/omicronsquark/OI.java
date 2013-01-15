@@ -5,6 +5,10 @@ import com.shsrobotics.omicronsquark.commands.*;
 
 public class OI implements Maps {
 
+    public OI() {
+        Buttons.alignButton.whenPressed(new AlignToGoal());
+    }
+    
     public double getX() {
         return joystick.getX() * getScale();
     }
