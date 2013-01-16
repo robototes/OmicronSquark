@@ -17,7 +17,7 @@ public interface Maps {
                 frontRightWheel = 2,
                 rearLeftWheel = 3,
                 rearRightWheel = 4,
-                gyroscope = 1;
+                gyroscope = 10;
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
