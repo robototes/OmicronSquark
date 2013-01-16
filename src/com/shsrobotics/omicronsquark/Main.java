@@ -12,6 +12,9 @@ import com.shsrobotics.omicronsquark.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.communication.FRCControl;
+import edu.wpi.first.wpilibj.communication.UsageReporting;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,7 +24,15 @@ public class Main extends IterativeRobot implements Maps {
 	// chooser buttons put on SmartDashboard for configuring robot options
 	SendableChooser robotPlacement;
 	SendableChooser autonomousScore;
-
+        
+        public void startCompetition() {
+            try {
+                super.startCompetition();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }   
+        
 	public void robotInit() {
 		robotPlacement = new SendableChooser();
 		robotPlacement.addDefault("Near Right Corner", new Integer(Constants.nearRightCorner));
