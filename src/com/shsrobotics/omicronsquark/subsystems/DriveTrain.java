@@ -27,6 +27,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         this.getPIDController().setOutputRange(-1.0, 1.0);
         this.getPIDController().setContinuous(true);
         gyroscope.setSensitivity(Robot.Drive.gyroVoltsPerDegreeSecond);
+        setAbsoluteTolerance(Constants.significanceLevel_Angle);
     }
 
     public void stop() {
@@ -55,7 +56,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         Watchdog.getInstance().setEnabled(false);
         gyroscope.reset();
         Watchdog.getInstance().setEnabled(true);
-    }
+    }    
 
     protected void usePIDOutput(double output) {
         robotDrive.mecanumDrive_Polar(0.0, 0.0, output);
