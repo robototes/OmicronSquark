@@ -3,22 +3,18 @@ package com.shsrobotics.omicronsquark.subsystems;
 import com.shsrobotics.omicronsquark.Maps;
 import com.sun.cldc.jna.Pointer;
 import com.sun.squawk.util.MathUtils;
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.image.BinaryImage;
-import edu.wpi.first.wpilibj.image.ColorImage;
-import edu.wpi.first.wpilibj.image.NIVision;
-import edu.wpi.first.wpilibj.image.NIVision;
-import edu.wpi.first.wpilibj.image.NIVisionException;
-import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
+import edu.wpi.first.wpilibj.image.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Camera extends Subsystem implements Maps {
     private AxisCamera camera = AxisCamera.getInstance();
-
+    final double topGoalAspectRatio = 46.0 / 133.0;
+    final double lowGoalAspectRatio = 32.2 / 37.0;
+    double tolerance = 0.2;
+    
     private double inverseNormalizedDistance = Math.tan(Math.toRadians(Constants.cameraHorizontalViewAngle / 2));
 
 
@@ -30,10 +26,19 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage white = color.thresholdHSL(50, 240, 25, 255, 15, 255);
-            white = white.convexHull(true);
-            white = white.removeSmallObjects(true, 2);
-            ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get the five goals
+            //int hueLow = (int) SmartDashboard.getNumber("Hue Low", 60);
+            //int hueHigh = (int) SmartDashboard.getNumber("Hue High", 60);
+            //BinaryImage white = color.thresholdHSL(hueLow, hueHigh, 25, 255, 15, 255); 
+            BinaryImage white = color.thresholdHSL(52, 100, 0, 255, 0, 255); 
+            white = white.convexHull(true);            
+            
+            white = white.removeSmallObjects(true, 6);
+            
+            color.write("CurrentColorImage.jpeg");
+            color.free();
+            
+            ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
+            
             white.free();
             double maxHeight = -2;
             int topGoalIndex = -1;

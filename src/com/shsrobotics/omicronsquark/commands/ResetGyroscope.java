@@ -7,7 +7,7 @@ public class ResetGyroscope extends CommandBase {
     }
 
     protected void initialize() {
-        driveTrain.reset();
+        driveTrain.resetGyro();
     }
 
     protected void execute() { }
