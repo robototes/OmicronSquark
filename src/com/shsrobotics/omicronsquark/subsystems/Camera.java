@@ -30,7 +30,7 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage white = color.thresholdHSL(80, 240, 25, 255, 15, 255);
+            BinaryImage white = color.thresholdHSL(50, 240, 25, 255, 15, 255);
             white = white.convexHull(true);
             white = white.removeSmallObjects(true, 2);
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get the five goals
