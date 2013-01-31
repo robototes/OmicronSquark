@@ -6,19 +6,27 @@ import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
+    
+    Victor frontLeftVictor = new Victor(Robot.Drive.frontLeftWheel);
+    Victor rearLeftVictor = new Victor(Robot.Drive.rearLeftWheel);
+    Victor frontRightVictor = new Victor(Robot.Drive.frontRightWheel);
+    Victor rearRightVictor = new Victor(Robot.Drive.rearRightWheel);
 
-    private RobotDrive robotDrive = new RobotDrive(Robot.Drive.frontLeftWheel, Robot.Drive.rearLeftWheel, Robot.Drive.frontRightWheel, Robot.Drive.rearRightWheel);
+    private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
-
+    
     public DriveTrain() {
+    
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(0, 259);
         gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);
+        
     }
 
     public void stop() {
@@ -51,7 +59,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     protected double returnPIDInput() {
-        SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
         return gyroscope.getAngle();
     }
 
