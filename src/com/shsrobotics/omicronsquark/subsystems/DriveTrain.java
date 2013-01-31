@@ -3,7 +3,6 @@ package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
 import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
-import com.shsrobotics.omicronsquark.commands.StayAtConstantAngularDisplacement;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -19,7 +18,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     public DriveTrain() {
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(0, 259);
-        gyroscope.setSensitivity(0.0125);
+        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);
     }
 
     public void stop() {

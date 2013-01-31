@@ -44,7 +44,8 @@ public interface Maps {
             significanceLevel_Distance = 0.1, // feet
             significanceLevel_Angle = 2, //degrees
             significanceLevel_Percent = 15, //percent            
-            servoJoystickScaling = 0.01;
+            servoJoystickScaling = 0.01,
+            gyroVoltsPerDegreeSecond = 0.007;
         
         
         public static final class aspectRatios {
