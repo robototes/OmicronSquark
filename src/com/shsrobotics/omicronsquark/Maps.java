@@ -9,7 +9,7 @@ public interface Maps {
     
     Relay.Value ON = Relay.Value.kForward;
     Relay.Value OFF = Relay.Value.kOff;
-
+    
     public static final class Robot {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
@@ -28,13 +28,16 @@ public interface Maps {
                 D = 0;
             public static final boolean
                 encoderReverseDirection = false;
+
+            
         }
+        
         public static final class Camera {
             public static final int
                 flashLight = 1;
         }
     }
-
+    
     public static final class Constants {
         public static final double
             joystickThreshold = 0.1,
@@ -68,7 +71,7 @@ public interface Maps {
             middleGoal = 2,
             highGoal = 3;
     }
-
+    
     public static final class Buttons {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 2),

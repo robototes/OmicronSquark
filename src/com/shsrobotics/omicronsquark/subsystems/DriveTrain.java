@@ -44,16 +44,15 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     public void rotateTo(double angle) { // in degrees
+        
+        setSetpoint(angle);
+        enable(); // enables PID
+    }
+    
+    public void resetGyro() {
         Watchdog.getInstance().setEnabled(false);
         gyroscope.reset();
         Watchdog.getInstance().setEnabled(true);
-        setSetpoint(angle);
-        enable(); // enables PID
-        
-    }    
-    
-    public void reset() {
-        gyroscope.reset();
     }
 
     protected void usePIDOutput(double output) {

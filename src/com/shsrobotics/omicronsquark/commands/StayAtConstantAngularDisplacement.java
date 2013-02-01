@@ -9,18 +9,18 @@ public class StayAtConstantAngularDisplacement extends CommandBase {
     }
     
     protected void initialize() {
-       driveTrain.rotateTo(0);
     }
 
-    protected void execute() { }
-        
-
+    protected void execute() {
+       driveTrain.rotateTo(0);
+    }
+    
     protected boolean isFinished() {
         return false;
     }
-
+    
     protected void end() { }
-
+    
     protected void interrupted() {
         driveTrain.stop();
     }
