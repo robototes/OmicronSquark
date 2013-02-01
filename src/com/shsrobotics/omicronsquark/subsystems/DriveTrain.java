@@ -21,14 +21,17 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
     
     public DriveTrain() {    
-        super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
-        setInputRange(0, 259);
-        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);  
-        setAbsoluteTolerance(Constants.significanceLevel_Angle);
+        super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);
+        setInputRange(-360, 360);
+        setAbsoluteTolerance(Robot.Drive.absoluteTolerance);
+        this.getPIDController().setOutputRange(-1.0, 1.0);
+        this.getPIDController().setContinuous(true);
+        gyroscope.setSensitivity(Robot.Drive.gyroVoltsPerDegreeSecond);
     }
 
     public void stop() {
         robotDrive.stopMotor();
+        disable();
     }
     
     public void drive(double x, double y, double z) {
@@ -36,7 +39,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         x = MathUtils.pow(x, 3);
         y = MathUtils.pow(y, 3);
         robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
-        SmartDashboard.putNumber("GYRO ANGLE", gyroscope.getAngle());
+        SmartDashboard.putNumber("GYRO ANGLE", getGyroAngle());
     }
 
     public double distanceLeft() {
@@ -44,9 +47,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     public void rotateTo(double angle) { // in degrees
-        
+        enable();
         setSetpoint(angle);
-        enable(); // enables PID
     }
     
     public void resetGyro() {
@@ -56,14 +58,30 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     protected void usePIDOutput(double output) {
-        robotDrive.mecanumDrive_Cartesian(0.0, 0.0, output, 0.0);		
+        robotDrive.mecanumDrive_Polar(0.0, 0.0, output);
+        SmartDashboard.putNumber("PID OUTPUT", output);
     }
 
     protected double returnPIDInput() {
-        return gyroscope.getAngle();
+        double angle = getGyroAngle();
+        SmartDashboard.putNumber("GYRO ANGLE", angle);
+        return angle;
+    }
+    
+    public double getGyroAngle() {
+        return gyroscope.getAngle() % 360;
+    }
+    
+    public double normalizedToDegrees(double degrees) {
+        return degrees / 360.0;
+    }
+    
+    public double degreesToNormalized(double normalized) {
+        return normalized * 360.0;
     }
 
     public void initDefaultCommand() {
+        resetGyro();
         setDefaultCommand(new DriveWithJoysticks());
     }
 }

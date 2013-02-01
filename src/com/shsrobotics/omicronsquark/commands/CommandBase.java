@@ -1,5 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import com.shsrobotics.omicronsquark.Maps;
 import com.shsrobotics.omicronsquark.OI;
 import com.shsrobotics.omicronsquark.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;

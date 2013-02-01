@@ -65,4 +65,8 @@ public class Main extends IterativeRobot implements Maps {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
+    
+    public void disabledPeriodic() {
+        SmartDashboard.putNumber("GYRO ANGLE", CommandBase.driveTrain.getGyroAngle());
+    }
 }

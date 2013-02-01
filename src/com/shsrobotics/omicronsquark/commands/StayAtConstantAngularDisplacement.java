@@ -1,5 +1,7 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 
 public class StayAtConstantAngularDisplacement extends CommandBase {
     
@@ -9,14 +11,13 @@ public class StayAtConstantAngularDisplacement extends CommandBase {
     }
     
     protected void initialize() {
+        driveTrain.rotateTo(0.5);
     }
 
-    protected void execute() {
-       driveTrain.rotateTo(0);
-    }
+    protected void execute() { }
     
     protected boolean isFinished() {
-        return false;
+        return CommandBase.driveTrain.getPIDController().isEnable();
     }
     
     protected void end() { }

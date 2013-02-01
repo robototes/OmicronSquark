@@ -23,9 +23,11 @@ public interface Maps {
                 normalScale = 1.0,
                 wheelDiameter = 6.0, // inches
                 robotWidth = 20, // inches, distance between wheel centers (not bumpers)
-                P = 0.1,
-                I = 0.03,
-                D = 0;
+                P = 0.00625,
+                I = 0.00015,
+                D = 0.00,
+                absoluteTolerance = 2.0,
+                gyroVoltsPerDegreeSecond = 0.007;
             public static final boolean
                 encoderReverseDirection = false;
 
@@ -75,7 +77,8 @@ public interface Maps {
     public static final class Buttons {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 2),
-            stayAtRotation = new JoystickButton(joystick, 3);
+            stayAtRotation = new JoystickButton(joystick, 3),
+            resetGyro = new JoystickButton(joystick, 4);
         
         // buttons that are only read for values
         public static final int
