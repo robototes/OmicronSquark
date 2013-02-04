@@ -51,6 +51,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         enable(); // enables PID
         
     }    
+    
+    public void reset() {
+        gyroscope.reset();
+    }
 
     protected void usePIDOutput(double output) {
         robotDrive.mecanumDrive_Cartesian(0.0, 0.0, output, 0.0);		
