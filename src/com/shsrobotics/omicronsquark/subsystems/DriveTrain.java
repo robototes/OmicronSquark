@@ -21,12 +21,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
     
-    public DriveTrain() {
-    
+    public DriveTrain() {    
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(0, 259);
-        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);
-        
+        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);        
     }
 
     public void stop() {

@@ -6,6 +6,7 @@ public class DriveWithJoysticks extends CommandBase {
     
     public DriveWithJoysticks() {
        requires(driveTrain);
+       setRunWhenDisabled(false);
     }
 
     protected void initialize() { }

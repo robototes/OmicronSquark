@@ -7,6 +7,7 @@ public class AlignToGoal extends CommandBase implements Maps {
     public AlignToGoal() {
         requires(camera);
         requires(driveTrain);
+        setRunWhenDisabled(false);
     }
 
     protected void initialize() {
@@ -19,7 +20,7 @@ public class AlignToGoal extends CommandBase implements Maps {
     protected void execute() { }
 
     protected boolean isFinished() {
-        return driveTrain.distanceLeft() < Constants.significanceLevel_Angle;
+        return (driveTrain.distanceLeft() < Constants.significanceLevel_Angle);
     }
 
     protected void end() { }

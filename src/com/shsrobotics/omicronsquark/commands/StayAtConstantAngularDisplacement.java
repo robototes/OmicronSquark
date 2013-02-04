@@ -5,6 +5,7 @@ public class StayAtConstantAngularDisplacement extends CommandBase {
     
     public StayAtConstantAngularDisplacement() {
         requires(driveTrain);
+        setRunWhenDisabled(false);
     }
     
     protected void initialize() {

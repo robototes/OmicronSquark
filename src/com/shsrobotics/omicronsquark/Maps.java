@@ -14,8 +14,8 @@ public interface Maps {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
                 frontLeftWheel = 3,
-                frontRightWheel = 4,
-                rearLeftWheel = 1,
+                frontRightWheel = 1,
+                rearLeftWheel = 4,
                 rearRightWheel = 2,
                 gyroscope = 1;
             public static final double
