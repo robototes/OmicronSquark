@@ -1,4 +1,3 @@
-
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
@@ -24,7 +23,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     public DriveTrain() {    
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(0, 259);
-        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);        
+        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);  
+        setAbsoluteTolerance(Constants.significanceLevel_Angle);
     }
 
     public void stop() {

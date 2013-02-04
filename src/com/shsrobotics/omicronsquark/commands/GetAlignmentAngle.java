@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0138)https://raw.github.com/robototes/OmicronSquark/testing_getAlignmentAngle/src/com/shsrobotics/omicronsquark/commands/GetAlignmentAngle.java -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body class=" hasGoogleVoiceExt"><pre style="word-wrap: break-word; white-space: pre-wrap;">package com.shsrobotics.omicronsquark.commands;
+package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,22 +12,20 @@ public class GetAlignmentAngle extends CommandBase implements Maps {
         requires(driveTrain);
     }
 
-    protected void initialize() { }
-
-    protected void execute() {
+    protected void initialize() {
         double angle = camera.getAlignmentAngle();
         SmartDashboard.putNumber("Horizontal Angle From Goal", angle);
-        isDone = true;
     }
 
+    protected void execute() { }
+
     protected boolean isFinished() {
-        return isDone;
+        return true;
     }
 
     protected void end() { }
 
     protected void interrupted() {
-        //driveTrain.stop();
+        driveTrain.stop();
     }
 }
-</pre></body></html>
