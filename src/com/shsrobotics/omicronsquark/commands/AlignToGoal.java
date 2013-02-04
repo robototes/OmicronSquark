@@ -20,11 +20,7 @@ public class AlignToGoal extends CommandBase implements Maps {
     protected void execute() { }
 
     protected boolean isFinished() {
-<<<<<<< HEAD
-        return (driveTrain.distanceLeft() < Constants.significanceLevel_Angle);
-=======
         return driveTrain.onTarget();
->>>>>>> absolute tolerance, fixed commands
     }
 
     protected void end() { }
