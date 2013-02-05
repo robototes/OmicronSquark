@@ -32,14 +32,14 @@ public class Camera extends Subsystem implements Maps {
             BinaryImage white = color.thresholdHSL(52, 100, 0, 255, 0, 255); 
             white = white.convexHull(true);            
             
-            white = white.removeSmallObjects(true, 6);
+            white = white.removeSmallObjects(true, 2);
             
             color.write("CurrentColorImage.jpeg");
             color.free();
             
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
-            
             white.free();
+            
             double maxHeight = -2;
             int topGoalIndex = -1;
             int[] goalTypes = null;

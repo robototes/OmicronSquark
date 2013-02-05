@@ -57,6 +57,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         gyroscope.reset();
         Watchdog.getInstance().setEnabled(true);
     }    
+    
+    public void reset() {
+        gyroscope.reset();
+    }
 
     protected void usePIDOutput(double output) {
         robotDrive.mecanumDrive_Polar(0.0, 0.0, output);
