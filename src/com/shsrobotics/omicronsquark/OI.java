@@ -8,7 +8,7 @@ public class OI implements Maps {
     public OI() {
         Buttons.alignRobot.whenPressed(new AlignToGoal());
         Buttons.stayAtRotation.whenPressed(new StayAtConstantAngularDisplacement());
-        Buttons.resetGyro.whenPressed(new ResetGyro());
+        Buttons.resetGyro.whenPressed(new ResetGyroscope());
     }
     
     public double getX() {
