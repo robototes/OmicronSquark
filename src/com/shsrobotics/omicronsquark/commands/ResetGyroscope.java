@@ -13,7 +13,7 @@ public class ResetGyroscope extends CommandBase {
     protected void execute() { }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     protected void end() { }

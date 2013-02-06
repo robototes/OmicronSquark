@@ -18,9 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Main extends IterativeRobot implements Maps {
 
     Command stateMachine;
-    // chooser buttons put on SmartDashboard for configuring robot options
-    SendableChooser robotPlacement;
-    SendableChooser autonomousScore;
+    
 
     public void startCompetition() {
         try {
@@ -31,26 +29,11 @@ public class Main extends IterativeRobot implements Maps {
     }   
 
     public void robotInit() {
-        robotPlacement = new SendableChooser();
-        robotPlacement.addDefault("Near Right Corner", new Integer(Constants.nearRightCorner));
-        robotPlacement.addObject("Near Left Corner", new Integer(Constants.nearLeftCorner));
-        robotPlacement.addObject("Far Right Corner", new Integer(Constants.farRightCorner));
-        robotPlacement.addObject("Far Left Corner", new Integer(Constants.farLeftCorner));
-        SmartDashboard.putData("Initial Robot Placement", robotPlacement);
-
-        autonomousScore = new SendableChooser();
-        autonomousScore.addDefault("Score during Autonomous", new Integer(Constants.scoreImmediately));
-        autonomousScore.addObject("Wait " + Constants.scoringDelay + " seconds before scoring", new Integer(Constants.scoreAfterDelay));
-        autonomousScore.addObject("Do not score during Autonomous", new Integer(Constants.doNotScore));
-        SmartDashboard.putData("Autonomous Scoring Options", autonomousScore);
-
         CommandBase.init(); // set up subsystems
     }
 
-    public void autonomousInit() {
-        Integer placement = (Integer) robotPlacement.getSelected();
-        Integer scoringOptions = (Integer) autonomousScore.getSelected();
-        stateMachine = new StateMachine(placement.intValue(), scoringOptions.intValue());
+    public void autonomousInit() {        
+        stateMachine = new StateMachine();
         stateMachine.start();
     }
 

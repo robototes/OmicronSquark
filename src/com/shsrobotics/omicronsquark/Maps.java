@@ -15,14 +15,15 @@ public interface Maps {
             public static final int // ports that motors, sensors, etc. are plugged into
                 frontLeftWheel = 3,
                 frontRightWheel = 1,
-                rearLeftWheel = 4,
-                rearRightWheel = 2,
+                rearLeftWheel = 2,
+                rearRightWheel = 4,
                 gyroscope = 1;
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
                 wheelDiameter = 6.0, // inches
                 robotWidth = 20, // inches, distance between wheel centers (not bumpers)
+<<<<<<< HEAD
                 P = 0.00625,
                 I = 0.00015,
                 D = 0.00,
@@ -32,6 +33,11 @@ public interface Maps {
                 encoderReverseDirection = false;
 
             
+=======
+                P = 0.0065,
+                I = 0.00015,
+                D = 0.0;
+>>>>>>> Improved gyroscope accuracy
         }
         
         public static final class Camera {
@@ -78,7 +84,11 @@ public interface Maps {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 2),
             stayAtRotation = new JoystickButton(joystick, 3),
+<<<<<<< HEAD
             resetGyro = new JoystickButton(joystick, 4);
+=======
+            zeroGyro = new JoystickButton(joystick, 11);
+>>>>>>> Improved gyroscope accuracy
         
         // buttons that are only read for values
         public static final int

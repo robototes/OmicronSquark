@@ -26,12 +26,17 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
+<<<<<<< HEAD
             //int hueLow = (int) SmartDashboard.getNumber("Hue Low", 60);
             //int hueHigh = (int) SmartDashboard.getNumber("Hue High", 60);
             //BinaryImage white = color.thresholdHSL(hueLow, hueHigh, 25, 255, 15, 255); 
             BinaryImage white = color.thresholdHSL(52, 100, 0, 255, 0, 255); 
             white = white.convexHull(true);            
             
+=======
+            BinaryImage white = color.thresholdHSL(70, 240, 25, 255, 30, 255);
+            white = white.convexHull(true);
+>>>>>>> Improved gyroscope accuracy
             white = white.removeSmallObjects(true, 2);
             
             color.write("CurrentColorImage.jpeg");
@@ -46,10 +51,12 @@ public class Camera extends Subsystem implements Maps {
             for (int i = 0; i < particles.length; i++) {
                 ParticleAnalysisReport goal = particles[i];
                 if (failsRectangularityTest(goal)) continue;
+                System.out.println("passed rectangularity test");
                 int aspectRatio = testAspectRatio(color.image, goal, i);
                 goalTypes[i] = aspectRatio;
                 color.free();
-                if (aspectRatio == Constants.failsAspectRatioTest) continue;  
+                if (aspectRatio == Constants.failsAspectRatioTest) continue;
+                System.out.println("passed aspectratio test");
                 double y = goal.center_mass_y_normalized;
                 if (y > maxHeight) {
                     maxHeight = y;

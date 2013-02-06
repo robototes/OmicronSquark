@@ -7,25 +7,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class StateMachine extends CommandGroup implements Maps {
 
-	public StateMachine(int placement, int scoringOptions) { // make to-do list
-		if (scoringOptions != Constants.doNotScore) { // put flying discs into 1-point goal
-			if (scoringOptions == Constants.scoreAfterDelay) {
-				addSequential(new WaitCommand(Constants.scoringDelay)); // wait  before starting
-			}
-			switch (placement) {
-				case Constants.nearRightCorner:
-					break;
-				case Constants.nearLeftCorner:
-					break;
-				case Constants.farRightCorner:
-					break;
-				case Constants.farLeftCorner:
-					break;
-				default:
-					break;
-			}
-		} else { // if both other teams are using 1-point goal and take a long time
-
-		}
+	public StateMachine() { // make to-do list
+		
 	}
 }

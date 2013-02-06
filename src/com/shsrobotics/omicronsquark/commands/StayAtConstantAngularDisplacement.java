@@ -14,10 +14,17 @@ public class StayAtConstantAngularDisplacement extends CommandBase {
         driveTrain.rotateTo(0.5);
     }
 
+<<<<<<< HEAD
     protected void execute() { }
     
     protected boolean isFinished() {
         return CommandBase.driveTrain.getPIDController().isEnable();
+=======
+    protected void execute() { }        
+
+    protected boolean isFinished() {
+        return DriverStation.getInstance().isDisabled();
+>>>>>>> Improved gyroscope accuracy
     }
     
     protected void end() { }
