@@ -21,23 +21,13 @@ public interface Maps {
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
-                wheelDiameter = 6.0, // inches
-                robotWidth = 20, // inches, distance between wheel centers (not bumpers)
-<<<<<<< HEAD
-                P = 0.00625,
+                P = 0.00665,
                 I = 0.00015,
                 D = 0.00,
                 absoluteTolerance = 2.0,
                 gyroVoltsPerDegreeSecond = 0.007;
             public static final boolean
                 encoderReverseDirection = false;
-
-            
-=======
-                P = 0.0065,
-                I = 0.00015,
-                D = 0.0;
->>>>>>> Improved gyroscope accuracy
         }
         
         public static final class Camera {
@@ -54,10 +44,8 @@ public interface Maps {
             cameraHorizontalViewAngle = 54, // degrees
             significanceLevel_Distance = 0.1, // feet
             significanceLevel_Angle = 2, //degrees
-            significanceLevel_Percent = 15, //percent            
-            servoJoystickScaling = 0.01,
-            gyroVoltsPerDegreeSecond = 0.007;
-        
+            significanceLevel_Percent = 40, //percent            
+            servoJoystickScaling = 0.01;       
         
         public static final class aspectRatios {
             public static final double
@@ -84,11 +72,7 @@ public interface Maps {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 2),
             stayAtRotation = new JoystickButton(joystick, 3),
-<<<<<<< HEAD
-            resetGyro = new JoystickButton(joystick, 4);
-=======
             zeroGyro = new JoystickButton(joystick, 11);
->>>>>>> Improved gyroscope accuracy
         
         // buttons that are only read for values
         public static final int

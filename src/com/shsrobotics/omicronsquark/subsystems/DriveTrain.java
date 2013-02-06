@@ -21,18 +21,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
     
     public DriveTrain() {    
-<<<<<<< HEAD
-        super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);
-        setInputRange(-360, 360);
-        setAbsoluteTolerance(Robot.Drive.absoluteTolerance);
-        this.getPIDController().setOutputRange(-1.0, 1.0);
-        this.getPIDController().setContinuous(true);
-        gyroscope.setSensitivity(Robot.Drive.gyroVoltsPerDegreeSecond);
-=======
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
         setInputRange(-359,359);
-        gyroscope.setSensitivity(Constants.gyroVoltsPerDegreeSecond);  
->>>>>>> Improved gyroscope accuracy
+	this.getPIDController().setOutputRange(-1.0, 1.0);
+        gyroscope.setSensitivity(Robot.Drive.gyroVoltsPerDegreeSecond); 	
         setAbsoluteTolerance(Constants.significanceLevel_Angle);
     }
 
@@ -58,20 +50,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         setSetpoint(angle);
     }
     
-    public void resetGyro() {
-        Watchdog.getInstance().setEnabled(false);
-        gyroscope.reset();
-        Watchdog.getInstance().setEnabled(true);
-<<<<<<< HEAD
-=======
-        setSetpoint(angle);
-        enable(); // enables PID        
->>>>>>> Improved gyroscope accuracy
-    }    
-    
     public void reset() {
         gyroscope.reset();
-    }
+    }    
+
 
     protected void usePIDOutput(double output) {
         robotDrive.mecanumDrive_Polar(0.0, 0.0, output);
@@ -79,7 +61,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     protected double returnPIDInput() {
-<<<<<<< HEAD
         double angle = getGyroAngle();
         SmartDashboard.putNumber("GYRO ANGLE", angle);
         return angle;
@@ -95,15 +76,9 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     
     public double degreesToNormalized(double normalized) {
         return normalized * 360.0;
-=======
-        double angle = gyroscope.getAngle();
-        SmartDashboard.putNumber("GYRO ANGLE", angle);
-        return angle;
->>>>>>> Improved gyroscope accuracy
     }
 
     public void initDefaultCommand() {
-        resetGyro();
         setDefaultCommand(new DriveWithJoysticks());
     }
 }

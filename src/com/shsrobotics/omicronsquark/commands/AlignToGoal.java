@@ -8,6 +8,7 @@ public class AlignToGoal extends CommandBase implements Maps {
         requires(camera);
         requires(driveTrain);
         setRunWhenDisabled(false);
+        setInterruptible(false);
     }
 
     protected void initialize() {

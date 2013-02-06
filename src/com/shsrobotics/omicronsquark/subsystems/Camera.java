@@ -26,35 +26,21 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
-<<<<<<< HEAD
-            //int hueLow = (int) SmartDashboard.getNumber("Hue Low", 60);
-            //int hueHigh = (int) SmartDashboard.getNumber("Hue High", 60);
-            //BinaryImage white = color.thresholdHSL(hueLow, hueHigh, 25, 255, 15, 255); 
-            BinaryImage white = color.thresholdHSL(52, 100, 0, 255, 0, 255); 
-            white = white.convexHull(true);            
-            
-=======
             BinaryImage white = color.thresholdHSL(70, 240, 25, 255, 30, 255);
-            white = white.convexHull(true);
->>>>>>> Improved gyroscope accuracy
-            white = white.removeSmallObjects(true, 2);
-            
-            color.write("CurrentColorImage.jpeg");
-            color.free();
-            
-            ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
-            white.free();
-            
+            BinaryImage filtered = white.convexHull(true);    
+            ParticleAnalysisReport[] particles = filtered.getOrderedParticleAnalysisReports(); // get particles
             double maxHeight = -2;
             int topGoalIndex = -1;
-            int[] goalTypes = null;
+            int[] goalTypes = new int[particles.length];
             for (int i = 0; i < particles.length; i++) {
                 ParticleAnalysisReport goal = particles[i];
                 if (failsRectangularityTest(goal)) continue;
                 System.out.println("passed rectangularity test");
-                int aspectRatio = testAspectRatio(color.image, goal, i);
+                int aspectRatio = testAspectRatio(goal);  
                 goalTypes[i] = aspectRatio;
                 color.free();
+		filtered.free();
+                white.free();            
                 if (aspectRatio == Constants.failsAspectRatioTest) continue;
                 System.out.println("passed aspectratio test");
                 double y = goal.center_mass_y_normalized;
@@ -83,7 +69,9 @@ public class Camera extends Subsystem implements Maps {
                     break;
             }
         } catch (AxisCameraException ex) {
-        } catch (NIVisionException ex) { }
+        } catch (NIVisionException ex) {
+            ex.printStackTrace();
+        }
         return angle;
     }
     
@@ -91,6 +79,7 @@ public class Camera extends Subsystem implements Maps {
         double area = goal.particleArea;
         double expectedArea = goal.boundingRectHeight * goal.boundingRectWidth;
         double areaError = Math.abs(expectedArea - area) / area;
+        System.out.println(areaError);
         if (areaError > Constants.significanceLevel_Percent / 100) { // if actual area isn't within a set percent of expected area
             return true;
         } else { 
@@ -98,9 +87,9 @@ public class Camera extends Subsystem implements Maps {
         }
     }
     
-    private int testAspectRatio(Pointer image, ParticleAnalysisReport goal, int index) throws NIVisionException {
+ /*   private int testAspectRatio(BinaryImage image, ParticleAnalysisReport goal, int index) throws NIVisionException {
         double area = goal.particleArea;
-        double perimeter = NIVision.MeasureParticle(image, index, true, NIVision.MeasurementType.IMAQ_MT_PERIMETER);
+        double perimeter = NIVision.MeasureParticle(image.image, index, true, NIVision.MeasurementType.IMAQ_MT_PERIMETER);   
         double equivHeight = (perimeter + Math.sqrt(perimeter * perimeter - 16 * area)) / 4;
         double equivWidth = area / equivHeight;
         double equivAspectRatio = equivWidth / equivHeight;
@@ -109,6 +98,31 @@ public class Camera extends Subsystem implements Maps {
             Math.abs(Constants.aspectRatios.middleGoal - equivAspectRatio) / equivAspectRatio,
             Math.abs(Constants.aspectRatios.highGoal - equivAspectRatio) / equivAspectRatio
         };
+        System.out.println(errors);
+        System.out.println(equivHeight);
+        System.out.println(equivWidth);
+        System.out.println(equivAspectRatio);
+        double minError = 1;
+        int minErrorIndex = -1;
+        for (int i = 0; i < 3; i++) {
+            if (errors[i] < minError) {
+                minError = errors[i];
+                minErrorIndex = i;
+            }
+        }
+        if (errors[minErrorIndex] > Constants.significanceLevel_Percent) {
+            return Constants.failsAspectRatioTest;
+        } else {
+            return minErrorIndex + 1;
+        }
+    } */
+    
+    private int testAspectRatio(ParticleAnalysisReport goal) throws NIVisionException {
+        double equivAspectRatio = goal.boundingRectWidth / goal.boundingRectHeight;
+        double[] errors = new double[3];
+	errors[0] = Math.abs(Constants.aspectRatios.lowGoal - equivAspectRatio) / equivAspectRatio;
+        errors[1] = Math.abs(Constants.aspectRatios.middleGoal - equivAspectRatio) / equivAspectRatio;
+	errors[2] = Math.abs(Constants.aspectRatios.highGoal - equivAspectRatio) / equivAspectRatio;
         double minError = 1;
         int minErrorIndex = -1;
         for (int i = 0; i < 3; i++) {
@@ -123,7 +137,6 @@ public class Camera extends Subsystem implements Maps {
             return minErrorIndex + 1;
         }
     }
-
 
     public void initDefaultCommand() { }
 }
