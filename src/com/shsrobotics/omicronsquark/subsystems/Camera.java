@@ -1,7 +1,6 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
-import com.sun.cldc.jna.Pointer;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
@@ -27,8 +26,8 @@ public class Camera extends Subsystem implements Maps {
         try {
             ColorImage color = camera.getImage();
             BinaryImage white = color.thresholdHSL(70, 240, 25, 255, 30, 255);
-            BinaryImage filtered = white.convexHull(true);    
-            ParticleAnalysisReport[] particles = filtered.getOrderedParticleAnalysisReports(); // get particles
+            white = white.convexHull(true);    
+            ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
             double maxHeight = -2;
             int topGoalIndex = -1;
             int[] goalTypes = new int[particles.length];
@@ -36,13 +35,12 @@ public class Camera extends Subsystem implements Maps {
                 ParticleAnalysisReport goal = particles[i];
                 if (failsRectangularityTest(goal)) continue;
                 System.out.println("passed rectangularity test");
-                int aspectRatio = testAspectRatio(goal);  
+                int aspectRatio = testAspectRatio(white, goal, i);  
                 goalTypes[i] = aspectRatio;
                 color.free();
-		filtered.free();
                 white.free();            
                 if (aspectRatio == Constants.failsAspectRatioTest) continue;
-                System.out.println("passed aspectratio test");
+                System.out.println("passed aspect ratio test");
                 double y = goal.center_mass_y_normalized;
                 if (y > maxHeight) {
                     maxHeight = y;
@@ -80,25 +78,25 @@ public class Camera extends Subsystem implements Maps {
         double expectedArea = goal.boundingRectHeight * goal.boundingRectWidth;
         double areaError = Math.abs(expectedArea - area) / area;
         System.out.println(areaError);
-        if (areaError > Constants.significanceLevel_Percent / 100) { // if actual area isn't within a set percent of expected area
+        if (areaError > Constants.significanceLevel_Rectangularity / 100) { // if actual area isn't within a set percent of expected area
             return true;
         } else { 
             return false;
         }
     }
     
- /*   private int testAspectRatio(BinaryImage image, ParticleAnalysisReport goal, int index) throws NIVisionException {
-        double area = goal.particleArea;
-        double perimeter = NIVision.MeasureParticle(image.image, index, true, NIVision.MeasurementType.IMAQ_MT_PERIMETER);   
-        double equivHeight = (perimeter + Math.sqrt(perimeter * perimeter - 16 * area)) / 4;
-        double equivWidth = area / equivHeight;
+    private int testAspectRatio(BinaryImage image, ParticleAnalysisReport goal, int index) throws NIVisionException {
+        double equivHeight = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_SHORT_SIDE);   
+        double equivWidth = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_LONG_SIDE);
         double equivAspectRatio = equivWidth / equivHeight;
         double[] errors = { // low, middle, high
             Math.abs(Constants.aspectRatios.lowGoal - equivAspectRatio) / equivAspectRatio,
             Math.abs(Constants.aspectRatios.middleGoal - equivAspectRatio) / equivAspectRatio,
             Math.abs(Constants.aspectRatios.highGoal - equivAspectRatio) / equivAspectRatio
         };
-        System.out.println(errors);
+        System.out.println(errors[0]);
+        System.out.println(errors[1]);
+        System.out.println(errors[2]);
         System.out.println(equivHeight);
         System.out.println(equivWidth);
         System.out.println(equivAspectRatio);
@@ -115,28 +113,7 @@ public class Camera extends Subsystem implements Maps {
         } else {
             return minErrorIndex + 1;
         }
-    } */
-    
-    private int testAspectRatio(ParticleAnalysisReport goal) throws NIVisionException {
-        double equivAspectRatio = goal.boundingRectWidth / goal.boundingRectHeight;
-        double[] errors = new double[3];
-	errors[0] = Math.abs(Constants.aspectRatios.lowGoal - equivAspectRatio) / equivAspectRatio;
-        errors[1] = Math.abs(Constants.aspectRatios.middleGoal - equivAspectRatio) / equivAspectRatio;
-	errors[2] = Math.abs(Constants.aspectRatios.highGoal - equivAspectRatio) / equivAspectRatio;
-        double minError = 1;
-        int minErrorIndex = -1;
-        for (int i = 0; i < 3; i++) {
-            if (errors[i] < minError) {
-                minError = errors[i];
-                minErrorIndex = i;
-            }
-        }
-        if (errors[minErrorIndex] > Constants.significanceLevel_Percent) {
-            return Constants.failsAspectRatioTest;
-        } else {
-            return minErrorIndex + 1;
-        }
     }
-
+    
     public void initDefaultCommand() { }
 }

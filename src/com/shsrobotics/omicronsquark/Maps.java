@@ -28,23 +28,16 @@ public interface Maps {
                 gyroVoltsPerDegreeSecond = 0.007;
             public static final boolean
                 encoderReverseDirection = false;
-        }
-        
-        public static final class Camera {
-            public static final int
-                flashLight = 1;
-        }
+        }        
     }
     
     public static final class Constants {
         public static final double
-            joystickThreshold = 0.1,
             fieldLength = 54, // feet
-            scoringDelay = 5.0, //seconds
             cameraHorizontalViewAngle = 54, // degrees
-            significanceLevel_Distance = 0.1, // feet
             significanceLevel_Angle = 2, //degrees
-            significanceLevel_Percent = 40, //percent            
+            significanceLevel_Rectangularity = 40, //percent            
+            significanceLevel_Percent = 20, //percent            
             servoJoystickScaling = 0.01;       
         
         public static final class aspectRatios {
