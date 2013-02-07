@@ -63,7 +63,8 @@ public interface Maps {
     
     public static final class Buttons {
         public static final JoystickButton 
-            alignRobot = new JoystickButton(joystick, 2),
+            alignRobot = new JoystickButton(joystick, 7),
+            getAngle = new JoystickButton(joystick, 1),
             stayAtRotation = new JoystickButton(joystick, 3),
             zeroGyro = new JoystickButton(joystick, 11);
         

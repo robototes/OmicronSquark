@@ -6,7 +6,7 @@ import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -70,14 +70,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         return gyroscope.getAngle() % 360;
     }
     
-    public double normalizedToDegrees(double degrees) {
-        return degrees / 360.0;
-    }
-    
-    public double degreesToNormalized(double normalized) {
-        return normalized * 360.0;
-    }
-
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoysticks());
     }

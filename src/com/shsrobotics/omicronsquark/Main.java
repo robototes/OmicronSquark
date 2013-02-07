@@ -12,22 +12,12 @@ import com.shsrobotics.omicronsquark.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Main extends IterativeRobot implements Maps {
 
     Command stateMachine;
     
-
-    public void startCompetition() {
-        try {
-            super.startCompetition();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }   
-
     public void robotInit() {
         CommandBase.init(); // set up subsystems
     }
@@ -37,13 +27,13 @@ public class Main extends IterativeRobot implements Maps {
         stateMachine.start();
     }
 
+    public void teleopInit() {
+        if (stateMachine != null) stateMachine.cancel();
+    }
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
-    public void teleopInit() {
-        if (stateMachine != null) stateMachine.cancel();
-    }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();

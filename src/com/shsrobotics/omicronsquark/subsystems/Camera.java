@@ -25,7 +25,7 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage white = color.thresholdHSL(70, 240, 25, 255, 30, 255);
+            BinaryImage white = color.thresholdHSL(60, 240, 20, 255, 20, 255);
             white = white.convexHull(true);    
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
             double maxHeight = -2;
