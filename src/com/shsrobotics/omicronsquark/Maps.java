@@ -21,8 +21,8 @@ public interface Maps {
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
-                P = 0.00665,
-                I = 0.00015,
+                P = 0.00675,
+                I = 0.000185,
                 D = 0.00,
                 absoluteTolerance = 2.0,
                 gyroVoltsPerDegreeSecond = 0.007;
@@ -35,11 +35,12 @@ public interface Maps {
         public static final double
             fieldLength = 54, // feet
             cameraHorizontalViewAngle = 54, // degrees
-            significanceLevel_Angle = 2, //degrees
-            significanceLevel_Rectangularity = 40, //percent            
+            significanceLevel_Angle = 3.0, //degrees
+            significanceLevel_Rectangularity = 45, //percent            
             significanceLevel_Percent = 20, //percent            
             servoJoystickScaling = 0.01,
-            rotationStep = 30.0,
+            momentumDelay = 0.125, // seconds
+            rotationStep = 25.0,
             spinRight = 1.0,
             spinLeft = -1.0;
         

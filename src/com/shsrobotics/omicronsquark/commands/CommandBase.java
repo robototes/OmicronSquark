@@ -16,7 +16,7 @@ public abstract class CommandBase extends Command {
     public static void init() {
         oi = new OI(); // REQUIRED
         SmartDashboard.putData(driveTrain);
-        SmartDashboard.putData("PID", driveTrain.getPIDController());
+        SmartDashboard.putData(camera);
         driveTrain.reset();
     }
 

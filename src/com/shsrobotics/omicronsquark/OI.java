@@ -7,7 +7,7 @@ import com.sun.squawk.util.MathUtils;
 public class OI implements Maps {
 
     public OI() {
-        Buttons.alignRobot.whenPressed(new FineTuneAlignment());
+        Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
     }
     

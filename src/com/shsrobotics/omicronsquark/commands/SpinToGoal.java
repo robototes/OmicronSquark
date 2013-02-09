@@ -1,6 +1,7 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
+import edu.wpi.first.wpilibj.Timer;
 
 public class SpinToGoal extends CommandBase implements Maps {
     
@@ -34,18 +35,27 @@ public class SpinToGoal extends CommandBase implements Maps {
         return aligned;
     }
 
-    protected void end() { }
+    protected void end() {
+        driveTrain.stop();
+    }
 
     protected void interrupted() {
         driveTrain.stop();
     }
     
     public boolean goalInView() {
-        return (camera.getAlignmentAngle() != Double.NEGATIVE_INFINITY);
+        System.out.println("goalInView()");
+        return camera.goalInView();
     }
     
     public void rotateStep() {
-        driveTrain.rotateTo(Constants.rotationStep * direction);
-        while (driveTrain.onTarget() == false) { }
+        System.out.println("rotateStep()");
+        System.out.println("setting robot to " + driveTrain.getGyroAngle() + Constants.rotationStep * direction);
+        driveTrain.rotateTo(driveTrain.getGyroAngle() + Constants.rotationStep * direction);
+        while (driveTrain.onTarget() == false) { } 
+        driveTrain.stop();
+        try {
+            Thread.sleep((long) Constants.momentumDelay * 1000); // wait for robot to become stable
+        } catch (InterruptedException ex) { }
     }
 }

@@ -1,6 +1,7 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveWithJoysticks extends CommandBase {
     
@@ -13,6 +14,7 @@ public class DriveWithJoysticks extends CommandBase {
 
     protected void execute() {
         boolean fieldCentric = oi.getThrottle() < 0.0;
+        SmartDashboard.putBoolean("throttle", fieldCentric);
         driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), fieldCentric);
     }
 

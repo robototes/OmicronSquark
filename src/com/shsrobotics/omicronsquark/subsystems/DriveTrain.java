@@ -4,20 +4,19 @@ import com.shsrobotics.omicronsquark.Maps;
 import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
     
-    Victor frontLeftVictor = new Victor(Robot.Drive.frontLeftWheel);
-    Victor rearLeftVictor = new Victor(Robot.Drive.rearLeftWheel);
-    Victor frontRightVictor = new Victor(Robot.Drive.frontRightWheel);
-    Victor rearRightVictor = new Victor(Robot.Drive.rearRightWheel);
+    Jaguar frontLeftJaguar = new Jaguar(Robot.Drive.frontLeftWheel);
+    Jaguar rearLeftJaguar = new Jaguar(Robot.Drive.rearLeftWheel);
+    Jaguar frontRightJaguar = new Jaguar(Robot.Drive.frontRightWheel);
+    Jaguar rearRightJaguar = new Jaguar(Robot.Drive.rearRightWheel);
 
-    private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
+    private RobotDrive robotDrive = new RobotDrive(frontLeftJaguar, rearLeftJaguar, frontRightJaguar, rearRightJaguar);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
     
     public DriveTrain() {    
@@ -25,7 +24,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         setInputRange(-359,359);
 	this.getPIDController().setOutputRange(-1.0, 1.0);
         gyroscope.setSensitivity(Robot.Drive.gyroVoltsPerDegreeSecond); 	
-        setAbsoluteTolerance(Constants.significanceLevel_Angle);
+        setAbsoluteTolerance(Constants.significanceLevel_Angle);        
+        robotDrive.setExpiration(20);
     }
 
     public void stop() {
@@ -43,8 +43,9 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
 
     public void rotateTo(double angle) { // in degrees
-        enable();
+        disable();
         setSetpoint(angle);
+        enable();
     }
     
     public void reset() {
