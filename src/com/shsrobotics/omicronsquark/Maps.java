@@ -38,7 +38,10 @@ public interface Maps {
             significanceLevel_Angle = 2, //degrees
             significanceLevel_Rectangularity = 40, //percent            
             significanceLevel_Percent = 20, //percent            
-            servoJoystickScaling = 0.01;       
+            servoJoystickScaling = 0.01,
+            rotationStep = 30.0,
+            spinRight = 1.0,
+            spinLeft = -1.0;
         
         public static final class aspectRatios {
             public static final double
@@ -63,9 +66,7 @@ public interface Maps {
     
     public static final class Buttons {
         public static final JoystickButton 
-            alignRobot = new JoystickButton(joystick, 7),
-            getAngle = new JoystickButton(joystick, 1),
-            stayAtRotation = new JoystickButton(joystick, 3),
+            alignRobot = new JoystickButton(joystick, 1),
             zeroGyro = new JoystickButton(joystick, 11);
         
         // buttons that are only read for values

@@ -2,12 +2,12 @@
 package com.shsrobotics.omicronsquark;
 
 import com.shsrobotics.omicronsquark.commands.*;
+import com.sun.squawk.util.MathUtils;
 
 public class OI implements Maps {
 
     public OI() {
-        Buttons.alignRobot.whenPressed(new AlignToGoal());
-        Buttons.stayAtRotation.whenPressed(new StayAtConstantAngularDisplacement());
+        Buttons.alignRobot.whenPressed(new FineTuneAlignment());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
     }
     
@@ -20,8 +20,11 @@ public class OI implements Maps {
     public double getZ() {
         return joystick.getZ() * getScale();
     }
+    public double getThrottle() {
+        return joystick.getRawAxis(4);
+    }
     public double getScale() {
-        return !joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : Robot.Drive.driveCoordinateScale;
+        return !joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : MathUtils.pow(Robot.Drive.driveCoordinateScale, -3);
     }
 }
 

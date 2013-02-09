@@ -33,16 +33,13 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         disable();
     }
     
-    public void drive(double x, double y, double z) {
+    public void drive(double x, double y, double z, boolean useGyro) {
         disable(); // disables PID
         x = MathUtils.pow(x, 3);
         y = MathUtils.pow(y, 3);
-        robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
+        double gyroAngle = useGyro ? getGyroAngle() : 0.0;
+        robotDrive.mecanumDrive_Cartesian(x, y, z, gyroAngle);
         SmartDashboard.putNumber("GYRO ANGLE", getGyroAngle());
-    }
-
-    public double distanceLeft() {
-        return getPosition() - getSetpoint();
     }
 
     public void rotateTo(double angle) { // in degrees

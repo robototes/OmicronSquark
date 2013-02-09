@@ -9,13 +9,10 @@ import edu.wpi.first.wpilibj.image.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Camera extends Subsystem implements Maps {
+    
     private AxisCamera camera = AxisCamera.getInstance();
-    final double topGoalAspectRatio = 46.0 / 133.0;
-    final double lowGoalAspectRatio = 32.2 / 37.0;
-    double tolerance = 0.2;
     
     private double inverseNormalizedDistance = Math.tan(Math.toRadians(Constants.cameraHorizontalViewAngle / 2));
-
 
     public Camera() {
         camera.writeResolution(AxisCamera.ResolutionT.k160x120);
@@ -25,9 +22,12 @@ public class Camera extends Subsystem implements Maps {
         double angle = 0;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage white = color.thresholdHSL(60, 240, 20, 255, 20, 255);
+            BinaryImage white = color.thresholdHSL(55, 240, 20, 255, 20, 255);
             white = white.convexHull(true);    
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles
+            white.free();
+            color.free();
+            
             double maxHeight = -2;
             int topGoalIndex = -1;
             int[] goalTypes = new int[particles.length];
@@ -35,10 +35,8 @@ public class Camera extends Subsystem implements Maps {
                 ParticleAnalysisReport goal = particles[i];
                 if (failsRectangularityTest(goal)) continue;
                 System.out.println("passed rectangularity test");
-                int aspectRatio = testAspectRatio(white, goal, i);  
+                int aspectRatio = testAspectRatio(white, i);  
                 goalTypes[i] = aspectRatio;
-                color.free();
-                white.free();            
                 if (aspectRatio == Constants.failsAspectRatioTest) continue;
                 System.out.println("passed aspect ratio test");
                 double y = goal.center_mass_y_normalized;
@@ -85,7 +83,7 @@ public class Camera extends Subsystem implements Maps {
         }
     }
     
-    private int testAspectRatio(BinaryImage image, ParticleAnalysisReport goal, int index) throws NIVisionException {
+    private int testAspectRatio(BinaryImage image, int index) throws NIVisionException {
         double equivHeight = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_SHORT_SIDE);   
         double equivWidth = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_LONG_SIDE);
         double equivAspectRatio = equivWidth / equivHeight;

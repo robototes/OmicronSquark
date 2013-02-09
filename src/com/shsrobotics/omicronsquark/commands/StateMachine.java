@@ -1,9 +1,8 @@
 
 package com.shsrobotics.omicronsquark.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.command.WaitCommand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class StateMachine extends CommandGroup implements Maps {
 

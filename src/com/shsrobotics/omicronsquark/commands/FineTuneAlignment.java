@@ -1,26 +1,31 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class GetAlignmentAngle extends CommandBase implements Maps {
+public class FineTuneAlignment extends CommandBase implements Maps {
     
-    boolean isDone = false;
+    private boolean error;
     
-    public GetAlignmentAngle() {
+    public FineTuneAlignment() {
         requires(camera);
         requires(driveTrain);
+        setRunWhenDisabled(false);
+        setInterruptible(false);
     }
 
     protected void initialize() {
         double angle = camera.getAlignmentAngle();
-        SmartDashboard.putNumber("Horizontal Angle From Goal", angle);
+        if (angle != Double.NEGATIVE_INFINITY) {
+            driveTrain.rotateTo(angle - driveTrain.getGyroAngle());
+        } else {
+            error = true;
+        }
     }
 
     protected void execute() { }
 
     protected boolean isFinished() {
-        return true;
+        return driveTrain.onTarget() || error;
     }
 
     protected void end() { }

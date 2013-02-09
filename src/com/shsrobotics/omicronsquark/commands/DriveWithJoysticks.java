@@ -12,7 +12,8 @@ public class DriveWithJoysticks extends CommandBase {
     protected void initialize() { }
 
     protected void execute() {
-        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ());
+        boolean fieldCentric = oi.getThrottle() < 0.0;
+        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), fieldCentric);
     }
 
     protected boolean isFinished() {
