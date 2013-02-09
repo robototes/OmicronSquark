@@ -1,41 +1,32 @@
 package com.shsrobotics.omicronsquark.commands;
 
-/**
- *
- * @author Max
- */
-public class ClimbWithRope extends CommandBase {
+public class Climb30 extends CommandBase {
     
     private int climbDirection = 0;
     private int currentPyramidLevel = 0;
     
-    public ClimbWithRope() {
+    public Climb30() {
         requires(driveTrain);
         setInterruptible(false);
     }
 
     protected void initialize() {
-        
-    }
+		driveTrain.lockDriveTrainToClimber();
+	}
     
     protected void execute() {
         setClimb();
     }
     
     private void setClimb() {
-        if ( currentPyramidLevel < 3 ) {
-            if ( driveTrain.hasReachedUpperClimbBound() ) {
-                driveTrain.lockSolenoid();
+        if (currentPyramidLevel < 3) {
+            if (driveTrain.hasReachedUpperClimbBound()) {
                 climbDirection = -1;
                 currentPyramidLevel++;
-            }
-            else if ( driveTrain.hasReachedLowerClimbBound() ) {
-                driveTrain.unlockSolenoid();
+            } else if (driveTrain.hasReachedLowerClimbBound()) {
                 climbDirection = 1;
             }
-        }
-        else {
-            driveTrain.lockSolenoid();
+        } else {
             climbDirection = 0;
         }
         
@@ -43,16 +34,16 @@ public class ClimbWithRope extends CommandBase {
     }
     
     protected boolean isFinished() {
-        return ( currentPyramidLevel > 2 ) && driveTrain.isLocked();
+        return (currentPyramidLevel > 2);
     }
     
     protected void end() {
-        driveTrain.drive(0,0,0);
+        driveTrain.stop();
+		driveTrain.unlockDriveTrainFromClimber();
     }
     
     protected void interrupted() {
-        driveTrain.drive(0, 0, 0);
-        
-        //inflateAirCushion();
+        driveTrain.stop();
+        driveTrain.unlockDriveTrainFromClimber();
     }
 }

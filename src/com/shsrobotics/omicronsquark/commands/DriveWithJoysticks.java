@@ -9,7 +9,7 @@ public class DriveWithJoysticks extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-        ;
+        driveTrain.unlockDriveTrainFromClimber();
     }
 
 	protected void execute() {

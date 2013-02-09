@@ -1,12 +1,15 @@
-
 package com.shsrobotics.omicronsquark;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.ClimbToLevel;
 
 public class OI implements Maps {
 
+	public OI() {
+		Buttons.climb10.whenPressed(new ClimbToLevel(Constants.firstLevel));
+		Buttons.climb20.whenPressed(new ClimbToLevel(Constants.secondLevel));
+		Buttons.climb30.whenPressed(new ClimbToLevel(Constants.thirdLevel));
+	}
+	
 	public double getX() {
 		return joystick.getX() * getScale();
 	}
