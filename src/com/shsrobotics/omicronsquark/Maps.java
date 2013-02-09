@@ -8,23 +8,29 @@ public interface Maps {
 	public static final class Robot {
 		public static final class Drive {
 			public static final int // ports that motors, sensors, etc. are plugged into
-				frontLeftWheel = 1,
-				frontRightWheel = 1,
-				rearLeftWheel = 1,
-				rearRightWheel = 1,
-				encoderASource = 1,
-				encoderBSource = 1,
-				encoderPulsesPerRevolution = 200;
+                frontLeftWheel = 1,
+                frontRightWheel = 1,
+                rearLeftWheel = 1,
+                rearRightWheel = 1,
+                solenoidLockClimb = 1,
+                encoderASource = 1,
+                encoderBSource = 1,
+                encoderPulsesPerRevolution = 200,
+                limitSwitchUpperClimb = 1,
+                limitSwitchLowerClimb = 2,
+                climbUp = 1,    // these 3 are used in math, dont change them.
+                climbDown = -1,
+                doNotClimb = 0;
 			public static final double
-				driveCoordinateScale = 0.5,
-				normalScale = 1.0,
-				wheelDiameter = 6.0, // inches
-				robotWidth = 20, // inches, distance between wheel centers (not bumpers)
-				P = 0.1,
-				I = 0.03,
-				D = 0;
+                driveCoordinateScale = 0.5,
+                normalScale = 1.0,
+                wheelDiameter = 6.0, // inches
+                robotWidth = 20, // inches, distance between wheel centers (not bumpers)
+                P = 0.1,
+                I = 0.03,
+                D = 0;
 			public static final boolean
-				encoderReverseDirection = false;
+                            encoderReverseDirection = false;
 		}
     }
 

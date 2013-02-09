@@ -8,7 +8,9 @@ public class DriveWithJoysticks extends CommandBase implements Maps {
 		requires(driveTrain);
 	}
 
-	protected void initialize() { }
+	protected void initialize() {
+        ;
+    }
 
 	protected void execute() {
 		driveTrain.drive(oi.getX(), oi.getY(), oi.getZ());
@@ -18,7 +20,9 @@ public class DriveWithJoysticks extends CommandBase implements Maps {
 		return false;
 	}
 
-	protected void end() { }
+	protected void end() {
+        ;
+    }
 
 	protected void interrupted() {
 		driveTrain.drive(0.0, 0.0, 0.0);
