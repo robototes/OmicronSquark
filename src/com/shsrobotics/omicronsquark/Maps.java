@@ -17,10 +17,7 @@ public interface Maps {
                 encoderBSource = 1,
                 encoderPulsesPerRevolution = 200,
                 limitSwitchUpperClimb = 1,
-                limitSwitchLowerClimb = 2,
-                climbUp = 1,    // these 3 are used in math, dont change them.
-                climbDown = -1,
-                doNotClimb = 0;
+                limitSwitchLowerClimb = 2;
 			public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,

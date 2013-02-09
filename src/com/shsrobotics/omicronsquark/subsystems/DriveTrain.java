@@ -34,15 +34,42 @@ public class DriveTrain extends Subsystem implements Maps {
             robotDrive.mecanumDrive_Cartesian(x, y, z, 0.0);
     }
     
+    /**
+     * @return Weather the robot has pulled itself up to the next level.
+     */
     public boolean hasReachedUpperClimbBound() {
         return upperClimbFlag.get();
     }
     
+    /**
+     * @return Weather the robot has completely extended its climbing arm.
+     */
     public boolean hasReachedLowerClimbBound() {
         return lowerClimbFlag.get();
     }
     
+    /**
+     * Causes the locking solenoid to lock the robot to the pyramid frame.
+     */
+    public void lockSolenoid() {
+        climbLock.set(true);
+    }
+    
+    /**
+     * Causes the locking solenoid to unlock from the pyramid.
+     */
+    public void unlockSolenoid() {
+        climbLock.set(false);
+    }
+    
     public void initDefaultCommand() {
             setDefaultCommand(new DriveWithJoysticks());
+    }
+    
+    /*
+     * @return Wheather the locking solenoid has been locked.
+     */
+    public boolean isLocked() {
+        return climbLock.get();
     }
 }

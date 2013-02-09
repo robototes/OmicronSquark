@@ -25,14 +25,17 @@ public class ClimbWithRope extends CommandBase {
     private void setClimb() {
         if ( currentPyramidLevel < 3 ) {
             if ( driveTrain.hasReachedUpperClimbBound() ) {
+                driveTrain.lockSolenoid();
                 climbDirection = -1;
                 currentPyramidLevel++;
             }
             else if ( driveTrain.hasReachedLowerClimbBound() ) {
+                driveTrain.unlockSolenoid();
                 climbDirection = 1;
             }
         }
         else {
+            driveTrain.lockSolenoid();
             climbDirection = 0;
         }
         
@@ -40,11 +43,11 @@ public class ClimbWithRope extends CommandBase {
     }
     
     protected boolean isFinished() {
-        return currentPyramidLevel > 2;
+        return ( currentPyramidLevel > 2 ) && driveTrain.isLocked();
     }
     
     protected void end() {
-        
+        driveTrain.drive(0,0,0);
     }
     
     protected void interrupted() {
