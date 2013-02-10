@@ -126,8 +126,9 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            white = color.thresholdHSL(80, 240, 40, 255, 25, 255);
+            white = color.thresholdHSL(40, 255, 25, 255, 20, 170);
             white = white.convexHull(true);
+			white = white.particleFilter(criteria);
             color.free();
         } catch (AxisCameraException ex) {
         } catch (NIVisionException ex) { }

@@ -9,8 +9,8 @@ public class SpinToGoal extends CommandBase implements Maps {
     private double direction;
     
     public SpinToGoal() {
-        requires(driveTrain);
         requires(camera);
+        requires(driveTrain);
     }
 
     protected void initialize() {
@@ -50,12 +50,12 @@ public class SpinToGoal extends CommandBase implements Maps {
     
     public void rotateStep() {
         System.out.println("rotateStep()");
-        System.out.println("setting robot to " + driveTrain.getGyroAngle() + Constants.rotationStep * direction);
-        driveTrain.rotateTo(driveTrain.getGyroAngle() + Constants.rotationStep * direction);
-        while (driveTrain.onTarget() == false) { } 
-        driveTrain.stop();
-        try {
-            Thread.sleep((long) Constants.momentumDelay * 1000); // wait for robot to become stable
-        } catch (InterruptedException ex) { }
+        System.out.println("setting robot to " + Constants.rotationStep * direction);	
+		driveTrain.reset();
+		driveTrain.rotateTo(Constants.rotationStep * direction);
+		while (!driveTrain.onTarget()) {
+			System.out.println("WAITING TO TURN");
+		}
+		driveTrain.stop();
     }
 }

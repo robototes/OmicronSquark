@@ -17,8 +17,9 @@ public class FineTuneAlignment extends CommandBase implements Maps {
         System.out.println("FineTuneAlignment");
         double angle = camera.getAlignmentAngle();
         if (angle != Double.NEGATIVE_INFINITY) {
-            System.out.println("setting robot to " + (angle - driveTrain.getGyroAngle()));
-            driveTrain.rotateTo(angle - driveTrain.getGyroAngle());
+            System.out.println("setting robot to " + angle);
+			driveTrain.reset();
+			driveTrain.rotateTo(angle);
         } else {
             System.out.println("goal not found");
             error = true;
@@ -26,7 +27,7 @@ public class FineTuneAlignment extends CommandBase implements Maps {
     }
 
     protected void execute() { }
-
+	
     protected boolean isFinished() {
         return driveTrain.onTarget() || error;
     }

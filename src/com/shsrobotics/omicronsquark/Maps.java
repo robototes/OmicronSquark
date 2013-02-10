@@ -14,17 +14,17 @@ public interface Maps {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
                 frontLeftWheel = 3,
-                frontRightWheel = 1,
+                frontRightWheel = 2,
                 rearLeftWheel = 4,
-                rearRightWheel = 2,
+                rearRightWheel = 1,
                 gyroscope = 1;
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
-                P = 0.00675,
-                I = 0.000185,
+                P = 0.00975,
+                I = 0.00165,
                 D = 0.00,
-                absoluteTolerance = 2.0,
+                absoluteTolerance = 0.75,
                 gyroVoltsPerDegreeSecond = 0.007;
             public static final boolean
                 encoderReverseDirection = false;
@@ -38,9 +38,9 @@ public interface Maps {
             significanceLevel_Angle = 3.0, //degrees
             significanceLevel_Rectangularity = 45, //percent            
             significanceLevel_Percent = 20, //percent            
-            servoJoystickScaling = 0.01,
+            joystickThreshold = 0.1,
             momentumDelay = 0.125, // seconds
-            rotationStep = 25.0,
+            rotationStep = 15.0,
             spinRight = 1.0,
             spinLeft = -1.0;
         
@@ -68,10 +68,12 @@ public interface Maps {
     public static final class Buttons {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 1),
-            zeroGyro = new JoystickButton(joystick, 11);
+            zeroGyro = new JoystickButton(joystick, 11),
+			stayAtZero = new JoystickButton(joystick, 4),
+			drive = new JoystickButton(joystick, 4);
         
         // buttons that are only read for values
         public static final int
-            scaleDriveCoordinates = 1;
+            scaleDriveCoordinates = 2;
     }
 }

@@ -14,8 +14,7 @@ public class DriveWithJoysticks extends CommandBase {
 
     protected void execute() {
         boolean fieldCentric = oi.getThrottle() < 0.0;
-        SmartDashboard.putBoolean("throttle", fieldCentric);
-        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), fieldCentric);
+        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), false);
     }
 
     protected boolean isFinished() {
