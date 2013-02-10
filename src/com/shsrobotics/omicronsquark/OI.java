@@ -10,7 +10,7 @@ public class OI implements Maps {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
 		Buttons.stayAtZero.whenPressed(new RotateToConstant());
-		Buttons.drive.whenPressed(new DriveWithJoysticks());
+		Buttons.driveForwards.whileHeld(new DriveWithJoysticks());
     }
     
     public double getX() {
@@ -25,7 +25,7 @@ public class OI implements Maps {
     public double getThrottle() {
         return joystick.getRawAxis(4);
     }
-    public double getScale() {
+    private double getScale() {
         return !joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : MathUtils.pow(Robot.Drive.driveCoordinateScale, -3);
     }
 }

@@ -21,8 +21,8 @@ public interface Maps {
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
-                P = 0.00975,
-                I = 0.00165,
+                P = 0.00325,
+                I = 0.00075,
                 D = 0.00,
                 absoluteTolerance = 0.75,
                 gyroVoltsPerDegreeSecond = 0.007;
@@ -35,11 +35,12 @@ public interface Maps {
         public static final double
             fieldLength = 54, // feet
             cameraHorizontalViewAngle = 54, // degrees
+			shooterVerticalAngle = 37,		// degrees
             significanceLevel_Angle = 3.0, //degrees
             significanceLevel_Rectangularity = 45, //percent            
             significanceLevel_Percent = 20, //percent            
             joystickThreshold = 0.1,
-            momentumDelay = 0.125, // seconds
+            momentumDelay = 0.075, // seconds
             rotationStep = 15.0,
             spinRight = 1.0,
             spinLeft = -1.0;
@@ -52,13 +53,7 @@ public interface Maps {
         }
         
         public static final int
-            nearLeftCorner = 0,
-            nearRightCorner = 1,
-            farLeftCorner = 2,
-            farRightCorner = 3,
-            scoreImmediately = 0,
-            scoreAfterDelay = 1,
-            doNotScore = 2,
+            onTargetCount = 5,
             failsAspectRatioTest = 0,
             lowGoal = 1,
             middleGoal = 2,
@@ -70,7 +65,7 @@ public interface Maps {
             alignRobot = new JoystickButton(joystick, 1),
             zeroGyro = new JoystickButton(joystick, 11),
 			stayAtZero = new JoystickButton(joystick, 4),
-			drive = new JoystickButton(joystick, 4);
+			driveForwards = new JoystickButton(joystick, 2);
         
         // buttons that are only read for values
         public static final int

@@ -18,6 +18,8 @@ public class DriveTrain extends PIDSubsystem implements Maps {
 
     private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
+	
+	private double userAlignment = 0.0;
     
     public DriveTrain() {    
         super(Robot.Drive.P, Robot.Drive.I, Robot.Drive.D);                
@@ -46,6 +48,10 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         robotDrive.mecanumDrive_Cartesian(x, y, z, gyroAngle);
         SmartDashboard.putNumber("GYRO ANGLE", angle);
     }
+	
+	public void driveRearWheels(double magnitude) {
+		robotDrive.mecanumDrive_Cartesian(0.0, magnitude, 0.0, 0.0);
+	}
 
     public void rotateTo(double angle) { // in degrees
         setSetpoint(angle);
@@ -55,11 +61,14 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     public void reset() {
         gyroscope.reset();
     }    
+	
+	public void setUserAlignment(double y) {
+		userAlignment = y;
+	}
 
 
     protected void usePIDOutput(double output) {
-        robotDrive.mecanumDrive_Cartesian(0.0, 0.0, output, 0.0);
-        SmartDashboard.putNumber("PID OUTPUT", output);
+        robotDrive.mecanumDrive_Cartesian(0.0, userAlignment, output, 0.0);
     }
 
     protected double returnPIDInput() {

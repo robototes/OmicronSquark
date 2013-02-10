@@ -2,10 +2,12 @@ package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SpinToGoal extends CommandBase implements Maps {
     
     private boolean aligned;
+    private boolean isRotating;
     private double direction;
     
     public SpinToGoal() {
@@ -14,7 +16,9 @@ public class SpinToGoal extends CommandBase implements Maps {
     }
 
     protected void initialize() {
+		System.out.println("SpinToGoal");
         aligned = false;
+        isRotating = false;
         boolean spinRight = (driveTrain.getGyroAngle() % 180) < 0.0;
         if (spinRight) {
             direction = Constants.spinRight;
@@ -24,11 +28,15 @@ public class SpinToGoal extends CommandBase implements Maps {
 }
 
     protected void execute() {
-        if (goalInView()) {
+		if (!isRotating && goalInView()) {
             aligned = true;
-        } else {
+        } else if (!isRotating) {
             rotateStep();
-        }
+        } else if (driveTrain.onTarget()) {
+			driveTrain.stop();
+			Timer.delay(Constants.momentumDelay);
+			isRotating = false;
+		}
     }
 
     protected boolean isFinished() {
@@ -44,18 +52,12 @@ public class SpinToGoal extends CommandBase implements Maps {
     }
     
     public boolean goalInView() {
-        System.out.println("goalInView()");
         return camera.goalInView();
     }
     
-    public void rotateStep() {
-        System.out.println("rotateStep()");
-        System.out.println("setting robot to " + Constants.rotationStep * direction);	
+    public void rotateStep() {       
 		driveTrain.reset();
-		driveTrain.rotateTo(Constants.rotationStep * direction);
-		while (!driveTrain.onTarget()) {
-			System.out.println("WAITING TO TURN");
-		}
-		driveTrain.stop();
+		driveTrain.rotateTo(direction * Constants.rotationStep);
+		isRotating = true;		
     }
 }

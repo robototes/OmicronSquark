@@ -1,6 +1,7 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.CheckShootingDistance;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
@@ -20,10 +21,15 @@ public class Camera extends Subsystem implements Maps {
         criteria.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, 100, 19200, false);
     }
 
-    public double getAlignmentAngle() {
-        double angle = 0;
+    public Angles getAlignmentAngles() {
+        double horizontalAngle = 0;
+        double verticalAngle = 0;
+		Angles angles;
         try {
             BinaryImage white = getFilteredImage();    
+			if (white == null) {
+				return new Angles(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+			}
             ParticleAnalysisReport[] particles = white.getOrderedParticleAnalysisReports(); // get particles            
             double maxHeight = -2;
             int topGoalIndex = -1;
@@ -31,8 +37,7 @@ public class Camera extends Subsystem implements Maps {
             for (int i = 0; i < particles.length; i++) {
                 ParticleAnalysisReport goal = particles[i];
                 if (failsRectangularityTest(goal)) continue;
-                int aspectRatio = testAspectRatio(white, goal, i);                
-                white.free();
+                int aspectRatio = testAspectRatio(white, goal, i); 
                 goalTypes[i] = aspectRatio;
                 if (aspectRatio == Constants.failsAspectRatioTest) continue;
                 double y = goal.center_mass_y_normalized;
@@ -40,43 +45,49 @@ public class Camera extends Subsystem implements Maps {
                     maxHeight = y;
                     topGoalIndex = i;
                 }
-            }
-            if (topGoalIndex == -1) {
-                angle = Double.NEGATIVE_INFINITY;
+            }			               
+			white.free();
+            if (topGoalIndex == -1) { // not found
+                horizontalAngle = Double.NEGATIVE_INFINITY;
+                verticalAngle = Double.NEGATIVE_INFINITY;
+				SmartDashboard.putString("Goal Type", "NO GOAL");
             } else {
-                angle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistance));
-            }
-            System.out.println("Of " + particles.length + " particles, the horizontal angle to the highest one is " + angle + " degrees.");
-            SmartDashboard.putNumber("Horizontal Angle to Target", angle);
-            if (angle == Double.NEGATIVE_INFINITY) return angle;
-            switch (goalTypes[topGoalIndex]) {
-                case Constants.lowGoal:
-                    SmartDashboard.putString("Goal Type", "Low Goal");
-                    break;
-                case Constants.middleGoal:
-                    SmartDashboard.putString("Goal Type", "Middle Goal");
-                    break;
-                case Constants.highGoal:
-                    SmartDashboard.putString("Goal Type", "High Goal");
-                    break;
+                horizontalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistance));
+                verticalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_y_normalized * inverseNormalizedDistance));
+				SmartDashboard.putNumber("Horizontal Angle to Target", horizontalAngle);
+				SmartDashboard.putNumber("Vertical Angle to Target", verticalAngle);
+				switch (goalTypes[topGoalIndex]) {
+					case Constants.lowGoal:
+						SmartDashboard.putString("Goal Type", "Low Goal");
+						break;
+					case Constants.middleGoal:
+						SmartDashboard.putString("Goal Type", "Middle Goal");
+						break;
+					case Constants.highGoal:
+						SmartDashboard.putString("Goal Type", "High Goal");
+						break;
+				}
             }
         } catch (NIVisionException ex) {
             ex.printStackTrace();
         }
-        return angle;
-    }
+		angles = new Angles(horizontalAngle, verticalAngle);				
+        return angles;
+    }	
+	
     
     public boolean goalInView() {
         try {
             BinaryImage filtered = getFilteredImage();
-            if (filtered.getNumberParticles() > 0 && getAlignmentAngle() != Double.NEGATIVE_INFINITY) {                
+			if (filtered == null) {
+				return false;
+			}
+            if (filtered.getNumberParticles() > 0 && getAlignmentAngles().horizontal != Double.NEGATIVE_INFINITY) {   // goal found             
                 return true;
             } else {
                 return false;
             }
-        } catch (NIVisionException ex) {
-            ex.printStackTrace();
-        }
+        } catch (NIVisionException ex) { }
         return false;
     }
     
@@ -126,14 +137,32 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            white = color.thresholdHSL(40, 255, 25, 255, 20, 170);
-            white = white.convexHull(true);
-			white = white.particleFilter(criteria);
-            color.free();
+            BinaryImage threshold = color.thresholdHSL(44, 255, 25, 255, 20, 170);
+				color.free();
+            BinaryImage convexHull = threshold.convexHull(true);
+				threshold.free();
+			white = convexHull.particleFilter(criteria);
+				convexHull.free();
         } catch (AxisCameraException ex) {
-        } catch (NIVisionException ex) { }
+			ex.printStackTrace();
+        } catch (NIVisionException ex) {
+			ex.printStackTrace();
+		}
         return white;
     }
     
-    public void initDefaultCommand() { }
+    public void initDefaultCommand() {
+		setDefaultCommand(new CheckShootingDistance());
+	}
+	
+	
+	public static class Angles {		
+		public final double horizontal;
+		public final double vertical;
+		
+		public Angles(double horizontal, double vertical) {
+			this.horizontal = horizontal;
+			this.vertical = vertical;
+		}
+	}
 }

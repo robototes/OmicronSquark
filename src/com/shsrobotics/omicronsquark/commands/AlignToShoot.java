@@ -11,4 +11,8 @@ public class AlignToShoot extends CommandGroup implements Maps {
         addSequential(new WaitCommand(Constants.momentumDelay));
         addSequential(new FineTuneAlignment());
     }    
+
+	protected void initialize() {
+		System.out.println("Trigger pressed");
+	}
 }
