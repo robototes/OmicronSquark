@@ -28,7 +28,13 @@ public interface Maps {
                 gyroVoltsPerDegreeSecond = 0.007;
             public static final boolean
                 encoderReverseDirection = false;
-        }        
+        } 
+		public static final class Scorer {
+            public static final int
+                flywheelFront = 1,
+                flywheelRear = 1,
+                loader = 1;
+        }
     }
     
     public static final class Constants {
@@ -43,7 +49,8 @@ public interface Maps {
             momentumDelay = 0.075, // seconds
             rotationStep = 15.0,
             spinRight = 1.0,
-            spinLeft = -1.0;
+            spinLeft = -1.0,
+			idlePercent = 5.0;
         
         public static final class aspectRatios {
             public static final double
@@ -69,6 +76,6 @@ public interface Maps {
         
         // buttons that are only read for values
         public static final int
-            scaleDriveCoordinates = 2;
+            scaleDriveCoordinates = 9;
     }
 }

@@ -12,6 +12,7 @@ public abstract class CommandBase extends Command {
 
     public static Camera camera = new Camera();
     public static DriveTrain driveTrain = new DriveTrain();
+    public static DiskShooter diskShooter = new DiskShooter();
 
     public static void init() {
         oi = new OI(); // REQUIRED

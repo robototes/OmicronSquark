@@ -14,10 +14,10 @@ public class OI implements Maps {
     }
     
     public double getX() {
-        return -0.9 * joystick.getX() * getScale();
+        return -1 * joystick.getX() * getScale();
     }
     public double getY() {
-        return 0.9 * joystick.getY() * getScale();
+        return joystick.getY() * getScale();
     }
     public double getZ() {		
         return joystick.getZ() * getScale() * 0.65;

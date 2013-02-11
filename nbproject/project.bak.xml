@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+>>>>>>> origin/dev_diskShooter
 
     This is a sample netbeans project file for a Sun Spot Application project.
     You may edit it freely, it doesn't affect the ant-powered build.
@@ -79,6 +83,7 @@
             </view>
             <subprojects/>
         </general-data>
+<<<<<<< HEAD
         <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/3">
             <compilation-unit>
                 <package-root>src</package-root>
@@ -90,3 +95,16 @@
         </java-data>
     </configuration>
 </project>
+=======
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/1">
+            <compilation-unit>
+                <package-root>src</package-root>
+                <classpath mode="boot">${sunspot.bootclasspath}</classpath>
+                <classpath mode="compile">${wpilibj.home}/classes.jar</classpath>
+                <built-to>build</built-to>
+                <source-level>1.4</source-level>
+            </compilation-unit>
+        </java-data>
+    </configuration>
+</project>
+>>>>>>> origin/dev_diskShooter
