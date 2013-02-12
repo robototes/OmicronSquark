@@ -11,7 +11,13 @@ public class DiskShooter extends Subsystem implements Maps {
     private Jaguar diskLoader = new Jaguar(Robot.Scorer.loader);
     
     public void idle(boolean state) {
-        double motorValue = state ? Constants.idlePercent / 100 : 0.0;
+        double motorValue;
+	if (state) {
+	    motorValue = Constants.idlePercent / 100;
+	} else {
+	    motorValue = 0.0;
+	}
+	
         frontFlywheelMotor.set(motorValue);
         rearFlywheelMotor.set(motorValue);
     }
@@ -21,14 +27,14 @@ public class DiskShooter extends Subsystem implements Maps {
         rearFlywheelMotor.set(value);
     }
 	
-	public void stop() {
-		frontFlywheelMotor.stopMotor();
-		rearFlywheelMotor.stopMotor();
-	}
-	
-	public void shoot() {
-		diskLoader.set(1.0);
-	}
+    public void stop() {
+	frontFlywheelMotor.stopMotor();
+	rearFlywheelMotor.stopMotor();
+    }
+
+    public void shoot() {
+	diskLoader.set(1.0);
+    }
 
     public void initDefaultCommand() { }
 }
