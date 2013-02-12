@@ -36,10 +36,14 @@ public class Camera extends Subsystem implements Maps {
             int[] goalTypes = new int[particles.length];
             for (int i = 0; i < particles.length; i++) {
                 ParticleAnalysisReport goal = particles[i];
-                if (failsRectangularityTest(goal)) continue;
+                if (failsRectangularityTest(goal)) {
+					continue;
+				}
                 int aspectRatio = testAspectRatio(white, goal, i); 
                 goalTypes[i] = aspectRatio;
-                if (aspectRatio == Constants.failsAspectRatioTest) continue;
+                if (aspectRatio == Constants.failsAspectRatioTest) {
+					continue;
+				}
                 double y = goal.center_mass_y_normalized;
                 if (y > maxHeight) {
                     maxHeight = y;
