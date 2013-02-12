@@ -7,7 +7,7 @@ public class MoveClimberDown extends CommandBase {
 	private boolean done;
 	
 	public MoveClimberDown() {
-		requires(driveTrain);
+		requires(climber);
 		setInterruptible(false);
 	}
 
@@ -17,7 +17,7 @@ public class MoveClimberDown extends CommandBase {
 	}
 
 	protected void execute() {
-		limitSwitch = driveTrain.hasReachedUpperClimbBound();
+		limitSwitch = climber.hasReachedUpperClimbBound();
 		if (limitSwitch) {
 			allowEnd = true;			
 		} else if (allowEnd) {

@@ -5,11 +5,10 @@ import com.shsrobotics.omicronsquark.Maps;
 public class DriveWithJoysticks extends CommandBase implements Maps {
 
 	public DriveWithJoysticks() {
-		requires(driveTrain);
+		requires(climber);
 	}
 
 	protected void initialize() {
-        driveTrain.unlockDriveTrainFromClimber();
     }
 
 	protected void execute() {

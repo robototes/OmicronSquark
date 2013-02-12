@@ -14,10 +14,8 @@ public class ClimbToLevel extends CommandGroup implements Maps {
 	}
 	
 	public void initialize() {
-		CommandBase.driveTrain.lockDriveTrainToClimber();
 	}
 	
 	public void end() {
-		CommandBase.driveTrain.unlockDriveTrainFromClimber();
 	}
 }

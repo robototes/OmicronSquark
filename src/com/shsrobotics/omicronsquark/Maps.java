@@ -33,7 +33,9 @@ public interface Maps {
                 lockDriveTrainPistonA = 1,
                 lockDriveTrainPistonB = 2,
                 limitSwitchUpperClimb = 1,
-                limitSwitchLowerClimb = 2;
+                limitSwitchLowerClimb = 2,
+		leftTalon = 1,
+		rightTalon = 1;
 		}
     }
 

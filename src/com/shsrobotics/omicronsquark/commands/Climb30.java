@@ -6,13 +6,11 @@ public class Climb30 extends CommandBase {
     private int currentPyramidLevel = 0;
     
     public Climb30() {
-        requires(driveTrain);
+        requires(climber);
         setInterruptible(false);
     }
 
-    protected void initialize() {
-		driveTrain.lockDriveTrainToClimber();
-	}
+    protected void initialize() { }
     
     protected void execute() {
         setClimb();
@@ -20,10 +18,10 @@ public class Climb30 extends CommandBase {
     
     private void setClimb() {
         if (currentPyramidLevel < 3) {
-            if (driveTrain.hasReachedUpperClimbBound()) {
+            if (climber.hasReachedUpperClimbBound()) {
                 climbDirection = -1;
                 currentPyramidLevel++;
-            } else if (driveTrain.hasReachedLowerClimbBound()) {
+            } else if (climber.hasReachedLowerClimbBound()) {
                 climbDirection = 1;
             }
         } else {
@@ -39,11 +37,9 @@ public class Climb30 extends CommandBase {
     
     protected void end() {
         driveTrain.stop();
-		driveTrain.unlockDriveTrainFromClimber();
     }
     
     protected void interrupted() {
         driveTrain.stop();
-        driveTrain.unlockDriveTrainFromClimber();
     }
 }
