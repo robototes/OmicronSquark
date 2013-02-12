@@ -30,8 +30,8 @@ public interface Maps {
         }
 		public static final class Climber {
 			public static final int // ports				
-                lockDriveTrainPistonA = 1,
-                lockDriveTrainPistonB = 2,
+                pistonLifterA = 1,
+		pistonLifterB = 2,
                 limitSwitchUpperClimb = 1,
                 limitSwitchLowerClimb = 2,
 		leftTalon = 1,

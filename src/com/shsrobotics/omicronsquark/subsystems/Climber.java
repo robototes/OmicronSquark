@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem implements Maps {
 
-    private DoubleSolenoid driveTrainLockPiston = new DoubleSolenoid(Maps.Robot.Climber.lockDriveTrainPistonA,
-	    Maps.Robot.Climber.lockDriveTrainPistonB);
+    private DoubleSolenoid pistonLifter = new DoubleSolenoid(Maps.Robot.Climber.pistonLifterA, 
+	    Maps.Robot.Climber.pistonLifterB);
     private DigitalInput upperClimbFlag = new DigitalInput(Maps.Robot.Climber.limitSwitchUpperClimb);
     private DigitalInput lowerClimbFlag = new DigitalInput(Maps.Robot.Climber.limitSwitchLowerClimb);
     private Talon leftTalon = new Talon(Robot.Climber.leftTalon);
@@ -31,4 +31,6 @@ public class Climber extends Subsystem implements Maps {
     }
     
     public void initDefaultCommand() { }
+    
+    
 }
