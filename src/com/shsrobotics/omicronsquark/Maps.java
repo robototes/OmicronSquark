@@ -34,8 +34,8 @@ public interface Maps {
 		pistonLifterB = 2,
                 limitSwitchUpperClimb = 1,
                 limitSwitchLowerClimb = 2,
-		leftTalon = 1,
-		rightTalon = 1;
+		leftTalon = 7,
+		rightTalon = 8;
 		}
     }
 
