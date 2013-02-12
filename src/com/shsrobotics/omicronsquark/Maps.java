@@ -31,9 +31,9 @@ public interface Maps {
         } 
 		public static final class Scorer {
             public static final int
-                flywheelFront = 1,
-                flywheelRear = 1,
-                loader = 1;
+                flywheelFront = 5,
+                flywheelRear = 6,
+                loader = 9;
         }
     }
     

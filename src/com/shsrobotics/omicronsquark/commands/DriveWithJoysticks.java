@@ -1,8 +1,5 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class DriveWithJoysticks extends CommandBase {
     
     public DriveWithJoysticks() {

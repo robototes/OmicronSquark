@@ -137,7 +137,7 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage threshold = color.thresholdHSL(44, 255, 25, 255, 20, 170);
+            BinaryImage threshold = color.thresholdHSL(45, 255, 20, 255, 40, 255);
 				color.free();
             BinaryImage convexHull = threshold.convexHull(true);
 				threshold.free();

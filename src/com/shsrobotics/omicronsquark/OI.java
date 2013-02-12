@@ -10,7 +10,7 @@ public class OI implements Maps {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
 		Buttons.stayAtZero.whenPressed(new RotateToConstant());
-		Buttons.driveForwards.whileHeld(new DriveWithJoysticks());
+		Buttons.driveForwards.whileHeld(new LockToYDirection());
     }
     
     public double getX() {
