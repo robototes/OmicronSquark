@@ -31,9 +31,19 @@ public interface Maps {
         } 
 		public static final class Scorer {
             public static final int
+				encoderFrontA = 1,
+				encoderFrontB = 1,
+				encoderRearA = 1,
+				encoderRearB = 1,
                 flywheelFront = 5,
                 flywheelRear = 6,
-                loader = 9;
+                loader = 9,
+				frisbeeCounterSwitch = 1,
+				shooterLimitSwitch = 1;
+			public static final double
+				P = 0.0,
+				I = 0.0,
+				D = 0.0;
         }
     }
     
@@ -69,10 +79,11 @@ public interface Maps {
     
     public static final class Buttons {
         public static final JoystickButton 
-            alignRobot = new JoystickButton(joystick, 1),
+            alignRobot = new JoystickButton(joystick, 7),
             zeroGyro = new JoystickButton(joystick, 11),
 			stayAtZero = new JoystickButton(joystick, 4),
-			driveForwards = new JoystickButton(joystick, 2);
+			driveForwards = new JoystickButton(joystick, 2),
+			shoot = new JoystickButton(joystick, 1);
         
         // buttons that are only read for values
         public static final int
