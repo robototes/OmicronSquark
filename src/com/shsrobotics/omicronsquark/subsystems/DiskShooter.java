@@ -18,11 +18,13 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	private Encoder encoderWheelFront = new Encoder(Robot.Scorer.encoderFrontA, Robot.Scorer.encoderFrontB);
 	private Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
 	
-	private DigitalInput frisbeeCounter = new DigitalInput(Robot.Scorer.frisbeeCounterSwitch);
-	private DigitalInput otherLimitSwitch = new DigitalInput(Robot.Scorer.shooterLimitSwitch);
+	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
     
 	public DiskShooter() {
 		super(Robot.Scorer.P, Robot.Scorer.I, Robot.Scorer.D);
+		setInputRange(0.0, 300000.0);
+		encoderWheelFront.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
+		encoderWheelRear.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
 	}
 	
     public void idle(boolean state) {
@@ -59,18 +61,26 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 
     public void shoot() {
 		flywheelMotorFront.set(flywheelMotorFront.get());
-		flywheelMotorRear.set(flywheelMotorRear.get());	
+		flywheelMotorRear.set(flywheelMotorRear.get());
 		diskLoader.set(ON);
 		SmartDashboard.putNumber("flywheelMotorFront", flywheelMotorFront.get());
 		SmartDashboard.putNumber("flywheelMotorRear", flywheelMotorRear.get());
 		SmartDashboard.putBoolean("diskLoader", (diskLoader.get() == ON));
-    }   
+    } 
+	
+	public boolean get() {
+		return loaderRegulator.get();
+	}
 
 	protected double returnPIDInput() {
-		return 0.0;
+		double frontWheelVelocity = encoderWheelFront.getRate();
+		double rearWheelVelocity = encoderWheelRear.getRate() * Constants.frontToRearMotorSpeedRatio;
+		return (frontWheelVelocity + rearWheelVelocity) / 2;
 	}
 
 	protected void usePIDOutput(double output) {
+		flywheelMotorFront.set(output);
+		flywheelMotorRear.set(output / Constants.frontToRearMotorSpeedRatio);
 	}
 	
 	public void initDefaultCommand() { }

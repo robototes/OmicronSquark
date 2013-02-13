@@ -10,9 +10,10 @@ public class OI implements Maps {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
 		Buttons.driveForwards.whileHeld(new LockToYDirection());
-		Buttons.shoot.whileHeld(new ShootOld());
+		Buttons.shoot.whileHeld(new Shoot());
 		Buttons.shooterUp.whenPressed(new IncreaseShooterSpeed());
 		Buttons.shooterDown.whenPressed(new DecreaseShooterSpeed());
+		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
     }
     
     public double getX() {

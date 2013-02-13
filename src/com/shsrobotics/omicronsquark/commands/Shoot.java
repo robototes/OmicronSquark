@@ -1,20 +1,35 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import com.shsrobotics.omicronsquark.subsystems.*;
+
 public class Shoot extends CommandBase {
+
+	private boolean hasLeft;
 	
     public Shoot() {
 		requires(diskShooter);
     }
 
-    protected void initialize() { }
+    protected void initialize() {
+		hasLeft = false;
+		diskShooter.shoot();
+	}
 
-    protected void execute() { }
+    protected void execute() {
+		if (!diskShooter.get() && !hasLeft) {
+			hasLeft = true;
+		}
+	}
 
     protected boolean isFinished() {
-		return false;
+		return diskShooter.get() && hasLeft;
     }
 
-    protected void end() { }
+    protected void end() {
+		diskShooter.stop();
+    }
 
-    protected void interrupted() { }
+    protected void interrupted() {
+		diskShooter.stop();
+    }
 }

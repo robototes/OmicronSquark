@@ -2,6 +2,8 @@ package com.shsrobotics.omicronsquark;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.buttons.AnalogIOButton;
+import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public interface Maps {
@@ -39,7 +41,8 @@ public interface Maps {
                 flywheelRear = 6,
                 loader = 1,
 				frisbeeCounterSwitch = 6,
-				shooterLimitSwitch = 7;
+				loaderRegulatorSwitch = 7,
+				encoderPulsesPerRevolution = 256;
 			public static final double
 				P = 0.0,
 				I = 0.0,
@@ -87,6 +90,9 @@ public interface Maps {
 			shoot = new JoystickButton(joystick, 1),
 			shooterUp = new JoystickButton(joystick, 6),
 			shooterDown = new JoystickButton(joystick, 4);
+		
+		public static final DigitalIOButton
+			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);		
         
         // buttons that are only read for values
         public static final int
