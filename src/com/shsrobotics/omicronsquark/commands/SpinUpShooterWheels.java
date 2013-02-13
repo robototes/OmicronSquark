@@ -3,24 +3,24 @@ package com.shsrobotics.omicronsquark.commands;
 public class SpinUpShooterWheels extends CommandBase {
 
     public SpinUpShooterWheels() {
-	requires(diskShooter);
+		requires(diskShooter);
     }
 
-    protected void initialize() { }
+    protected void initialize() {		
+		diskShooter.set(0.9);
+	}
 
-    protected void execute() {
-	diskShooter.set(0.9);
-    }
+    protected void execute() { }
 
     protected boolean isFinished() {
-	return false;
+		return true;
     }
 
     protected void end() {
-	diskShooter.stop();
+		diskShooter.stop();
     }
 
     protected void interrupted() {
-	diskShooter.stop();
+		diskShooter.stop();
     }
 }

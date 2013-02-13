@@ -43,9 +43,17 @@ public class DiskShooter extends PIDSubsystem implements Maps {
     public void stop() {
 		flywheelMotorFront.stopMotor();
 		flywheelMotorRear.stopMotor();
+		diskLoader.stopMotor();
     }
+	
+	public void increment(double input) {
+		flywheelMotorFront.set(flywheelMotorFront.get() + input);
+		flywheelMotorRear.set(flywheelMotorRear.get() + input);
+	}
 
     public void shoot() {
+		flywheelMotorFront.set(flywheelMotorFront.get());
+		flywheelMotorRear.set(flywheelMotorRear.get());		
 		diskLoader.set(1.0);
     }   
 

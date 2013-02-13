@@ -3,25 +3,18 @@ package com.shsrobotics.omicronsquark.commands;
 public class Shoot extends CommandBase {
 	
     public Shoot() {
-	requires(diskShooter);
+		requires(diskShooter);
     }
 
     protected void initialize() { }
 
-    protected void execute() {
-	diskShooter.set(0.9);
-	diskShooter.shoot();
-    }
+    protected void execute() { }
 
     protected boolean isFinished() {
-	return false;
+		return false;
     }
 
-    protected void end() {
-	diskShooter.stop();
-    }
+    protected void end() { }
 
-    protected void interrupted() {
-	diskShooter.stop();
-    }
+    protected void interrupted() { }
 }

@@ -31,15 +31,15 @@ public interface Maps {
         } 
 		public static final class Scorer {
             public static final int
-				encoderFrontA = 1,
-				encoderFrontB = 1,
-				encoderRearA = 1,
-				encoderRearB = 1,
+				encoderFrontA = 2,
+				encoderFrontB = 3,
+				encoderRearA = 4,
+				encoderRearB = 5,
                 flywheelFront = 5,
                 flywheelRear = 6,
                 loader = 9,
-				frisbeeCounterSwitch = 1,
-				shooterLimitSwitch = 1;
+				frisbeeCounterSwitch = 6,
+				shooterLimitSwitch = 7;
 			public static final double
 				P = 0.0,
 				I = 0.0,
@@ -61,7 +61,8 @@ public interface Maps {
             spinRight = 1.0,
             spinLeft = -1.0,
 			idlePercent = 5.0,
-			frontToRearMotorSpeedRatio = 5000 / 2000; //rpm
+			frontToRearMotorSpeedRatio = 5000 / 2000, //rpm
+			shooterSpeedIncrement = 0.05;
         
         public static final class aspectRatios {
             public static final double
@@ -82,9 +83,10 @@ public interface Maps {
         public static final JoystickButton 
             alignRobot = new JoystickButton(joystick, 7),
             zeroGyro = new JoystickButton(joystick, 11),
-			stayAtZero = new JoystickButton(joystick, 4),
 			driveForwards = new JoystickButton(joystick, 2),
-			shoot = new JoystickButton(joystick, 1);
+			shoot = new JoystickButton(joystick, 1),
+			shooterUp = new JoystickButton(joystick, 6),
+			shooterDown = new JoystickButton(joystick, 4);
         
         // buttons that are only read for values
         public static final int

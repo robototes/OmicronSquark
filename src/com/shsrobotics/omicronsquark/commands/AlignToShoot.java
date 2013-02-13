@@ -9,8 +9,8 @@ public class AlignToShoot extends CommandGroup implements Maps {
     public AlignToShoot() {
         addSequential(new SpinToGoal());
         addSequential(new WaitCommand(Constants.momentumDelay));
-//		addParallel(new SpinUpShooterWheels());
+		addParallel(new SpinUpShooterWheels());
         addSequential(new FineTuneAlignment());
-//		addSequential(new Shoot(), 4.0); // shoot, and end after four seconds.
+		addSequential(new Shoot(), 4.0); // shoot, and end after four seconds.
     }   
 }

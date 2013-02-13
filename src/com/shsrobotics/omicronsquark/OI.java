@@ -9,18 +9,20 @@ public class OI implements Maps {
     public OI() {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
-		Buttons.stayAtZero.whenPressed(new RotateToConstant());
 		Buttons.driveForwards.whileHeld(new LockToYDirection());
+		Buttons.shoot.whileHeld(new ShootOld());
+		Buttons.shooterUp.whenPressed(new IncreaseShooterSpeed());
+		Buttons.shooterDown.whenPressed(new DecreaseShooterSpeed());
     }
     
     public double getX() {
-        return -1 * joystick.getX() * getScale();
+        return joystick.getX() * getScale();
     }
     public double getY() {
         return joystick.getY() * getScale();
     }
     public double getZ() {		
-        return joystick.getZ() * getScale() * 0.65;
+        return joystick.getZ() * getScale();
     }
     public double getThrottle() {
         return joystick.getRawAxis(4);

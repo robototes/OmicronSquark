@@ -26,16 +26,18 @@ public class Main extends IterativeRobot implements Maps {
     public void autonomousInit() {        
         stateMachine = new StateMachine();
         stateMachine.start();
+		new ZeroFlywheels().start();
     }
-
-    public void teleopInit() {
-        if (stateMachine != null) stateMachine.cancel();
-    }
-    public void autonomousPeriodic() {
+	
+	public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
-
-
+	
+    public void teleopInit() {
+        if (stateMachine != null) stateMachine.cancel();
+		new ZeroFlywheels().start();
+    }
+    
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
