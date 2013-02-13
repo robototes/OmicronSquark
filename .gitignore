@@ -1,11 +1,9 @@
 _MACOSX/*
 build/*
+suite/*
 j2meclasses/*
 nbproject/private/*
 
 *.tmp
 *.class
-<<<<<<< HEAD
 *.xml
-=======
->>>>>>> origin/dev_diskShooter
