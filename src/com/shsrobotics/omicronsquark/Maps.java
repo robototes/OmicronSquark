@@ -60,7 +60,8 @@ public interface Maps {
             rotationStep = 15.0,
             spinRight = 1.0,
             spinLeft = -1.0,
-			idlePercent = 5.0;
+			idlePercent = 5.0,
+			frontToRearMotorSpeedRatio = 5000 / 2000; //rpm
         
         public static final class aspectRatios {
             public static final double
