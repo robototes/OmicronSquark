@@ -37,7 +37,7 @@ public interface Maps {
 				encoderRearB = 5,
                 flywheelFront = 5,
                 flywheelRear = 6,
-                loader = 9,
+                loader = 1,
 				frisbeeCounterSwitch = 6,
 				shooterLimitSwitch = 7;
 			public static final double
