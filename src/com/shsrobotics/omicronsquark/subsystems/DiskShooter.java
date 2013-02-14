@@ -22,7 +22,7 @@ public class DiskShooter extends PIDSubsystem implements Maps {
     
 	public DiskShooter() {
 		super(Robot.Scorer.P, Robot.Scorer.I, Robot.Scorer.D);
-		setInputRange(0.0, 300000.0);
+		setInputRange(0.0, 300000.0);  // That's 300,000
 		encoderWheelFront.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
 		encoderWheelRear.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
 	}
