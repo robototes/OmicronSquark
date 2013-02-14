@@ -1,4 +1,3 @@
-
 package com.shsrobotics.omicronsquark;
 
 import com.shsrobotics.omicronsquark.commands.*;
@@ -14,6 +13,9 @@ public class OI implements Maps {
 		Buttons.shooterUp.whenPressed(new IncreaseShooterSpeed());
 		Buttons.shooterDown.whenPressed(new DecreaseShooterSpeed());
 		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
+		Buttons.climb10.whenPressed(new ClimbToLevel(Constants.firstLevel));
+		Buttons.climb20.whenPressed(new ClimbToLevel(Constants.secondLevel));
+		Buttons.climb30.whenPressed(new ClimbToLevel(Constants.thirdLevel));
     }
     
     public double getX() {

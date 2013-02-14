@@ -7,20 +7,20 @@ public class DriveWithJoysticks extends CommandBase {
        setRunWhenDisabled(false);
     }
 
-    protected void initialize() { }
+    protected void initialize() { }	
 
     protected void execute() {
         boolean fieldCentric = oi.getThrottle() < 0.0;
         driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), false);
     }
 
-    protected boolean isFinished() {
-        return false;
-    }
+	protected boolean isFinished() {
+		return false;
+	}
 
-    protected void end() { }
+	protected void end() { }
 
-    protected void interrupted() {
-        driveTrain.stop();
-    }
+	protected void interrupted() {
+		driveTrain.drive(0.0, 0.0, 0.0, false);
+	}
 }

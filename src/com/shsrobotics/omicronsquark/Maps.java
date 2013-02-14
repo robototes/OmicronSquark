@@ -1,8 +1,8 @@
 package com.shsrobotics.omicronsquark;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.buttons.AnalogIOButton;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -11,6 +11,9 @@ public interface Maps {
     
     Relay.Value ON = Relay.Value.kForward;
     Relay.Value OFF = Relay.Value.kOff;
+	
+	DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
+	DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
     
     public static final class Robot {
         public static final class Drive {
@@ -48,8 +51,16 @@ public interface Maps {
 				I = 0.0,
 				D = 0.0;
         }
-    }
-    
+		public static final class Climber {
+			public static final int // ports				
+                pistonLifterA = 1,
+				pistonLifterB = 2,
+                limitSwitchUpperClimb = 8,
+                limitSwitchLowerClimb = 9,
+				leftTalon = 7,
+				rightTalon = 8;
+		}
+	}
     public static final class Constants {
         public static final double
             fieldLength = 54, // feet
@@ -79,7 +90,11 @@ public interface Maps {
             failsAspectRatioTest = 0,
             lowGoal = 1,
             middleGoal = 2,
-            highGoal = 3;
+            highGoal = 3,
+			groundLevel = 0,
+			firstLevel = 1,
+			secondLevel = 2,
+			thirdLevel = 3;
     }
     
     public static final class Buttons {
@@ -89,7 +104,10 @@ public interface Maps {
 			driveForwards = new JoystickButton(joystick, 2),
 			shoot = new JoystickButton(joystick, 1),
 			shooterUp = new JoystickButton(joystick, 6),
-			shooterDown = new JoystickButton(joystick, 4);
+			shooterDown = new JoystickButton(joystick, 4),
+			climb10 = new JoystickButton(joystick, 12),
+			climb20 = new JoystickButton(joystick, 10),
+			climb30 = new JoystickButton(joystick, 8);
 		
 		public static final DigitalIOButton
 			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);		

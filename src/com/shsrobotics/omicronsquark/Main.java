@@ -7,7 +7,6 @@
 
 package com.shsrobotics.omicronsquark;
 
-
 import com.shsrobotics.omicronsquark.commands.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -34,7 +33,9 @@ public class Main extends IterativeRobot implements Maps {
     }
 	
     public void teleopInit() {
-        if (stateMachine != null) stateMachine.cancel();
+        if (stateMachine != null) {
+			stateMachine.cancel();
+		}
 		new ZeroFlywheels().start();
     }
     
