@@ -18,6 +18,8 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	private Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
 	
 	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
+	
+	double currentValue = 0.0;
     
 	public DiskShooter() {
 		super(Robot.Scorer.P, Robot.Scorer.I, Robot.Scorer.D);
@@ -41,8 +43,6 @@ public class DiskShooter extends PIDSubsystem implements Maps {
     public void set(double value) {
         flywheelMotorFront.set(value);
         flywheelMotorRear.set(value);
-		SmartDashboard.putNumber("flywheelMotorFront", flywheelMotorFront.get());
-		SmartDashboard.putNumber("flywheelMotorRear", flywheelMotorRear.get());
     }
 	
     public void stop() {
@@ -52,18 +52,15 @@ public class DiskShooter extends PIDSubsystem implements Maps {
     }
 	
 	public void increment(double input) {
-		flywheelMotorFront.set(flywheelMotorFront.get() + input);
-		flywheelMotorRear.set(flywheelMotorRear.get() + input);
-		SmartDashboard.putNumber("flywheelMotorFront", flywheelMotorFront.get());
-		SmartDashboard.putNumber("flywheelMotorRear", flywheelMotorRear.get());
+		currentValue = flywheelMotorFront.get() + input;
+		flywheelMotorFront.set(currentValue);
+		flywheelMotorRear.set(currentValue);
 	}
 
     public void shoot() {
-		flywheelMotorFront.set(flywheelMotorFront.get());
-		flywheelMotorRear.set(flywheelMotorRear.get());
+		flywheelMotorFront.set(currentValue);
+		flywheelMotorRear.set(currentValue);
 		diskLoader.set(ON);
-		SmartDashboard.putNumber("flywheelMotorFront", flywheelMotorFront.get());
-		SmartDashboard.putNumber("flywheelMotorRear", flywheelMotorRear.get());
 		SmartDashboard.putBoolean("diskLoader", (diskLoader.get() == ON));
     } 
 	
