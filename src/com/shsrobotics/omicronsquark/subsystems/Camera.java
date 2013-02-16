@@ -141,7 +141,7 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage threshold = color.thresholdHSL(50, 255, 20, 255, 40, 255);
+            BinaryImage threshold = color.thresholdHSL(45, 255, 20, 255, 40, 255);
 				color.free();
             BinaryImage convexHull = threshold.convexHull(true);
 				threshold.free();
@@ -157,16 +157,16 @@ public class Camera extends Subsystem implements Maps {
     
     public void initDefaultCommand() {
 		setDefaultCommand(new CheckShootingDistance());
-    }
+	}
 	
 	
-    public static class Angles {		
+	public static class Angles {		
 		public final double horizontal;
 		public final double vertical;
-
+		
 		public Angles(double horizontal, double vertical) {
 			this.horizontal = horizontal;
 			this.vertical = vertical;
 		}
-    }
+	}
 }
