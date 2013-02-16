@@ -2,6 +2,7 @@ package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
@@ -15,7 +16,9 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	private Relay diskLoader = new Relay(Robot.Scorer.loader);
 	
 	private Encoder encoderWheelFront = new Encoder(Robot.Scorer.encoderFrontA, Robot.Scorer.encoderFrontB);
-	public Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
+	private Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
+	
+	public static final double standardBatteryVoltage = 12.11;  // this number is made up, fix
 	
 	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
 	
@@ -29,7 +32,7 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	}
 	
     public void set(double value) {
-		currentValue = value;
+		currentValue = compensateBatteryVoltage(value);
         flywheelMotorFront.set(value);
         flywheelMotorRear.set(Constants.rearMotorScaling * value);
     }
@@ -42,13 +45,11 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	
 	public void increment(double input) {
 		currentValue += input;
-		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
+		set(currentValue);
 	}
 
     public void shoot() {
-		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
+		set(currentValue);
 		diskLoader.set(ON);
     } 
 	
@@ -67,5 +68,15 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 		flywheelMotorRear.set(Constants.rearMotorScaling * output / Constants.frontToRearMotorSpeedRatio);
 	}
 	
+	public double compensateBatteryVoltage(double currentVoltage) {
+		double compensatedVoltage;
+		double voltage1 = DriverStation.getInstance().getBatteryVoltage();
+		double voltage2 = DriverStation.getInstance().getBatteryVoltage();
+		
+		currentVoltage = (voltage1 + voltage2) / 2;
+		compensatedVoltage = standardBatteryVoltage / currentVoltage;
+		
+		return compensatedVoltage;
+	}
 	public void initDefaultCommand() { }
 }
