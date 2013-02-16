@@ -4,23 +4,23 @@ import com.shsrobotics.omicronsquark.Maps;
 
 public class LockToYDirection extends CommandBase implements Maps {
 	
-	public LockToYDirection() {
-		requires(driveTrain);
-	}
+    public LockToYDirection() {
+	requires(driveTrain);
+    }
 
-	protected void initialize() { }
+    protected void initialize() { }
 
-	protected void execute() {
-		driveTrain.driveRearWheels(oi.getY());
-	}
+    protected void execute() {
+	driveTrain.driveRearWheels(oi.getY());
+    }
 
-	protected boolean isFinished() {
-		return false;
-	}
+    protected boolean isFinished() {
+	return false;
+    }
 
-	protected void end() { }
+    protected void end() { }
 
-	protected void interrupted() {
-		driveTrain.stop();
-	}
+    protected void interrupted() {
+	driveTrain.stop();
+    }
 }
