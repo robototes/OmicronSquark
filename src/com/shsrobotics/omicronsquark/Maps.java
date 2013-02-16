@@ -107,9 +107,8 @@ public interface Maps {
 			shoot = new JoystickButton(joystick, 1),
 			shooterUp = new JoystickButton(joystick, 6),
 			shooterDown = new JoystickButton(joystick, 4),
-			climb10 = new JoystickButton(joystick, 12),
-			climb20 = new JoystickButton(joystick, 10),
-			climb30 = new JoystickButton(joystick, 8);
+			cancelLockToY = new JoystickButton(joystick, 12),
+			getRidOfOneFrisbee = new JoystickButton(joystick, 10);
 		
 		public static final DigitalIOButton
 			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);		

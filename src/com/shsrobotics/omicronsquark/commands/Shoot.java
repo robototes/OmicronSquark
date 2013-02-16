@@ -1,7 +1,5 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.subsystems.*;
-
 public class Shoot extends CommandBase {
 
 	private boolean hasLeft;
@@ -13,6 +11,7 @@ public class Shoot extends CommandBase {
     protected void initialize() {
 		hasLeft = false;
 		diskShooter.shoot();
+		new AlignToShoot().cancel();
 	}
 
     protected void execute() {

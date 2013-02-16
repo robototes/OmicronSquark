@@ -1,5 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 
 public class LockToYDirection extends CommandBase implements Maps {
@@ -8,14 +9,16 @@ public class LockToYDirection extends CommandBase implements Maps {
 		requires(driveTrain);
     }
 	
-	protected void initialize() { }
+	protected void initialize() {
+		driveTrain.rotateTo(driveTrain.getGyroAngle());
+	}
 
     protected void execute() {
-		driveTrain.drive(0.0, oi.getY(), 0.0, true);
+		driveTrain.setUserAlignment(oi.getY());
     }
 
     protected boolean isFinished() {
-		return false;
+		return (Global.currentFrisbeeCount == 0);
     }
 
 	protected void end() { }
