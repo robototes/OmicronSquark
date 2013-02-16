@@ -52,7 +52,7 @@ public class DiskShooter extends PIDSubsystem implements Maps {
     }
 	
 	public void increment(double input) {
-		currentValue = flywheelMotorFront.get() + input;
+		currentValue += input;
 		flywheelMotorFront.set(currentValue);
 		flywheelMotorRear.set(currentValue);
 	}
