@@ -2,10 +2,4 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/Users/Cory/Documents/NetBeansProjects/OmicronSquark/src/com/shsrobotics/omicronsquark/OI.java</file>
-        <file>file:/C:/Users/Cory/Documents/NetBeansProjects/OmicronSquark/src/com/shsrobotics/omicronsquark/Maps.java</file>
-        <file>file:/C:/Users/Cory/Documents/NetBeansProjects/OmicronSquark/src/com/shsrobotics/omicronsquark/commands/CommandBase.java</file>
-        <file>file:/C:/Users/Cory/Documents/NetBeansProjects/OmicronSquark/src/com/shsrobotics/omicronsquark/subsystems/DriveTrain.java</file>
-    </open-files>
 </project-private>

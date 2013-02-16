@@ -14,7 +14,8 @@ public class Camera extends Subsystem implements Maps {
     private AxisCamera camera = AxisCamera.getInstance();
     private CriteriaCollection criteria = new CriteriaCollection();
     
-    private double inverseNormalizedDistance = Math.tan(Math.toRadians(Constants.cameraHorizontalViewAngle / 2));
+    private double inverseNormalizedDistanceHorizontal = Math.tan(Math.toRadians(Constants.cameraHorizontalViewAngle / 2));
+    private double inverseNormalizedDistanceVertical = Math.tan(Math.toRadians(Constants.cameraVerticalViewAngle / 2));
 
     public Camera() {
         camera.writeResolution(AxisCamera.ResolutionT.k160x120);
@@ -56,8 +57,8 @@ public class Camera extends Subsystem implements Maps {
                 verticalAngle = Double.NEGATIVE_INFINITY;
 				SmartDashboard.putString("Goal Type", "NO GOAL");
             } else {
-                horizontalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistance));
-                verticalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_y_normalized * inverseNormalizedDistance));
+                horizontalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistanceHorizontal));
+                verticalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_y_normalized * inverseNormalizedDistanceVertical));
 				SmartDashboard.putNumber("Horizontal Angle to Target", horizontalAngle);
 				SmartDashboard.putNumber("Vertical Angle to Target", verticalAngle);
 				switch (goalTypes[topGoalIndex]) {

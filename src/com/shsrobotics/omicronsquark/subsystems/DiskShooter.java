@@ -15,7 +15,7 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	private Relay diskLoader = new Relay(Robot.Scorer.loader);
 	
 	private Encoder encoderWheelFront = new Encoder(Robot.Scorer.encoderFrontA, Robot.Scorer.encoderFrontB);
-	private Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
+	public Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
 	
 	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
 	
@@ -28,40 +28,28 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 		encoderWheelRear.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
 	}
 	
-    public void idle(boolean state) {
-        double motorValue;
-		if (state) {
-			motorValue = Constants.idlePercent / 100;
-		} else {
-			motorValue = 0.0;
-		}
-	
-        flywheelMotorFront.set(motorValue);
-        flywheelMotorRear.set(motorValue);
-    }
-    
     public void set(double value) {
+		currentValue = value;
         flywheelMotorFront.set(value);
-        flywheelMotorRear.set(value);
+        flywheelMotorRear.set(Constants.rearMotorScaling * value);
     }
 	
     public void stop() {
-		flywheelMotorFront.stopMotor();
-		flywheelMotorRear.stopMotor();
+		flywheelMotorFront.set(0.0);
+		flywheelMotorRear.set(0.0);
 		diskLoader.set(OFF);
     }
 	
 	public void increment(double input) {
 		currentValue += input;
 		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(currentValue);
+		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
 	}
 
     public void shoot() {
 		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(currentValue);
+		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
 		diskLoader.set(ON);
-		SmartDashboard.putBoolean("diskLoader", (diskLoader.get() == ON));
     } 
 	
 	public boolean get() {
@@ -76,7 +64,7 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 
 	protected void usePIDOutput(double output) {
 		flywheelMotorFront.set(output);
-		flywheelMotorRear.set(output / Constants.frontToRearMotorSpeedRatio);
+		flywheelMotorRear.set(Constants.rearMotorScaling * output / Constants.frontToRearMotorSpeedRatio);
 	}
 	
 	public void initDefaultCommand() { }

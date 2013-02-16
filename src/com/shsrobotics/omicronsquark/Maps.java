@@ -26,8 +26,8 @@ public interface Maps {
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
-                P = 0.00325,
-                I = 0.00075,
+                P = 0.025,
+                I = 0.0025,
                 D = 0.00,
                 absoluteTolerance = 0.75,
                 gyroVoltsPerDegreeSecond = 0.007;
@@ -64,19 +64,21 @@ public interface Maps {
     public static final class Constants {
         public static final double
             fieldLength = 54, // feet
-            cameraHorizontalViewAngle = 54, // degrees
+            cameraHorizontalViewAngle = 47, // degrees
+            cameraVerticalViewAngle = 36, // degrees
+			shooterAngleAdjustment = -12,
 			shooterVerticalAngle = 37,		// degrees
             significanceLevel_Angle = 3.0, //degrees
-            significanceLevel_Rectangularity = 45, //percent            
+            significanceLevel_Rectangularity = 40, //percent            
             significanceLevel_Percent = 20, //percent            
             joystickThreshold = 0.1,
             momentumDelay = 0.075, // seconds
             rotationStep = 15.0,
             spinRight = 1.0,
             spinLeft = -1.0,
-			idlePercent = 5.0,
-			frontToRearMotorSpeedRatio = 5000 / 2000, //rpm
-			shooterSpeedIncrement = 0.05;
+			frontToRearMotorSpeedRatio = 2000 / 5000, //rpm
+			shooterSpeedIncrement = 0.05,
+			rearMotorScaling = 0.8;
         
         public static final class aspectRatios {
             public static final double

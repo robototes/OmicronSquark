@@ -48,10 +48,6 @@ public class DriveTrain extends PIDSubsystem implements Maps {
         robotDrive.mecanumDrive_Cartesian(x, y, z, gyroAngle);
         SmartDashboard.putNumber("GYRO ANGLE", angle);
     }
-	
-	public void driveRearWheels(double magnitude) {
-		robotDrive.mecanumDrive_Cartesian(0.0, magnitude, 0.0, 0.0);
-	}
 
     public void rotateTo(double angle) { // in degrees
         setSetpoint(angle);
@@ -78,7 +74,7 @@ public class DriveTrain extends PIDSubsystem implements Maps {
     }
     
     public double getGyroAngle() {
-        return -1 * (gyroscope.getAngle() % 360);
+        return (gyroscope.getAngle() % 360);
     }
 	
 	public void disable() {

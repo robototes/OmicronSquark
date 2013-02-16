@@ -11,7 +11,7 @@ public class DriveInYDirection extends CommandBase implements Maps {
 	protected void initialize() { }
 
 	protected void execute() {
-		driveTrain.driveRearWheels(1.0);
+		driveTrain.drive(0.0, 1.0, 0.0, true);
 	}
 
 	protected boolean isFinished() {
