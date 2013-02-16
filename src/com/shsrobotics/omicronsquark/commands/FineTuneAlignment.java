@@ -55,12 +55,12 @@ public class FineTuneAlignment extends CommandBase implements Maps {
     }
 
 	private void updateRobotPosition() {
-		if (Math.abs(verticalAngle - Constants.shooterVerticalAngle) < Constants.significanceLevel_Angle) { // right on
-			SmartDashboard.putString("Robot Position", "ON TARGET");
-		} else if (verticalAngle < Constants.shooterVerticalAngle) { // too far
-			SmartDashboard.putString("Robot Position", "TOO FAR");
-		} else if (verticalAngle > Constants.shooterVerticalAngle) { // too close
-			SmartDashboard.putString("Robot Position", "TOO CLOSE");
+		if (Math.abs(verticalAngle + Constants.shooterAngleAdjustment) < Constants.significanceLevel_Angle) { // right on
+			SmartDashboard.putString("Robot Position", "On Target");
+		} else if (verticalAngle + Constants.shooterAngleAdjustment < 0.0) { // too far
+			SmartDashboard.putString("Robot Position", "Too Far");
+		} else if (verticalAngle + Constants.shooterAngleAdjustment > 0.0) { // too close
+			SmartDashboard.putString("Robot Position", "Too Close");
 		}
 	}
 }

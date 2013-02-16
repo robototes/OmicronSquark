@@ -1,7 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
-import com.shsrobotics.omicronsquark.subsystems.Camera.Angles;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CheckShootingDistance extends CommandBase implements Maps {
