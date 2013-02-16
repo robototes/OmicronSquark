@@ -1,32 +1,16 @@
 
 package com.shsrobotics.omicronsquark.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import com.shsrobotics.omicronsquark.Maps;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class StateMachine extends CommandGroup implements Maps {
 
-    public StateMachine() { // make to-do list
-
-    }
-
-    // Called just before autonomous runs
-    protected void initialize() {
-
-    }
-
-    // Called repeatedly during autonomous
-    protected void execute() {
-
-    }
-
-    // Called once at the end of to-do list
-    protected void end() {
-
-    }
-
-    // called if not done when autonomous ends
-    protected void interrupted() {
-
-    }
+	public StateMachine() { // make to-do list<<<<<<< HEAD
+		addSequential(new DriveForTime(1, 0, 0, 1.0)); // drive right for 1 second
+		addSequential(new DriveForTime(0, 1, 0, 1.0)); // drive forwards for 1 second
+		addSequential(new AlignToShoot());
+		addSequential(new Shoot());
+		addSequential(new Shoot());
+	}
 }
