@@ -26,8 +26,9 @@ public class Camera extends Subsystem implements Maps {
         double horizontalAngle = 0;
         double verticalAngle = 0;
 		Angles angles;
+        BinaryImage white;
         try {
-            BinaryImage white = getFilteredImage();    
+            white = getFilteredImage();    
 			if (white == null) {
 				return new Angles(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
 			}
@@ -40,7 +41,7 @@ public class Camera extends Subsystem implements Maps {
                 if (failsRectangularityTest(goal)) {
 					continue;
 				}
-                int aspectRatio = testAspectRatio(white, goal, i); 
+                int aspectRatio = testAspectRatio(white, goal, i);
                 goalTypes[i] = aspectRatio;
                 if (aspectRatio == Constants.failsAspectRatioTest) {
 					continue;
@@ -50,8 +51,9 @@ public class Camera extends Subsystem implements Maps {
                     maxHeight = y;
                     topGoalIndex = i;
                 }
-            }			               
-			white.free();
+            }
+            
+            white.free();
             if (topGoalIndex == -1) { // not found
                 horizontalAngle = Double.NEGATIVE_INFINITY;
                 verticalAngle = Double.NEGATIVE_INFINITY;
@@ -76,6 +78,7 @@ public class Camera extends Subsystem implements Maps {
         } catch (NIVisionException ex) {
             ex.printStackTrace();
         }
+        
 		angles = new Angles(horizontalAngle, verticalAngle);				
         return angles;
     }	
