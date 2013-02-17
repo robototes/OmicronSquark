@@ -8,24 +8,27 @@
 package com.shsrobotics.omicronsquark;
 
 import com.shsrobotics.omicronsquark.commands.*;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Main extends IterativeRobot implements Maps {
 
     Command stateMachine;
+    SendableChooser position = new SendableChooser();
     
     public void robotInit() {
         CommandBase.init(); // set up subsystems
+        position.addDefault("BACK RIGHT", new StateMachineBackRight());
+        position.addObject("BACK LEFT", new StateMachineBackLeft());
+        position.addObject("FRONT", new StateMachineFront());
     }
 
-    public void autonomousInit() {        
-        stateMachine = new StateMachine();
+    public void autonomousInit() {
+        stateMachine = (Command) position.getSelected();
         stateMachine.start();
-		new ZeroFlywheels().start();
     }
 	
 	public void autonomousPeriodic() {
