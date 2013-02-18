@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * 2013 2413 CODE
+ * @author RoboTotes Team 2412
+ */
 public class Main extends IterativeRobot implements Maps {
 
     Command stateMachine;
