@@ -14,17 +14,15 @@ public class Climber extends Subsystem implements Maps {
 
     private DoubleSolenoid pistonLifter = new DoubleSolenoid(Robot.Climber.pistonLifterA, 
 	    Robot.Climber.pistonLifterB);
-    private DigitalInput upperClimbFlag = new DigitalInput(Robot.Climber.limitSwitchUpperClimb);
-    private DigitalInput lowerClimbFlag = new DigitalInput(Robot.Climber.limitSwitchLowerClimb);
     private Talon leftTalon = new Talon(Robot.Climber.leftTalon);
     private Talon rightTalon = new Talon(Robot.Climber.rightTalon);
     
     public boolean hasReachedUpperClimbBound() {
-        return upperClimbFlag.get();
+        return false;
     }
 
     public boolean hasReachedLowerClimbBound() {
-        return lowerClimbFlag.get();
+        return false;
     }
 	
 	public boolean get() {

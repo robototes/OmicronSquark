@@ -1,32 +1,22 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.commands.ControlShooterWheelsWithThrottle;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DiskShooter extends PIDSubsystem implements Maps {
+public class DiskShooter extends Subsystem implements Maps {
     
     private Jaguar flywheelMotorFront = new Jaguar(Robot.Scorer.flywheelFront);
 	private Jaguar flywheelMotorRear = new Jaguar(Robot.Scorer.flywheelRear);
 	private Relay diskLoader = new Relay(Robot.Scorer.loader);
 	
-	private Encoder encoderWheelFront = new Encoder(Robot.Scorer.encoderFrontA, Robot.Scorer.encoderFrontB);
-	public Encoder encoderWheelRear = new Encoder(Robot.Scorer.encoderRearA, Robot.Scorer.encoderRearB);
-	
 	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
 	
 	double currentValue = 0.0;
     
-	public DiskShooter() {
-		super(Robot.Scorer.P, Robot.Scorer.I, Robot.Scorer.D);
-		setInputRange(0.0, 300000.0);  // That's 300,000
-		encoderWheelFront.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
-		encoderWheelRear.setDistancePerPulse(1 / Robot.Scorer.encoderPulsesPerRevolution);
-	}
 	
     public void set(double value) {
 		currentValue = value;
@@ -42,30 +32,23 @@ public class DiskShooter extends PIDSubsystem implements Maps {
 	
 	public void increment(double input) {
 		currentValue += input;
-		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
+		set(currentValue);
 	}
 
     public void shoot() {
-		flywheelMotorFront.set(currentValue);
-		flywheelMotorRear.set(Constants.rearMotorScaling * currentValue);
+		set(currentValue);
 		diskLoader.set(ON);
     } 
+	
+	public void load() {
+		diskLoader.set(ON);
+	}
 	
 	public boolean get() {
 		return loaderRegulator.get();
 	}
 
-	protected double returnPIDInput() {
-		double frontWheelVelocity = encoderWheelFront.getRate();
-		double rearWheelVelocity = encoderWheelRear.getRate() * Constants.frontToRearMotorSpeedRatio;
-		return (frontWheelVelocity + rearWheelVelocity) / 2;
+	public void initDefaultCommand() {
+		setDefaultCommand(new ControlShooterWheelsWithThrottle());
 	}
-
-	protected void usePIDOutput(double output) {
-		flywheelMotorFront.set(output);
-		flywheelMotorRear.set(Constants.rearMotorScaling * output / Constants.frontToRearMotorSpeedRatio);
-	}
-	
-	public void initDefaultCommand() { }
 }

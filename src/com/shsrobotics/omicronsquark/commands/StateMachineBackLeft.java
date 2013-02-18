@@ -12,6 +12,7 @@ public class StateMachineBackLeft extends CommandGroup implements Maps {
 		addSequential(new AlignToShoot());
 		addSequential(new Shoot());
 		addSequential(new Shoot());
+		addSequential(new Shoot());
     }
     
 }

@@ -18,11 +18,11 @@ public interface Maps {
     public static final class Robot {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
-                frontLeftWheel = 3,
-                frontRightWheel = 2,
-                rearLeftWheel = 4,
-                rearRightWheel = 1,
-                gyroscope = 1;
+                frontLeftWheel = 3, // PWM
+                frontRightWheel = 2, // PWM
+                rearLeftWheel = 4, // PWM
+                rearRightWheel = 1, // PWM
+                gyroscope = 1; // Analog
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0,
@@ -35,30 +35,20 @@ public interface Maps {
                 encoderReverseDirection = false;
         } 
         public static final class Scorer {
-            public static final int
-                encoderFrontA = 2,
-                encoderFrontB = 3,
-                encoderRearA = 4,
-                encoderRearB = 5,
-                flywheelFront = 5,
-                flywheelRear = 6,
-                loader = 1,
-                frisbeeCounterSwitch = 6,
-                loaderRegulatorSwitch = 7,
+            public static final int                
+                flywheelFront = 5, // PWM
+                flywheelRear = 6, // PWM
+                loader = 1, // Relay
+                frisbeeCounterSwitch = 1, // Digital IO
+                loaderRegulatorSwitch = 2, // Digital IO
                 encoderPulsesPerRevolution = 256;
-            public static final double
-                P = 0.0,
-                I = 0.0,
-                D = 0.0;
         }
         public static final class Climber {
             public static final int // ports				
-                pistonLifterA = 1,
-                pistonLifterB = 2,
-                limitSwitchUpperClimb = 8,
-                limitSwitchLowerClimb = 9,
-                leftTalon = 7,
-                rightTalon = 8;
+                pistonLifterA = 1, // Solenoid
+                pistonLifterB = 2, // Solenoid
+                leftTalon = 7, // PWM
+                rightTalon = 8; // PWM
         }
     }
     public static final class Constants {
@@ -101,16 +91,15 @@ public interface Maps {
     
     public static final class Buttons {
         public static final JoystickButton 
-     		climberUp = new JoystickButton(joystick, 2),
-			climberDown = new JoystickButton(joystick, 3),
+     		climberDown = new JoystickButton(joystick, 2),
+			climberUp = new JoystickButton(joystick, 3),
 			shoot = new JoystickButton(joystick, 1),
-			shooterUp = new JoystickButton(joystick, 6),
-			shooterDown = new JoystickButton(joystick, 4),
 			cancelLockToY = new JoystickButton(joystick, 12),
 			getRidOfOneFrisbee = new JoystickButton(joystick, 10),
 			deployPistons = new JoystickButton(joystick, 8),
 			zeroGyro = new JoystickButton(joystick, 11),
-			alignRobot = new JoystickButton(joystick, 7);
+			alignRobot = new JoystickButton(joystick, 7),
+			turnOnLoader = new JoystickButton(joystick, 4);
 		
 		public static final DigitalIOButton
 			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);

@@ -14,7 +14,7 @@ public class MoveClimberDown extends CommandBase {
 	protected void initialize() {
 		allowEnd = false;
 		done = false;
-		climber.set(-1.0);
+		climber.set(1.0);
 	}
 
 	protected void execute() {

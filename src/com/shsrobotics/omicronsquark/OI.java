@@ -11,8 +11,7 @@ public class OI implements Maps {
 		Buttons.climberUp.whileHeld(new MoveClimberUp());
 		Buttons.climberDown.whileHeld(new MoveClimberDown());
 		Buttons.shoot.whenPressed(new ShootFrisbee());
-		Buttons.shooterUp.whenPressed(new IncreaseShooterSpeed());
-		Buttons.shooterDown.whenPressed(new DecreaseShooterSpeed());
+		Buttons.turnOnLoader.whenPressed(new TurnOnLoader());
 		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
 		Buttons.cancelLockToY.whenPressed(new CancelLockToY());
 		Buttons.getRidOfOneFrisbee.whenPressed(new GetRidOfOneFrisbee());
