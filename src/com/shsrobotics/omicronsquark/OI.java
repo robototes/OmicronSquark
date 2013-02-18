@@ -8,13 +8,15 @@ public class OI implements Maps {
     public OI() {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
-		Buttons.driveForwards.whileHeld(new LockToYDirection());
+		Buttons.climberUp.whileHeld(new MoveClimberUp());
+		Buttons.climberDown.whileHeld(new MoveClimberDown());
 		Buttons.shoot.whenPressed(new ShootFrisbee());
 		Buttons.shooterUp.whenPressed(new IncreaseShooterSpeed());
 		Buttons.shooterDown.whenPressed(new DecreaseShooterSpeed());
 		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
 		Buttons.cancelLockToY.whenPressed(new CancelLockToY());
 		Buttons.getRidOfOneFrisbee.whenPressed(new GetRidOfOneFrisbee());
+		Buttons.deployPistons.whileHeld(new DeployPiston());
     }
     
     public double getX() {

@@ -27,6 +27,10 @@ public class Climber extends Subsystem implements Maps {
         return lowerClimbFlag.get();
     }
 	
+	public boolean get() {
+		return (pistonLifter.get().equals(EXTENDED));
+	}
+	
 	public void extend() {
 		pistonLifter.set(EXTENDED);
 	}

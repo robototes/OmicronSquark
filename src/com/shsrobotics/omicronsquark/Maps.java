@@ -11,10 +11,10 @@ public interface Maps {
     
     Relay.Value ON = Relay.Value.kForward;
     Relay.Value OFF = Relay.Value.kOff;
-	
+
     DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
     DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-    
+	
     public static final class Robot {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
@@ -101,17 +101,19 @@ public interface Maps {
     
     public static final class Buttons {
         public static final JoystickButton 
-            alignRobot = new JoystickButton(joystick, 7),
-            zeroGyro = new JoystickButton(joystick, 11),
-            driveForwards = new JoystickButton(joystick, 2),
-            shoot = new JoystickButton(joystick, 1),
-            shooterUp = new JoystickButton(joystick, 6),
-            shooterDown = new JoystickButton(joystick, 4),
-            cancelLockToY = new JoystickButton(joystick, 12),
-            getRidOfOneFrisbee = new JoystickButton(joystick, 10);
-
-        public static final DigitalIOButton
-            frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);		
+     		climberUp = new JoystickButton(joystick, 2),
+			climberDown = new JoystickButton(joystick, 3),
+			shoot = new JoystickButton(joystick, 1),
+			shooterUp = new JoystickButton(joystick, 6),
+			shooterDown = new JoystickButton(joystick, 4),
+			cancelLockToY = new JoystickButton(joystick, 12),
+			getRidOfOneFrisbee = new JoystickButton(joystick, 10),
+			deployPistons = new JoystickButton(joystick, 8),
+			zeroGyro = new JoystickButton(joystick, 11),
+			alignRobot = new JoystickButton(joystick, 7);
+		
+		public static final DigitalIOButton
+			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);
         
         // buttons that are only read for values
         public static final int
