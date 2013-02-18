@@ -1,13 +1,17 @@
 package com.shsrobotics.omicronsquark;
 
+import com.shsrobotics.omicronsquark.buttons.DigitalInputButton;
+import com.shsrobotics.omicronsquark.buttons.DoubleJoystickButton;
+import com.shsrobotics.omicronsquark.buttons.InvertedJoystickButton;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public interface Maps {
-    Joystick joystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
+    Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
+	Joystick shooterJoystick = new Joystick(2); //						"			2nd USB port
     
     Relay.Value ON = Relay.Value.kForward;
     Relay.Value OFF = Relay.Value.kOff;
@@ -68,7 +72,8 @@ public interface Maps {
             spinLeft = -1.0,
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.8,
-			speedUpDelay = 4.5;
+			speedUpDelay = 4.5,
+			idlePercent = 0.1;
         
         public static final class aspectRatios {
             public static final double
@@ -90,18 +95,19 @@ public interface Maps {
     }
     
     public static final class Buttons {
-        public static final JoystickButton 
-     		climberDown = new JoystickButton(joystick, 2),
-			climberUp = new JoystickButton(joystick, 3),
-			shoot = new JoystickButton(joystick, 1),
-			cancelLockToY = new JoystickButton(joystick, 12),
-			getRidOfOneFrisbee = new JoystickButton(joystick, 10),
-			deployPistons = new JoystickButton(joystick, 8),
-			zeroGyro = new JoystickButton(joystick, 11),
-			alignRobot = new JoystickButton(joystick, 7);
-		
-		public static final DigitalIOButton
-			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);
+        public static final Button 
+     		climberDown = new JoystickButton(driverJoystick, 3),
+			climberUp = new JoystickButton(driverJoystick, 4),
+			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
+			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
+			shoot = new InvertedJoystickButton(shooterJoystick, 5),
+			loaderForwards = new DoubleJoystickButton(driverJoystick, shooterJoystick, 5, 9),
+			loaderReverse= new DoubleJoystickButton(driverJoystick, shooterJoystick, 6, 10),
+			bringWheelsToSpeed = new InvertedJoystickButton(shooterJoystick, 7),
+			deployPistons = new InvertedJoystickButton(shooterJoystick, 1),
+			zeroGyro = new JoystickButton(driverJoystick, 13),
+			alignRobot = new JoystickButton(driverJoystick, 13),
+			frisbeeCounter = new DigitalInputButton(Robot.Scorer.frisbeeCounterSwitch);
         
         // buttons that are only read for values
         public static final int

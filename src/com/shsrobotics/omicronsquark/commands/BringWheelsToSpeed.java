@@ -1,17 +1,17 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Maps;
+import com.shsrobotics.omicronsquark.Global;
 
-public class DecreaseShooterSpeed extends CommandBase implements Maps {
+public class BringWheelsToSpeed extends CommandBase {
 	
-	public DecreaseShooterSpeed() {
+	public BringWheelsToSpeed() {
 		requires(diskShooter);
 	}
 
 	protected void initialize() {
-		diskShooter.increment(-1 * Constants.shooterSpeedIncrement);
+		diskShooter.set((1 - oi.getThrottle()) / 2);
 	}
-
+	
 	protected void execute() { }
 
 	protected boolean isFinished() {

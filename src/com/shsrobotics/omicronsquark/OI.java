@@ -8,29 +8,32 @@ public class OI implements Maps {
     public OI() {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
+		Buttons.addVirtualFrisbee.whenPressed(new AddVirtualFrisbee());
+		Buttons.removeVirtualFrisbee.whenPressed(new RemoveVirtualFrisbee());
+		Buttons.loaderForwards.whileHeld(new LoaderForward());
+		Buttons.loaderReverse.whileHeld(new LoaderReverse());
 		Buttons.climberUp.whileHeld(new MoveClimberUp());
 		Buttons.climberDown.whileHeld(new MoveClimberDown());
 		Buttons.shoot.whenPressed(new Shoot());
 		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
-		Buttons.cancelLockToY.whenPressed(new CancelLockToY());
-		Buttons.getRidOfOneFrisbee.whenPressed(new GetRidOfOneFrisbee());
-		Buttons.deployPistons.whileHeld(new DeployPiston());
+		Buttons.bringWheelsToSpeed.whenPressed(new BringWheelsToSpeed());
+		Buttons.deployPistons.whileHeld(new DeployPistons());
     }
     
     public double getX() {
-        return joystick.getX() * getScale();
+        return driverJoystick.getX() * getScale();
     }
     public double getY() {
-        return joystick.getY() * getScale();
+        return driverJoystick.getY() * getScale();
     }
     public double getZ() {		
-        return joystick.getZ() * getScale();
+        return driverJoystick.getZ() * getScale();
     }
     public double getThrottle() {
-        return joystick.getRawAxis(4);
+        return driverJoystick.getRawAxis(4);
     }
     private double getScale() {
-        return !joystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : MathUtils.pow(Robot.Drive.driveCoordinateScale, -3);
+        return !driverJoystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : MathUtils.pow(Robot.Drive.driveCoordinateScale, -3);
     }
 }
 

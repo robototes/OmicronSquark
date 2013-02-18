@@ -1,7 +1,7 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
+import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
-import com.shsrobotics.omicronsquark.commands.ControlShooterWheelsWithThrottle;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -19,7 +19,7 @@ public class DiskShooter extends Subsystem implements Maps {
 
 	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
 	
-	double currentValue = 0.0;    
+	double currentValue = 0.0;
 	
     public void set(double value) {
 		currentValue = value;
@@ -68,7 +68,5 @@ public class DiskShooter extends Subsystem implements Maps {
 		return compensatedVoltage;
 	}
 	
-	public void initDefaultCommand() {
-		setDefaultCommand(new ControlShooterWheelsWithThrottle());
-	}
+	public void initDefaultCommand() { }
 }

@@ -1,17 +1,13 @@
 package com.shsrobotics.omicronsquark.commands;
 
-public class DeployPiston extends CommandBase {
+public class DeployPistons extends CommandBase {
 	
-	public DeployPiston() {
+	public DeployPistons() {
 		requires(climber);
 	}
 
 	protected void initialize() {
-		if (climber.get()) {
-			climber.retract();
-		} else {
-			climber.extend();
-		}
+		climber.extend();
 	}
 
 	protected void execute() { }
@@ -22,5 +18,7 @@ public class DeployPiston extends CommandBase {
 
 	protected void end() { }
 
-	protected void interrupted() { }
+	protected void interrupted() {
+		climber.retract();
+	}
 }

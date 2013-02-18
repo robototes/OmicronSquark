@@ -2,23 +2,25 @@ package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
 
-public class IncreaseShooterSpeed extends CommandBase implements Maps {
+public class Idle extends CommandBase implements Maps {
 	
-	public IncreaseShooterSpeed() {
+	public Idle() {
 		requires(diskShooter);
 	}
 
 	protected void initialize() {
-		diskShooter.increment(Constants.shooterSpeedIncrement);
+		diskShooter.set(Constants.idlePercent);
 	}
 
 	protected void execute() { }
 
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	protected void end() { }
 
-	protected void interrupted() { }
+	protected void interrupted() {
+		diskShooter.set(0.0);
+	}
 }

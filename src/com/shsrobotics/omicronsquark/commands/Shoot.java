@@ -1,5 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 
 public class Shoot extends CommandBase implements Maps {
@@ -20,7 +21,7 @@ public class Shoot extends CommandBase implements Maps {
 		if (!hasLeft && !diskShooter.get()) {
 			hasLeft = true;
 		}
-		if (joystick.getRawButton(Buttons.reverseLoader)) {
+		if (driverJoystick.getRawButton(Buttons.reverseLoader)) {
 			diskShooter.setLoader(REVERSE);
 		} else {
 			diskShooter.setLoader(ON);
@@ -32,6 +33,7 @@ public class Shoot extends CommandBase implements Maps {
     }
 
     protected void end() {
+		Global.currentFrisbeeCount--;
 		diskShooter.stop();
     }
 
