@@ -38,6 +38,16 @@ public class Climber extends Subsystem implements Maps {
 	public void retract() {
 		pistonLifter.set(RETRACTED);
 	}
+	
+	public void set(double value) {
+		leftTalon.set(value);
+		rightTalon.set(value);
+	}
+	
+	public void stop() {
+		leftTalon.set(0.0);
+		rightTalon.set(0.0);
+	}
     
     public void initDefaultCommand() { }
 }

@@ -14,7 +14,7 @@ public class MoveClimberUp extends CommandBase {
 	protected void initialize() {
 		allowEnd = false;
 		done = false;
-		climber.extend();
+		climber.set(1.0);
 	}
 
 	protected void execute() {
@@ -30,7 +30,11 @@ public class MoveClimberUp extends CommandBase {
 		return done;
 	}
 
-	protected void end() { }
+	protected void end() {
+		climber.stop();
+	}
 
-	protected void interrupted() { }
+	protected void interrupted() {
+		climber.stop();
+	}
 }
