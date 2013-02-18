@@ -61,8 +61,6 @@ public class Camera extends Subsystem implements Maps {
             } else {
                 horizontalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_x_normalized * inverseNormalizedDistanceHorizontal));
                 verticalAngle = Math.toDegrees(MathUtils.atan(particles[topGoalIndex].center_mass_y_normalized * inverseNormalizedDistanceVertical));
-				SmartDashboard.putNumber("Horizontal Angle to Target", horizontalAngle);
-				SmartDashboard.putNumber("Vertical Angle to Target", verticalAngle);
 				switch (goalTypes[topGoalIndex]) {
 					case Constants.lowGoal:
 						SmartDashboard.putString("Goal Type", "Low Goal");

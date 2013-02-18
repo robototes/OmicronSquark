@@ -9,7 +9,7 @@ public class ControlShooterWheelsWithThrottle extends CommandBase {
 	protected void initialize() { }
 	
 	protected void execute() {
-		diskShooter.set((1 - oi.getThrottle()) / 2);
+		diskShooter.set(0.95 * (1 - oi.getThrottle()) / 2);
 	}
 
 	protected boolean isFinished() {

@@ -10,8 +10,7 @@ public class OI implements Maps {
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
 		Buttons.climberUp.whileHeld(new MoveClimberUp());
 		Buttons.climberDown.whileHeld(new MoveClimberDown());
-		Buttons.shoot.whenPressed(new ShootFrisbee());
-		Buttons.turnOnLoader.whenPressed(new TurnOnLoader());
+		Buttons.shoot.whenPressed(new Shoot());
 		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
 		Buttons.cancelLockToY.whenPressed(new CancelLockToY());
 		Buttons.getRidOfOneFrisbee.whenPressed(new GetRidOfOneFrisbee());

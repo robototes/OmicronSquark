@@ -21,9 +21,9 @@ public class Main extends IterativeRobot implements Maps {
     
     public void robotInit() {
         CommandBase.init(); // set up subsystems
-        position.addDefault("BACK RIGHT", new StateMachineBackRight());
-        position.addObject("BACK LEFT", new StateMachineBackLeft());
+        position.addDefault("BEHIND PYRAMID", new StateMachineBehindPyramid());
         position.addObject("FRONT", new StateMachineFront());
+		SmartDashboard.putData("Position", position);
     }
 
     public void autonomousInit() {
@@ -39,14 +39,9 @@ public class Main extends IterativeRobot implements Maps {
         if (stateMachine != null) {
 			stateMachine.cancel();
 		}
-		new ZeroFlywheels().start();
     }
     
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-    }
-    
-    public void disabledPeriodic() {
-        SmartDashboard.putNumber("GYRO ANGLE", CommandBase.driveTrain.getGyroAngle());
     }
 }

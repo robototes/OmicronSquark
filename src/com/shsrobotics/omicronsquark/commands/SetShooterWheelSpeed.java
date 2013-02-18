@@ -9,14 +9,14 @@ public class SetShooterWheelSpeed extends CommandBase {
 		requires(diskShooter);
     }
 
-    protected void initialize() { }
-
-    protected void execute() {				
+    protected void initialize() {					
 		diskShooter.set(velocity);
 	}
+	
+	protected void execute() { }
 
     protected boolean isFinished() {
-		return false;
+		return true;
     }
 
     protected void end() { }

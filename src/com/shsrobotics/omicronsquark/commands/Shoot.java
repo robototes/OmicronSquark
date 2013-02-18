@@ -1,26 +1,34 @@
 package com.shsrobotics.omicronsquark.commands;
 
-public class Shoot extends CommandBase {
+import com.shsrobotics.omicronsquark.Maps;
+
+public class Shoot extends CommandBase implements Maps {
 
 	private boolean hasLeft;
 	
     public Shoot() {
 		requires(diskShooter);
+		setTimeout(5.0); // five seconds maximum to shoot
     }
 
     protected void initialize() {
-		hasLeft = false;
+		hasLeft = !diskShooter.get();
 		diskShooter.shoot();
 	}
 
     protected void execute() {
-		if (!diskShooter.get() && !hasLeft) {
+		if (!hasLeft && !diskShooter.get()) {
 			hasLeft = true;
+		}
+		if (joystick.getRawButton(Buttons.reverseLoader)) {
+			diskShooter.setLoader(REVERSE);
+		} else {
+			diskShooter.setLoader(ON);
 		}
 	}
 
     protected boolean isFinished() {
-		return diskShooter.get() && hasLeft;
+		return (diskShooter.get() && hasLeft) || isTimedOut();
     }
 
     protected void end() {

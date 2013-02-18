@@ -11,6 +11,7 @@ public interface Maps {
     
     Relay.Value ON = Relay.Value.kForward;
     Relay.Value OFF = Relay.Value.kOff;
+	Relay.Value REVERSE = Relay.Value.kReverse;
 
     DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
     DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
@@ -36,12 +37,11 @@ public interface Maps {
         } 
         public static final class Scorer {
             public static final int                
-                flywheelFront = 5, // PWM
-                flywheelRear = 6, // PWM
+                flywheelFront = 6, // PWM
+                flywheelRear = 5, // PWM
                 loader = 1, // Relay
                 frisbeeCounterSwitch = 1, // Digital IO
-                loaderRegulatorSwitch = 2, // Digital IO
-                encoderPulsesPerRevolution = 256;
+                loaderRegulatorSwitch = 2; // Digital IO
         }
         public static final class Climber {
             public static final int // ports				
@@ -56,9 +56,9 @@ public interface Maps {
             fieldLength = 54, // feet
             cameraHorizontalViewAngle = 47, // degrees
             cameraVerticalViewAngle = 36, // degrees
-            shooterAngleAdjustment = -12,
+            shooterAngleAdjustment = -11,
             shooterVerticalAngle = 37,		// degrees
-            significanceLevel_Angle = 3.0, //degrees
+            significanceLevel_Angle = 2.0, //degrees
             significanceLevel_Rectangularity = 40, //percent            
             significanceLevel_Percent = 20, //percent            
             joystickThreshold = 0.1,
@@ -66,9 +66,9 @@ public interface Maps {
             rotationStep = 15.0,
             spinRight = 1.0,
             spinLeft = -1.0,
-            frontToRearMotorSpeedRatio = 2000 / 5000, //rpm
             shooterSpeedIncrement = 0.05,
-            rearMotorScaling = 0.8;
+            rearMotorScaling = -0.8,
+			speedUpDelay = 4.5;
         
         public static final class aspectRatios {
             public static final double
@@ -98,14 +98,14 @@ public interface Maps {
 			getRidOfOneFrisbee = new JoystickButton(joystick, 10),
 			deployPistons = new JoystickButton(joystick, 8),
 			zeroGyro = new JoystickButton(joystick, 11),
-			alignRobot = new JoystickButton(joystick, 7),
-			turnOnLoader = new JoystickButton(joystick, 4);
+			alignRobot = new JoystickButton(joystick, 7);
 		
 		public static final DigitalIOButton
 			frisbeeCounter = new DigitalIOButton(Robot.Scorer.frisbeeCounterSwitch);
         
         // buttons that are only read for values
         public static final int
-            scaleDriveCoordinates = 9;
+            scaleDriveCoordinates = 9,
+			reverseLoader = 4;
     }
 }
