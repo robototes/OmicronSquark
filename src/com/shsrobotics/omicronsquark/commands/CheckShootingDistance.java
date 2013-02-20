@@ -13,7 +13,7 @@ public class CheckShootingDistance extends CommandBase implements Maps {
 	protected void initialize() { }
 
 	protected void execute() {
-		if (executeCount % 20 == 0) { // every 20 times
+		if (executeCount % 50 == 0) { // every 50 times
 			double angle = camera.getAlignmentAngles().vertical;
 			if (angle != Double.NEGATIVE_INFINITY) {
 				if (Math.abs(angle + Constants.shooterAngleAdjustment) < Constants.significanceLevel_Angle) { // right on

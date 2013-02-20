@@ -1,6 +1,8 @@
 package com.shsrobotics.omicronsquark.commands;
 
-public class DriveWithJoysticks extends CommandBase {
+import com.shsrobotics.omicronsquark.Maps;
+
+public class DriveWithJoysticks extends CommandBase implements Maps {
     
     public DriveWithJoysticks() {
        requires(driveTrain);
@@ -10,8 +12,7 @@ public class DriveWithJoysticks extends CommandBase {
     protected void initialize() { }	
 
     protected void execute() {
-        boolean fieldCentric = oi.getThrottle() < 0.0;
-        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), fieldCentric);
+        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), driverJoystick.getRawButton(Buttons.fieldCentric));
     }
 
 	protected boolean isFinished() {

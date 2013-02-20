@@ -1,15 +1,13 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Maps;
-
-public class Idle extends CommandBase implements Maps {
+public class StopClimber extends CommandBase {
 	
-	public Idle() {
-		requires(diskShooter);
+	public StopClimber() {
+		requires(climber);
 	}
 
 	protected void initialize() {
-		diskShooter.set(Constants.idlePercent);
+		climber.stop();
 	}
 
 	protected void execute() { }

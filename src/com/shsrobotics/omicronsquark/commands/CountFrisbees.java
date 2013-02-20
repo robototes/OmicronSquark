@@ -8,7 +8,6 @@ public class CountFrisbees extends CommandBase implements Maps {
 	
 	protected void initialize() {
 		Global.currentFrisbeeCount += 0.5;
-		SmartDashboard.putNumber("Number of Frisbees", Global.currentFrisbeeCount);
 	}
 
 	protected void execute() { }

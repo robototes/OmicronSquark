@@ -18,7 +18,5 @@ public class DeployPistons extends CommandBase {
 
 	protected void end() { }
 
-	protected void interrupted() {
-		climber.retract();
-	}
+	protected void interrupted() { }
 }

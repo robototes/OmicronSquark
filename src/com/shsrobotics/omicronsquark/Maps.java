@@ -47,6 +47,7 @@ public interface Maps {
                 frisbeeCounterSwitch = 1, // Digital IO
                 loaderRegulatorSwitch = 2; // Digital IO
         }
+		
         public static final class Climber {
             public static final int // ports				
                 pistonLifterA = 1, // Solenoid
@@ -54,9 +55,14 @@ public interface Maps {
                 leftTalon = 7, // PWM
                 rightTalon = 8; // PWM
         }
+		
+		public static final int
+			compressorRelay = 3,
+			compressorDigital = 5;
     }
     public static final class Constants {
-        public static final double
+        
+		public static final double
             fieldLength = 54, // feet
             cameraHorizontalViewAngle = 47, // degrees
             cameraVerticalViewAngle = 36, // degrees
@@ -73,7 +79,7 @@ public interface Maps {
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.8,
 			speedUpDelay = 4.5,
-			idlePercent = 0.1;
+			idlePercent = 0.2;
         
         public static final class aspectRatios {
             public static final double
@@ -100,18 +106,19 @@ public interface Maps {
 			climberUp = new JoystickButton(driverJoystick, 4),
 			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
 			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
-			shoot = new InvertedJoystickButton(shooterJoystick, 5),
+			shoot = new DoubleJoystickButton(driverJoystick, shooterJoystick, 1, 5),
 			loaderForwards = new DoubleJoystickButton(driverJoystick, shooterJoystick, 5, 9),
 			loaderReverse= new DoubleJoystickButton(driverJoystick, shooterJoystick, 6, 10),
-			bringWheelsToSpeed = new InvertedJoystickButton(shooterJoystick, 7),
+			bringWheelsToSpeed = new DoubleJoystickButton(driverJoystick, shooterJoystick, 2, 7),
 			deployPistons = new InvertedJoystickButton(shooterJoystick, 1),
-			zeroGyro = new JoystickButton(driverJoystick, 13),
+			zeroGyro = new JoystickButton(driverJoystick, 14),
 			alignRobot = new JoystickButton(driverJoystick, 13),
-			frisbeeCounter = new DigitalInputButton(Robot.Scorer.frisbeeCounterSwitch);
+			idleShooterWheels = new JoystickButton(shooterJoystick, 2);
         
         // buttons that are only read for values
         public static final int
             scaleDriveCoordinates = 9,
-			reverseLoader = 4;
+			reverseLoader = 4,
+			fieldCentric = 15;
     }
 }

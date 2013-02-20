@@ -13,7 +13,5 @@ public class DigitalInputButton extends Button {
 	
 	public boolean get() {
 		return button.get();
-	}
-	
-	
+	}	
 }

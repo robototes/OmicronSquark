@@ -16,6 +16,8 @@ public class Climber extends Subsystem implements Maps {
 	    Robot.Climber.pistonLifterB);
     private Talon leftTalon = new Talon(Robot.Climber.leftTalon);
     private Talon rightTalon = new Talon(Robot.Climber.rightTalon);
+	
+	DoubleSolenoid.Value state = RETRACTED;
     
     public boolean hasReachedUpperClimbBound() {
         return false;
@@ -26,14 +28,16 @@ public class Climber extends Subsystem implements Maps {
     }
 	
 	public boolean get() {
-		return (pistonLifter.get().equals(EXTENDED));
+		return (state.equals(EXTENDED));
 	}
 	
 	public void extend() {
+		state = EXTENDED;
 		pistonLifter.set(EXTENDED);
 	}
 	
 	public void retract() {
+		state = RETRACTED;
 		pistonLifter.set(RETRACTED);
 	}
 	

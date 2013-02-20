@@ -11,13 +11,20 @@ public class OI implements Maps {
 		Buttons.addVirtualFrisbee.whenPressed(new AddVirtualFrisbee());
 		Buttons.removeVirtualFrisbee.whenPressed(new RemoveVirtualFrisbee());
 		Buttons.loaderForwards.whileHeld(new LoaderForward());
-		Buttons.loaderReverse.whileHeld(new LoaderReverse());
+			Buttons.loaderForwards.whenReleased(new LoaderOff());
+		Buttons.loaderReverse.whileHeld(new LoaderReverse());			
+			Buttons.loaderReverse.whenReleased(new LoaderOff());
 		Buttons.climberUp.whileHeld(new MoveClimberUp());
-		Buttons.climberDown.whileHeld(new MoveClimberDown());
+			Buttons.climberUp.whenReleased(new StopClimber());
+		Buttons.climberDown.whileHeld(new MoveClimberDown());		
+			Buttons.climberDown.whenReleased(new StopClimber());
 		Buttons.shoot.whenPressed(new Shoot());
-		Buttons.frisbeeCounter.whenPressed(new CountFrisbees());
-		Buttons.bringWheelsToSpeed.whenPressed(new BringWheelsToSpeed());
-		Buttons.deployPistons.whileHeld(new DeployPistons());
+		Buttons.bringWheelsToSpeed.whileHeld(new BringWheelsToSpeed());
+			Buttons.bringWheelsToSpeed.whenReleased(new ZeroFlywheels());
+		Buttons.deployPistons.whenActive(new DeployPistons());
+		Buttons.deployPistons.whenInactive(new UnDeployPistons());
+		Buttons.idleShooterWheels.whileHeld(new Idle());
+			Buttons.idleShooterWheels.whenReleased(new ZeroFlywheels());
     }
     
     public double getX() {

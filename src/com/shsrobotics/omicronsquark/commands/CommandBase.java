@@ -14,6 +14,7 @@ public abstract class CommandBase extends Command {
     public static DriveTrain driveTrain = new DriveTrain();
 	public static DiskShooter diskShooter = new DiskShooter();	
 	public static Climber climber = new Climber();
+	public static AirCompressor compressor = new AirCompressor();
 	
     public static void init() {
         oi = new OI(); // REQUIRED

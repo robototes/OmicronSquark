@@ -109,20 +109,16 @@ public class Camera extends Subsystem implements Maps {
     }
     
     private int testAspectRatio(BinaryImage image, ParticleAnalysisReport goal, int index) {
-        double equivHeight; 
-        double equivWidth;
+        double elongationFactor; 
         try {
-            equivHeight = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_SHORT_SIDE);
-            equivWidth = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_EQUIVALENT_RECT_LONG_SIDE);
+            elongationFactor = NIVision.MeasureParticle(image.image, index, false, NIVision.MeasurementType.IMAQ_MT_ELONGATION_FACTOR);
         } catch (NIVisionException e) {
-            equivHeight = goal.boundingRectHeight;
-            equivWidth = goal.boundingRectWidth;
+            elongationFactor = goal.boundingRectWidth / goal.boundingRectHeight;
         }
-        double equivAspectRatio = equivWidth / equivHeight;
         double[] errors = { // low, middle, high
-            Math.abs(Constants.aspectRatios.lowGoal - equivAspectRatio) / equivAspectRatio,
-            Math.abs(Constants.aspectRatios.middleGoal - equivAspectRatio) / equivAspectRatio,
-            Math.abs(Constants.aspectRatios.highGoal - equivAspectRatio) / equivAspectRatio
+            Math.abs(Constants.aspectRatios.lowGoal - elongationFactor) / elongationFactor,
+            Math.abs(Constants.aspectRatios.middleGoal - elongationFactor) / elongationFactor,
+            Math.abs(Constants.aspectRatios.highGoal - elongationFactor) / elongationFactor
         };
         double minError = 10;
         int minErrorIndex = -1;
@@ -132,7 +128,7 @@ public class Camera extends Subsystem implements Maps {
                 minErrorIndex = i;
             }
         }
-        if (errors[minErrorIndex] > Constants.significanceLevel_Percent) {
+        if (errors[minErrorIndex] > Constants.significanceLevel_Percent / 100) {
             return Constants.failsAspectRatioTest;
         } else {
             return minErrorIndex + 1;
@@ -143,7 +139,7 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage threshold = color.thresholdHSL(45, 255, 20, 255, 40, 255);
+            BinaryImage threshold = color.thresholdHSL(50, 255, 10, 255, 30, 235);
 				color.free();
             BinaryImage convexHull = threshold.convexHull(true);
 				threshold.free();

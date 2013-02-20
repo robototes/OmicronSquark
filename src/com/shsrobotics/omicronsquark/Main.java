@@ -8,6 +8,7 @@
 package com.shsrobotics.omicronsquark;
 
 import com.shsrobotics.omicronsquark.commands.*;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,9 +26,9 @@ public class Main extends IterativeRobot implements Maps {
     
     public void robotInit() {
         CommandBase.init(); // set up subsystems
-        position.addDefault("BEHIND PYRAMID", new StateMachineBehindPyramid());
-        position.addObject("FRONT", new StateMachineFront());
-		SmartDashboard.putData("Position", position);
+        position.addDefault("Behind Pyramid", new StateMachineBehindPyramid());
+        position.addObject("In Front of Pyramid", new StateMachineFront());
+		SmartDashboard.putData("Robot Position", position);
     }
 
     public void autonomousInit() {
@@ -46,6 +47,7 @@ public class Main extends IterativeRobot implements Maps {
     }
     
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        Scheduler.getInstance().run();		
+		SmartDashboard.putNumber("Number of Frisbees", Global.currentFrisbeeCount);
     }
 }

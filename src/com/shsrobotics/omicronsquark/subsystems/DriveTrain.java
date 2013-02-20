@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
     
-    Victor frontLeftVictor = new Victor(Robot.Drive.frontLeftWheel);
-    Victor rearLeftVictor = new Victor(Robot.Drive.rearLeftWheel);
-    Victor frontRightVictor = new Victor(Robot.Drive.frontRightWheel);
-    Victor rearRightVictor = new Victor(Robot.Drive.rearRightWheel);
+    private Victor frontLeftVictor = new Victor(Robot.Drive.frontLeftWheel);
+    private Victor rearLeftVictor = new Victor(Robot.Drive.rearLeftWheel);
+    private Victor frontRightVictor = new Victor(Robot.Drive.frontRightWheel);
+    private Victor rearRightVictor = new Victor(Robot.Drive.rearRightWheel);
 
     private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);

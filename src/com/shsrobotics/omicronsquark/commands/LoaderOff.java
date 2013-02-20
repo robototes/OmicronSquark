@@ -2,14 +2,14 @@ package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Maps;
 
-public class Idle extends CommandBase implements Maps {
+public class LoaderOff extends CommandBase implements Maps {
 	
-	public Idle() {
+	public LoaderOff() {
 		requires(diskShooter);
 	}
 
 	protected void initialize() {
-		diskShooter.set(Constants.idlePercent);
+		diskShooter.setLoader(OFF);
 	}
 
 	protected void execute() { }

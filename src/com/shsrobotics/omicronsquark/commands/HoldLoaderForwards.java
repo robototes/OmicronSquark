@@ -4,12 +4,12 @@ import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.Timer;
 
-public class LoaderForward extends CommandBase implements Maps {
+public class HoldLoaderForwards extends CommandBase implements Maps {
 	
 	Timer timer = new Timer();
 	int lastSecond;
 	
-	public LoaderForward() {
+	public HoldLoaderForwards() {
 		requires(diskShooter);
 	}
 
@@ -25,7 +25,7 @@ public class LoaderForward extends CommandBase implements Maps {
 	}
 
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	protected void end() { }

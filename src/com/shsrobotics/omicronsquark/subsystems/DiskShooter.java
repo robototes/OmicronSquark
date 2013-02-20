@@ -30,8 +30,7 @@ public class DiskShooter extends Subsystem implements Maps {
     }
 	
     public void stop() {
-		flywheelMotorFront.set(0.0);
-		flywheelMotorRear.set(0.0);
+		set(0.0);
 		diskLoader.set(OFF);
     }
 	
@@ -55,6 +54,10 @@ public class DiskShooter extends Subsystem implements Maps {
 	
 	public boolean get() {
 		return !loaderRegulator.get();
+	}
+	
+	public double getValue() {
+		return currentValue;
 	}
 
 	public double compensateBatteryVoltage() {

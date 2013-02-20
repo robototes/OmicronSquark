@@ -15,12 +15,10 @@ public class LoaderReverse extends CommandBase implements Maps {
 	protected void execute() { }
 
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	protected void end() { }
 
-	protected void interrupted() {
-		diskShooter.setLoader(OFF);
-	}
+	protected void interrupted() { }
 }

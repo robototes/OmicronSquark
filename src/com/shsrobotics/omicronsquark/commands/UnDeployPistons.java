@@ -1,21 +1,19 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Maps;
-
-public class Idle extends CommandBase implements Maps {
+public class UnDeployPistons extends CommandBase {
 	
-	public Idle() {
-		requires(diskShooter);
+	public UnDeployPistons() {
+		requires(climber);
 	}
 
 	protected void initialize() {
-		diskShooter.set(Constants.idlePercent);
+		climber.retract();
 	}
 
 	protected void execute() { }
 
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	protected void end() { }
