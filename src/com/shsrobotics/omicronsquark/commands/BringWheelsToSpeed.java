@@ -20,7 +20,7 @@ public class BringWheelsToSpeed extends CommandBase implements Maps {
 	protected void execute() { }
 
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	protected void end() { }

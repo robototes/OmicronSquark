@@ -23,8 +23,8 @@ public class OI implements Maps {
 			Buttons.bringWheelsToSpeed.whenReleased(new ZeroFlywheels());
 		Buttons.deployPistons.whenActive(new DeployPistons());
 		Buttons.deployPistons.whenInactive(new UnDeployPistons());
-		Buttons.idleShooterWheels.whileHeld(new Idle());
-			Buttons.idleShooterWheels.whenReleased(new ZeroFlywheels());
+		Buttons.idleShooterWheels.whenActive(new Idle());
+			Buttons.idleShooterWheels.whenInactive(new ZeroFlywheels());
     }
     
     public double getX() {

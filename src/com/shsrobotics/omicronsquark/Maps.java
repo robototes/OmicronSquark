@@ -79,7 +79,11 @@ public interface Maps {
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.8,
 			speedUpDelay = 4.5,
-			idlePercent = 0.2;
+			idlePercent = 0.2,
+			dialMaximumChangePercentage = 0.10,
+			defaultDumpingValue = 0.10,
+			defaultShootingBehindPyramidValue = 0.53,
+			defaultShootingNextToPyramidValue = 0.95;
         
         public static final class aspectRatios {
             public static final double
@@ -97,23 +101,26 @@ public interface Maps {
             groundLevel = 0,
             firstLevel = 1,
             secondLevel = 2,
-            thirdLevel = 3;
+            thirdLevel = 3,
+			dumpFudgeFactor = 0,
+			towerBackFudgeFactor = 1,
+			towerSideFudgeFactor = 2;
     }
     
     public static final class Buttons {
         public static final Button 
-     		climberDown = new JoystickButton(driverJoystick, 3),
-			climberUp = new JoystickButton(driverJoystick, 4),
+     		climberDown = new JoystickButton(shooterJoystick, 9),
+			climberUp = new JoystickButton(shooterJoystick, 10),
 			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
 			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
-			shoot = new DoubleJoystickButton(driverJoystick, shooterJoystick, 1, 5),
-			loaderForwards = new DoubleJoystickButton(driverJoystick, shooterJoystick, 5, 9),
-			loaderReverse= new DoubleJoystickButton(driverJoystick, shooterJoystick, 6, 10),
+			shoot = new JoystickButton(shooterJoystick, 1),
+			loaderForwards = new JoystickButton(shooterJoystick, 3),
+			loaderReverse= new JoystickButton(shooterJoystick, 2),
 			bringWheelsToSpeed = new DoubleJoystickButton(driverJoystick, shooterJoystick, 2, 7),
-			deployPistons = new InvertedJoystickButton(shooterJoystick, 1),
+			deployPistons = new JoystickButton(shooterJoystick, 11),
 			zeroGyro = new JoystickButton(driverJoystick, 14),
 			alignRobot = new JoystickButton(driverJoystick, 13),
-			idleShooterWheels = new JoystickButton(shooterJoystick, 2);
+			idleShooterWheels = new JoystickButton(shooterJoystick, 7);
         
         // buttons that are only read for values
         public static final int
