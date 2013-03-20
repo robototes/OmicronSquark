@@ -1,5 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
+import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 
 public class LoaderReverse extends CommandBase implements Maps {
@@ -9,7 +10,11 @@ public class LoaderReverse extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		diskShooter.setLoader(REVERSE);
+		if (Global.currentDriverStationMode == Constants.climbMode) {
+			diskShooter.setLoader(REVERSE);
+		} else {
+			end();
+		}
 	}
 
 	protected void execute() { }

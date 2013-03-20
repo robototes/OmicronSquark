@@ -16,17 +16,21 @@ public class Shoot extends CommandBase implements Maps {
     }
 
     protected void initialize() {
-		hasLeft = !diskShooter.get();
-		if (diskShooter.getValue() == 0.0) {
-			spinUpWheels = true;
+		if (Global.currentDriverStationMode == Constants.shootMode) {
+			hasLeft = !diskShooter.get();
+			if (diskShooter.getValue() == 0.0) {
+				spinUpWheels = true;
+			} else {
+				spinUpWheels = false;
+			}
+			diskShooter.set((1 - oi.getThrottle()) / 2);
+			if (spinUpWheels) {
+				Timer.delay(Constants.speedUpDelay * diskShooter.getValue());
+			}
+			diskShooter.shoot();
 		} else {
-			spinUpWheels = false;
+			end();
 		}
-		diskShooter.set((1 - oi.getThrottle()) / 2);
-		if (spinUpWheels) {
-			Timer.delay(Constants.speedUpDelay * diskShooter.getValue());
-		}
-		diskShooter.shoot();
 	}
 
     protected void execute() {

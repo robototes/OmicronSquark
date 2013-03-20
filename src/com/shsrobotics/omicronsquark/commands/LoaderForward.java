@@ -14,10 +14,14 @@ public class LoaderForward extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		diskShooter.setLoader(ON);
-		lastSecond = -1;
-		timer.reset();
-		timer.start();
+		if (Global.currentDriverStationMode == Constants.shootMode) {
+			diskShooter.setLoader(ON);
+			lastSecond = -1;
+			timer.reset();
+			timer.start();
+		} else {
+			end();
+		}
 	}
 
 	protected void execute() {

@@ -105,22 +105,31 @@ public interface Maps {
 			dumpFudgeFactor = 0,
 			towerBackFudgeFactor = 1,
 			towerSideFudgeFactor = 2;
+		
+		public static final boolean
+			shootMode = true,
+			climbMode = false;
     }
     
     public static final class Buttons {
         public static final Button 
-     		climberDown = new JoystickButton(shooterJoystick, 9),
-			climberUp = new JoystickButton(shooterJoystick, 10),
-			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
 			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
-			shoot = new JoystickButton(shooterJoystick, 1),
-			loaderForwards = new JoystickButton(shooterJoystick, 3),
-			loaderReverse= new JoystickButton(shooterJoystick, 2),
-			bringWheelsToSpeed = new DoubleJoystickButton(driverJoystick, shooterJoystick, 2, 7),
-			deployPistons = new JoystickButton(shooterJoystick, 11),
-			zeroGyro = new JoystickButton(driverJoystick, 14),
+			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
 			alignRobot = new JoystickButton(driverJoystick, 13),
-			idleShooterWheels = new JoystickButton(shooterJoystick, 7);
+			zeroGyro = new JoystickButton(driverJoystick, 14),
+			shoot = new JoystickButton(shooterJoystick, 1),
+			loaderReverse = new JoystickButton(shooterJoystick, 2),
+			loaderForwards = new JoystickButton(shooterJoystick, 3),
+			bringWheelsToSpeedToShootFromSide = new JoystickButton(shooterJoystick, 4),
+			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
+			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
+			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
+			shootOrClimb = new JoystickButton(shooterJoystick, 8),
+			climberDown = new JoystickButton(shooterJoystick, 9),
+			climberUp = new JoystickButton(shooterJoystick, 10),
+			deployPistons = new JoystickButton(shooterJoystick, 11),
+			override = new JoystickButton(shooterJoystick, 12);
+			
         
         // buttons that are only read for values
         public static final int

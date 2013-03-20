@@ -19,12 +19,18 @@ public class OI implements Maps {
 		Buttons.climberDown.whileHeld(new MoveClimberDown());		
 			Buttons.climberDown.whenReleased(new StopClimber());
 		Buttons.shoot.whenPressed(new Shoot());
-		Buttons.bringWheelsToSpeed.whileHeld(new BringWheelsToSpeed());
-			Buttons.bringWheelsToSpeed.whenReleased(new ZeroFlywheels());
+		Buttons.bringWheelsToSpeedToDump.whileHeld(new BringWheelsToSpeedForDumping());
+			Buttons.bringWheelsToSpeedToDump.whenReleased(new ZeroFlywheels());
+		Buttons.bringWheelsToSpeedToShootFromSide.whileHeld(new BringWheelsToSpeedForPyramidBack());
+			Buttons.bringWheelsToSpeedToShootFromSide.whenReleased(new ZeroFlywheels());
+		Buttons.bringWheelsToSpeedToShootFromBack.whileHeld(new BringWheelsToSpeedForPyramidSide());
+			Buttons.bringWheelsToSpeedToShootFromBack.whenReleased(new ZeroFlywheels());
 		Buttons.deployPistons.whenActive(new DeployPistons());
 		Buttons.deployPistons.whenInactive(new UnDeployPistons());
 		Buttons.idleShooterWheels.whenActive(new Idle());
 			Buttons.idleShooterWheels.whenInactive(new ZeroFlywheels());
+		Buttons.shootOrClimb.whenActive(new ShootMode());
+			Buttons.shootOrClimb.whenInactive(new ClimbMode());
     }
     
     public double getX() {

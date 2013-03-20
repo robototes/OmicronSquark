@@ -1,6 +1,8 @@
 package com.shsrobotics.omicronsquark.commands;
 
-public class MoveClimberUp extends CommandBase {
+import com.shsrobotics.omicronsquark.*;
+
+public class MoveClimberUp extends CommandBase implements Maps{
 	
 		
 	public MoveClimberUp() {
@@ -8,7 +10,11 @@ public class MoveClimberUp extends CommandBase {
 	}
 
 	protected void initialize() {
-		climber.set(-1.0);
+		if (Global.currentDriverStationMode == Constants.climbMode) {
+			climber.set(-1.0);
+		} else {
+			end();
+		}
 	}
 
 	protected void execute() { }
