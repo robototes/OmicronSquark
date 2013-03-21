@@ -16,7 +16,7 @@ public class LoaderForward extends CommandBase implements Maps {
 			diskShooter.setLoader(ON);
 			lastSecond = -1;
 		} else {
-			end();
+			new LoaderOff().start();
 		}
 	}
 

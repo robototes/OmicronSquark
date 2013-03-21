@@ -47,8 +47,11 @@ public class Main extends IterativeRobot implements Maps {
     
     public void teleopPeriodic() {
         Scheduler.getInstance().run();		
-		SmartDashboard.putNumber("DUMP Adjustment Factor", shooterJoystick.getRawAxis(Constants.dumpFudgeFactor));
-		SmartDashboard.putNumber("BACK Adjustment Factor", shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor));
-		SmartDashboard.putNumber("SIDE Adjustment Factor", shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor));
+		SmartDashboard.putString("DUMP Adjustment Factor", 
+			Math.floor(100 * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor)) / 10 + "%");
+		SmartDashboard.putString("BACK Adjustment Factor", 
+			Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor)) / 10 + "%");
+		SmartDashboard.putString("SIDE Adjustment Factor", 
+			Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor)) / 10 + "%");
     }
 }

@@ -13,7 +13,7 @@ public class LoaderReverse extends CommandBase implements Maps {
 		if (Global.currentDriverStationMode == Constants.climbMode) {
 			diskShooter.setLoader(REVERSE);
 		} else {
-			end();
+			new LoaderOff().start();
 		}
 	}
 

@@ -10,9 +10,9 @@ public class DeployPistons extends CommandBase implements Maps {
 
 	protected void initialize() {
 		if (Global.currentDriverStationMode == Maps.Constants.climbMode) {
-		climber.extend();
+			climber.extend();
 		} else {
-			end();
+			new UnDeployPistons().start();
 		}
 	}
 

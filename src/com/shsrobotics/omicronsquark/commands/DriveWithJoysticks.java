@@ -12,7 +12,7 @@ public class DriveWithJoysticks extends CommandBase implements Maps {
     protected void initialize() { }	
 
     protected void execute() {
-        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), driverJoystick.getRawButton(Buttons.fieldCentric));
+        driveTrain.drive(oi.getX(), oi.getY(), oi.getZ(), false);  //driverJoystick.getRawButton(Buttons.fieldCentric));
     }
 
 	protected boolean isFinished() {

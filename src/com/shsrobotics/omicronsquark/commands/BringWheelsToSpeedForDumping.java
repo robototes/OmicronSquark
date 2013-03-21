@@ -12,8 +12,8 @@ public class BringWheelsToSpeedForDumping extends CommandBase implements Maps {
 
 	protected void initialize() {
 		if (Global.currentDriverStationMode == Constants.shootMode) {
-			double fudgeFactor = Maps.Constants.dialMaximumChangePercentage * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor);
-			double value = Maps.Constants.defaultDumpingValue;
+			double fudgeFactor = Constants.dialMaximumChangePercentage * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor);
+			double value = Constants.defaultDumpingValue;
 			diskShooter.set(value + fudgeFactor);
 		} else {
 			end();

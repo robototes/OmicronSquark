@@ -12,9 +12,9 @@ public class BringWheelsToSpeedForPyramidBack extends CommandBase implements Map
 
 	protected void initialize() {
 		if (Global.currentDriverStationMode == Constants.shootMode) {
-			double fudgeFactor = Maps.Constants.dialMaximumChangePercentage *
+			double fudgeFactor = Constants.dialMaximumChangePercentage *
 			shooterJoystick.getRawAxis(Maps.Constants.towerBackFudgeFactor);
-			double value = Maps.Constants.defaultShootingBehindPyramidValue;
+			double value = Constants.defaultShootingBehindPyramidValue;
 			diskShooter.set(value + fudgeFactor);
 		} else {
 			end();
