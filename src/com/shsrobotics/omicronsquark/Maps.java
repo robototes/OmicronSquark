@@ -76,7 +76,7 @@ public interface Maps {
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.8,
 			speedUpDelay = 4.5,
-			idlePercent = 0.2,
+			idlePercent = 0.15,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.10,
 			defaultShootingBehindPyramidValue = 0.53,
