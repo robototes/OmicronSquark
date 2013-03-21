@@ -5,18 +5,18 @@ import com.shsrobotics.omicronsquark.commands.DriveWithJoysticks;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem implements Maps {
     
-    private Victor frontLeftVictor = new Victor(Robot.Drive.frontLeftWheel);
-    private Victor rearLeftVictor = new Victor(Robot.Drive.rearLeftWheel);
-    private Victor frontRightVictor = new Victor(Robot.Drive.frontRightWheel);
-    private Victor rearRightVictor = new Victor(Robot.Drive.rearRightWheel);
+    private Jaguar frontLeftJaguar = new Jaguar(Robot.Drive.frontLeftWheel);
+    private Jaguar rearLeftJaguar = new Jaguar(Robot.Drive.rearLeftWheel);
+    private Jaguar frontRightJaguar = new Jaguar(Robot.Drive.frontRightWheel);
+    private Jaguar rearRightJaguar = new Jaguar(Robot.Drive.rearRightWheel);
 
-    private RobotDrive robotDrive = new RobotDrive(frontLeftVictor, rearLeftVictor, frontRightVictor, rearRightVictor);
+    private RobotDrive robotDrive = new RobotDrive(frontLeftJaguar, rearLeftJaguar, frontRightJaguar, rearRightJaguar);
     private Gyro gyroscope = new Gyro(Robot.Drive.gyroscope);
 	
 	private double userAlignment = 0.0;
