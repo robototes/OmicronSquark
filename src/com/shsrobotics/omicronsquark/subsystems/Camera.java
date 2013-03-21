@@ -19,7 +19,7 @@ public class Camera extends Subsystem implements Maps {
 
     public Camera() {
         camera.writeResolution(AxisCamera.ResolutionT.k160x120);
-        criteria.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, 100, 19200, false);
+        criteria.addCriteria(NIVision.MeasurementType.IMAQ_MT_AREA, 1000, 19200, false);
     }
 
     public Angles getAlignmentAngles() {
@@ -139,9 +139,9 @@ public class Camera extends Subsystem implements Maps {
         BinaryImage white = null;
         try {
             ColorImage color = camera.getImage();
-            BinaryImage threshold = color.thresholdHSL(50, 255, 10, 255, 30, 235);
+            BinaryImage threshold = color.thresholdHSL(28, 255, 93, 200, 90, 205);
 				color.free();
-            BinaryImage convexHull = threshold.convexHull(true);
+            BinaryImage convexHull = threshold.convexHull(false);
 				threshold.free();
 			white = convexHull.particleFilter(criteria);
 				convexHull.free();

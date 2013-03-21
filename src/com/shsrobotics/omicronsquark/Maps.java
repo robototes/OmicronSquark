@@ -65,9 +65,9 @@ public interface Maps {
             cameraVerticalViewAngle = 36, // degrees
             shooterAngleAdjustment = -11,
             shooterVerticalAngle = 37,		// degrees
-            significanceLevel_Angle = 2.0, //degrees
-            significanceLevel_Rectangularity = 40, //percent            
-            significanceLevel_Percent = 20, //percent            
+            significanceLevel_Angle = 1.8, //degrees
+            significanceLevel_Rectangularity = 42, //percent            
+            significanceLevel_Percent = 25, //percent            
             joystickThreshold = 0.1,
             momentumDelay = 0.075, // seconds
             rotationStep = 15.0,
