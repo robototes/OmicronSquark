@@ -76,9 +76,9 @@ public interface Maps {
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.8,
 			speedUpDelay = 4.5,
-			idlePercent = 0.15,
+			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
-			defaultDumpingValue = 0.10,
+			defaultDumpingValue = 0.30,
 			defaultShootingBehindPyramidValue = 0.53,
 			defaultShootingNextToPyramidValue = 0.95;
         
@@ -99,9 +99,9 @@ public interface Maps {
             firstLevel = 1,
             secondLevel = 2,
             thirdLevel = 3,
-			dumpFudgeFactor = 0,
-			towerBackFudgeFactor = 1,
-			towerSideFudgeFactor = 2;
+			dumpFudgeFactor = 1,
+			towerBackFudgeFactor = 2,
+			towerSideFudgeFactor = 4;
 		
 		public static final boolean
 			shootMode = true,

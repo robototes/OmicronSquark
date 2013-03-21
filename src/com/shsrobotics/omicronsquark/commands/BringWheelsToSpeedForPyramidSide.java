@@ -1,6 +1,5 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,17 +11,12 @@ public class BringWheelsToSpeedForPyramidSide extends CommandBase implements Map
 	}
 
 	protected void initialize() {
-		if (Global.currentDriverStationMode == Constants.shootMode) {
-			double fudgeFactor = Constants.dialMaximumChangePercentage *
-			shooterJoystick.getRawAxis(Maps.Constants.towerSideFudgeFactor);
-			double value = Constants.defaultShootingNextToPyramidValue + fudgeFactor;
-			diskShooter.set(value);
-			SmartDashboard.putNumber("Flywheel Value", value);
-		} else {
-			end();
-		}
+		double fudgeFactor = - Constants.dialMaximumChangePercentage *
+		shooterJoystick.getRawAxis(Maps.Constants.towerSideFudgeFactor);
+		double value = Constants.defaultShootingNextToPyramidValue + fudgeFactor;
+		diskShooter.set(value);
+		SmartDashboard.putNumber("Flywheel Value", value);
 	}
-
 	protected void execute() { }
 
 	protected boolean isFinished() {

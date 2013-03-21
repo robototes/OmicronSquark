@@ -12,17 +12,11 @@ public class LoaderForward extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		if (Global.currentDriverStationMode == Constants.shootMode) {
-			diskShooter.setLoader(ON);
-			lastSecond = -1;
-		} else {
-			new LoaderOff().start();
-		}
+		diskShooter.setLoader(ON);
+		lastSecond = -1;
 	}
 
-	protected void execute() {
-		
-	}
+	protected void execute() { }
 
 	protected boolean isFinished() {
 		return true;

@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Shoot extends CommandBase implements Maps {
 
-	private boolean hasLeft;
 	private boolean spinUpWheels;
 	
     public Shoot() {
@@ -16,7 +15,6 @@ public class Shoot extends CommandBase implements Maps {
 
     protected void initialize() {
 		if (Global.currentDriverStationMode == Constants.shootMode) {
-			hasLeft = !diskShooter.get();
 			if (diskShooter.getValue() == 0.0) {
 				spinUpWheels = true;
 			} else {
@@ -32,14 +30,10 @@ public class Shoot extends CommandBase implements Maps {
 		}
 	}
 
-    protected void execute() {
-		if (!hasLeft && !diskShooter.get()) {
-			hasLeft = true;
-		}
-	}
+    protected void execute() { }
 
     protected boolean isFinished() {
-		return (diskShooter.get() && hasLeft) || isTimedOut();
+		return isTimedOut();
     }
 
     protected void end() {

@@ -1,8 +1,6 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
-import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
@@ -16,8 +14,6 @@ public class DiskShooter extends Subsystem implements Maps {
 	private Relay diskLoader = new Relay(Robot.Scorer.loader);
 
 	public static final double standardBatteryVoltage = 12.16;  // this number is made up, fix
-
-	DigitalInput loaderRegulator = new DigitalInput(Robot.Scorer.loaderRegulatorSwitch);
 	
 	double currentValue = 0.0;
 	
@@ -57,10 +53,6 @@ public class DiskShooter extends Subsystem implements Maps {
 	
 	public void setLoader(Relay.Value value) {
 		diskLoader.set(value);
-	}
-	
-	public boolean get() {
-		return !loaderRegulator.get();
 	}
 	
 	public double getValue() {

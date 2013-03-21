@@ -10,11 +10,7 @@ public class MoveClimberUp extends CommandBase implements Maps{
 	}
 
 	protected void initialize() {
-		if (Global.currentDriverStationMode == Constants.climbMode) {
-			climber.set(-1.0);
-		} else {
-			end();
-		}
+		climber.set(-1.0);
 	}
 
 	protected void execute() { }

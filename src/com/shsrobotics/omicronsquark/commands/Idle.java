@@ -10,11 +10,7 @@ public class Idle extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		if (Global.currentDriverStationMode == Constants.shootMode) {
-			diskShooter.set(Constants.idlePercent);
-		} else {
-			new ZeroFlywheels().start();
-		}
+		diskShooter.set(Constants.idlePercent);
 	}
 
 	protected void execute() { }
