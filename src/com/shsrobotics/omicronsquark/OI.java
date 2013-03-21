@@ -8,8 +8,6 @@ public class OI implements Maps {
     public OI() {
         Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
-		Buttons.addVirtualFrisbee.whenPressed(new AddVirtualFrisbee());
-		Buttons.removeVirtualFrisbee.whenPressed(new RemoveVirtualFrisbee());
 		Buttons.loaderForwards.whileHeld(new LoaderForward());
 			Buttons.loaderForwards.whenReleased(new LoaderOff());
 		Buttons.loaderReverse.whileHeld(new LoaderReverse());			

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 2013 2413 CODE
+ * 2013 2412 CODE
  * @author RoboTotes Team 2412
  */
 public class Main extends IterativeRobot implements Maps {
@@ -47,6 +47,8 @@ public class Main extends IterativeRobot implements Maps {
     
     public void teleopPeriodic() {
         Scheduler.getInstance().run();		
-		SmartDashboard.putNumber("Number of Frisbees", Global.currentFrisbeeCount);
+		SmartDashboard.putNumber("DUMP Adjustment Factor", shooterJoystick.getRawAxis(Constants.dumpFudgeFactor));
+		SmartDashboard.putNumber("BACK Adjustment Factor", shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor));
+		SmartDashboard.putNumber("SIDE Adjustment Factor", shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor));
     }
 }

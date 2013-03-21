@@ -55,7 +55,7 @@ public interface Maps {
 		
 		public static final int
 			compressorRelay = 3,
-			compressorDigital = 5;
+			compressorPressureSwitch = 5;
     }
     public static final class Constants {
         

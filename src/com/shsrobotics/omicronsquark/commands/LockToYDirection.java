@@ -18,7 +18,7 @@ public class LockToYDirection extends CommandBase implements Maps {
     }
 
     protected boolean isFinished() {
-		return (Global.currentFrisbeeCount == 0);
+		return false;
     }
 
 	protected void end() { }

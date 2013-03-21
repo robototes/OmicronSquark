@@ -2,7 +2,6 @@ package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Shoot extends CommandBase implements Maps {
@@ -44,7 +43,6 @@ public class Shoot extends CommandBase implements Maps {
     }
 
     protected void end() {
-		Global.currentFrisbeeCount--;
 		diskShooter.stop();
     }
 
