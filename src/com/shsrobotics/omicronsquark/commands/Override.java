@@ -1,25 +1,24 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Global;
-import com.shsrobotics.omicronsquark.Maps;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Override extends CommandBase {
-	
-	public Override() {
-	}
 
-	protected void initialize() {
-		
-	}
+	protected void initialize() { }
 
 	protected void execute() {
+		Scheduler.getInstance().disable();
 	}
 
 	protected boolean isFinished() {
 		return false;
 	}
 
-	protected void end() { }
+	protected void end() {
+		Scheduler.getInstance().enable();
+	}
 
-	protected void interrupted() { }
+	protected void interrupted() {
+		Scheduler.getInstance().enable();
+	}
 }

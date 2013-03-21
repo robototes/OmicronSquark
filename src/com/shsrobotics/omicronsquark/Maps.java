@@ -1,8 +1,5 @@
 package com.shsrobotics.omicronsquark;
 
-import com.shsrobotics.omicronsquark.buttons.DigitalInputButton;
-import com.shsrobotics.omicronsquark.buttons.DoubleJoystickButton;
-import com.shsrobotics.omicronsquark.buttons.InvertedJoystickButton;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;

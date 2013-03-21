@@ -31,6 +31,7 @@ public class OI implements Maps {
 			Buttons.idleShooterWheels.whenInactive(new ZeroFlywheels());
 		Buttons.shootOrClimb.whenActive(new ShootMode());
 			Buttons.shootOrClimb.whenInactive(new ClimbMode());
+		Buttons.override.whileHeld(new Override());
     }
     
     public double getX() {
