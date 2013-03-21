@@ -10,24 +10,24 @@ public class BringWheelsToSpeedForDumping extends CommandBase implements Maps {
 		setInterruptible(true);
 	}
 
-	protected void initialize() {
-		double fudgeFactor = - Constants.dialMaximumChangePercentage * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor);
+	protected void initialize() { }
+
+	protected void execute() {
+		double fudgeFactor = -0.025 - Constants.dialMaximumChangePercentage * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor);
 		double value = Constants.defaultDumpingValue + fudgeFactor;
 		diskShooter.set(value);
 		SmartDashboard.putNumber("Flywheel Value", value);
 	}
-
-	protected void execute() { }
 
 	protected boolean isFinished() {
 		return false;
 	}
 
 	protected void end() {
-		diskShooter.set(0.0);
+		diskShooter.stopWheels();
 	}
 
 	protected void interrupted() {
-		diskShooter.set(0.0);
+		diskShooter.stopWheels();
 	}
 }

@@ -47,9 +47,9 @@ public class Main extends IterativeRobot implements Maps {
     
     public void teleopPeriodic() {
         Scheduler.getInstance().run();		
-		double dumpPercent = Math.floor(100 * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor)) / 10;
-		double backPercent = Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor)) / 10;
-		double sidePercent = Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor)) / 10;
+		double dumpPercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor)) / 10;
+		double backPercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor)) / 10;
+		double sidePercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor)) / 10;
 		
 		SmartDashboard.putString("DUMP Adjustment", dumpPercent + "%");
 		SmartDashboard.putNumber("DUMP Adjustment Factor", dumpPercent);

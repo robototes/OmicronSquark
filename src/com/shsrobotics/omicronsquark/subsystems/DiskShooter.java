@@ -37,6 +37,11 @@ public class DiskShooter extends Subsystem implements Maps {
 		diskLoader.set(OFF);
     }
 	
+	public void stopWheels() {
+		flywheelMotorFront.set(0.0);
+		flywheelMotorRear.set(0.0);
+	}
+	
 	public void increment(double input) {
 		currentValue += input;
 		set(currentValue);
@@ -53,6 +58,7 @@ public class DiskShooter extends Subsystem implements Maps {
 	
 	public void setLoader(Relay.Value value) {
 		diskLoader.set(value);
+		setRaw(currentValue);
 	}
 	
 	public double getValue() {
