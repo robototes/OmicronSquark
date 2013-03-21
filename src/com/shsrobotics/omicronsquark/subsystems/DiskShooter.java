@@ -29,6 +29,13 @@ public class DiskShooter extends Subsystem implements Maps {
 		SmartDashboard.putNumber("Flywheel Value", value);
     }
 	
+	public void setRaw(double value) {
+		currentValue = value;
+		flywheelMotorFront.set(value);
+		flywheelMotorRear.set(Constants.rearMotorScaling * value);
+		SmartDashboard.putNumber("Flywheel Value", value);
+	}
+	
     public void stop() {
 		set(0.0);
 		diskLoader.set(OFF);

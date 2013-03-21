@@ -1,24 +1,27 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import edu.wpi.first.wpilibj.command.Scheduler;
-
 public class Override extends CommandBase {
-
-	protected void initialize() { }
-
-	protected void execute() {
-		Scheduler.getInstance().disable();
+	
+	public Override() {
+		requires(diskShooter);
+		setInterruptible(true);
 	}
+
+	protected void initialize() {
+		diskShooter.setRaw(1.0);
+	}
+
+	protected void execute() { }
 
 	protected boolean isFinished() {
 		return false;
 	}
 
 	protected void end() {
-		Scheduler.getInstance().enable();
+		diskShooter.set(0.0);
 	}
 
 	protected void interrupted() {
-		Scheduler.getInstance().enable();
+		diskShooter.set(0.0);
 	}
 }
