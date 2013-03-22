@@ -18,9 +18,6 @@ public abstract class CommandBase extends Command {
 	
     public static void init() {
         oi = new OI(); // REQUIRED
-        SmartDashboard.putData(driveTrain);
-        SmartDashboard.putData(camera);
-		SmartDashboard.putData(diskShooter);
         driveTrain.reset();
 		Watchdog.getInstance().setEnabled(false);
     }

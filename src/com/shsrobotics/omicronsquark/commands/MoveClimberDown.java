@@ -15,7 +15,7 @@ public class MoveClimberDown extends CommandBase implements Maps {
 	protected void execute() { }
 
 	protected boolean isFinished() {
-		return false;
+		return climber.hasReachedLowerClimbBound();
 	}
 
 	protected void end() {

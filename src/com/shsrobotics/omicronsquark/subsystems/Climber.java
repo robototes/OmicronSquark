@@ -17,14 +17,25 @@ public class Climber extends Subsystem implements Maps {
     private Talon leftTalon = new Talon(Robot.Climber.leftTalon);
     private Talon rightTalon = new Talon(Robot.Climber.rightTalon);
 	
+//	private Encoder encoder = new Encoder(Robot.Climber.encoderA, Robot.Climber.encoderB);
+	
 	DoubleSolenoid.Value state = RETRACTED;
+	
+	public Climber() {
+		super();
+//		encoder.start();
+	}
     
     public boolean hasReachedUpperClimbBound() {
-        return false;
+//		System.out.println(encoder.get());
+//      return (encoder.get() > Robot.Climber.maxEncoderClicks);
+		return false;
     }
 
     public boolean hasReachedLowerClimbBound() {
-        return false;
+//		System.out.println(encoder.get());
+//		return (encoder.get() < 10);
+		return false;
     }
 	
 	public boolean get() {

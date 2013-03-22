@@ -50,7 +50,10 @@ public interface Maps {
                 pistonLifterA = 1, // Solenoid
                 pistonLifterB = 2, // Solenoid
                 leftTalon = 7, // PWM
-                rightTalon = 8; // PWM
+                rightTalon = 8, // PWM
+				encoderA = 1,
+				encoderB = 1,
+				maxEncoderClicks = 2500;
         }
 		
 		public static final int
@@ -79,7 +82,7 @@ public interface Maps {
 			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.30,
-			defaultShootingBehindPyramidValue = 0.53,
+			defaultShootingBehindPyramidValue = 0.50,
 			defaultShootingNextToPyramidValue = 0.95;
         
         public static final class aspectRatios {
