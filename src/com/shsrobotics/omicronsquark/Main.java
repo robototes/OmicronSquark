@@ -27,7 +27,7 @@ public class Main extends IterativeRobot implements Maps {
         CommandBase.init(); // set up subsystems
         position.addDefault("Behind Pyramid", new StateMachineBehindPyramid());
         position.addObject("In Front of Pyramid", new StateMachineFront());
-		SmartDashboard.putData("Robot Position", position);
+		SmartDashboard.putData("Robot Starting Position", position);
     }
 
     public void autonomousInit() {

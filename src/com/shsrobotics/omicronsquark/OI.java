@@ -6,12 +6,13 @@ import com.sun.squawk.util.MathUtils;
 public class OI implements Maps {
 
     public OI() {
-        Buttons.alignRobot.whenPressed(new AlignToShoot());
         Buttons.zeroGyro.whenPressed(new ResetGyroscope());
-		Buttons.loaderForwards.whileHeld(new LoaderForward());
-			Buttons.loaderForwards.whenReleased(new LoaderOff());
-		Buttons.loaderReverse.whileHeld(new LoaderReverse());			
-			Buttons.loaderReverse.whenReleased(new LoaderOff());
+		Buttons.loaderForwards.whenActive(new LoaderForward());
+			Buttons.loaderForwards.whenInactive(new LoaderOff());
+		Buttons.loaderForwardsD.whenActive(new LoaderForward());
+			Buttons.loaderForwardsD.whenInactive(new LoaderOff());
+		Buttons.loaderReverse.whenActive(new LoaderReverse());			
+			Buttons.loaderReverse.whenInactive(new LoaderOff());
 		Buttons.climberUp.whileHeld(new MoveClimberUp());
 			Buttons.climberUp.whenReleased(new StopClimber());
 		Buttons.climberDown.whileHeld(new MoveClimberDown());		
@@ -25,8 +26,8 @@ public class OI implements Maps {
 			Buttons.bringWheelsToSpeedToShootFromBack.whenReleased(new ZeroFlywheels());
 		Buttons.deployPistons.whenActive(new DeployPistons());
 		Buttons.deployPistons.whenInactive(new UnDeployPistons());
-		Buttons.idleShooterWheels.whenActive(new Idle());
-			Buttons.idleShooterWheels.whenInactive(new ZeroFlywheels());
+		Buttons.idleShooterWheels.whenActive(new LoaderForward());
+			Buttons.idleShooterWheels.whenInactive(new LoaderOff());
 		Buttons.shootOrClimb.whenActive(new ShootMode());
 			Buttons.shootOrClimb.whenInactive(new ClimbMode());
 		Buttons.override.whileHeld(new Override());
@@ -45,7 +46,7 @@ public class OI implements Maps {
         return driverJoystick.getRawAxis(4);
     }
     private double getScale() {
-        return !driverJoystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : MathUtils.pow(Robot.Drive.driveCoordinateScale, -3);
+        return !driverJoystick.getRawButton(Buttons.scaleDriveCoordinates) ? Robot.Drive.normalScale : Robot.Drive.driveCoordinateScale;
     }
 }
 

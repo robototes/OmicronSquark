@@ -51,9 +51,9 @@ public interface Maps {
                 pistonLifterB = 2, // Solenoid
                 leftTalon = 7, // PWM
                 rightTalon = 8, // PWM
-				encoderA = 1,
-				encoderB = 1,
-				maxEncoderClicks = 2500;
+				encoderA = 9,
+				encoderB = 8,
+				maxEncoderClicks = 2140;
         }
 		
 		public static final int
@@ -77,13 +77,13 @@ public interface Maps {
             spinRight = 1.0,
             spinLeft = -1.0,
             shooterSpeedIncrement = 0.05,
-            rearMotorScaling = -0.8,
+            rearMotorScaling = -0.85,
 			speedUpDelay = 4.5,
 			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.30,
-			defaultShootingBehindPyramidValue = 0.50,
-			defaultShootingNextToPyramidValue = 0.95;
+			defaultShootingBehindPyramidValue = 0.49,
+			defaultShootingNextToPyramidValue = 0.94;
         
         public static final class aspectRatios {
             public static final double
@@ -120,6 +120,7 @@ public interface Maps {
 			shoot = new JoystickButton(shooterJoystick, 1),
 			loaderReverse = new JoystickButton(shooterJoystick, 2),
 			loaderForwards = new JoystickButton(shooterJoystick, 3),
+			loaderForwardsD = new JoystickButton(driverJoystick, 1),
 			bringWheelsToSpeedToShootFromSide = new JoystickButton(shooterJoystick, 4),
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
@@ -133,7 +134,7 @@ public interface Maps {
         
         // buttons that are only read for values
         public static final int
-            scaleDriveCoordinates = 9,
+            scaleDriveCoordinates = 2,
 			reverseLoader = 4,
 			fieldCentric = 15;
     }

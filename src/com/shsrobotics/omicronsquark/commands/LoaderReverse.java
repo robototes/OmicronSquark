@@ -1,6 +1,5 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
 
 public class LoaderReverse extends CommandBase implements Maps {

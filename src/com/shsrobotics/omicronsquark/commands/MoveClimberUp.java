@@ -1,6 +1,7 @@
 package com.shsrobotics.omicronsquark.commands;
 
 import com.shsrobotics.omicronsquark.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveClimberUp extends CommandBase implements Maps{
 	
@@ -13,10 +14,13 @@ public class MoveClimberUp extends CommandBase implements Maps{
 		climber.set(-1.0);
 	}
 
-	protected void execute() { }
+	protected void execute() {
+		double percent = climber.getEncoder() / Robot.Climber.maxEncoderClicks;
+		SmartDashboard.putNumber("CLIMBER", percent);
+	}
 
 	protected boolean isFinished() {
-		return climber.hasReachedUpperClimbBound();
+		return false;
 	}
 
 	protected void end() {

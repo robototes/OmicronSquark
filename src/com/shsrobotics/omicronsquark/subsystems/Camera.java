@@ -1,7 +1,6 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
-import com.shsrobotics.omicronsquark.commands.CheckShootingDistance;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
@@ -154,7 +153,6 @@ public class Camera extends Subsystem implements Maps {
     }
     
     public void initDefaultCommand() {
-		setDefaultCommand(new CheckShootingDistance());
 	}
 	
 	
