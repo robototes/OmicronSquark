@@ -32,14 +32,9 @@ public class DiskShooter extends Subsystem implements Maps {
 		SmartDashboard.putNumber("Flywheel Value", value);
 	}
 	
-    public void stop() {
-		stopWheels();
-		stopLoader();
-    }
 	
 	public void stopWheels() {
-		flywheelMotorFront.set(0.0);
-		flywheelMotorRear.set(0.0);
+		setRaw(0.0);
 	}
 	
 	public void increment(double input) {
@@ -47,21 +42,10 @@ public class DiskShooter extends Subsystem implements Maps {
 		set(currentValue);
 	}
 
-   	
-	public void loadAutonomous() {
-		diskLoader.set(1.0);
-	}
-	
-	public void loadReverse() {
-		diskLoader.set(-1.0);
-	}
-	
-	public void stopLoader() {
-		diskLoader.set(0.0);
-	}
-	
-	public void loadTeleoperated() {
-		diskLoader.set(1.0);
+    		
+	public void setLoader(double value) {
+		diskLoader.set(value);
+		setRaw(currentValue);
 	}
 	
 	public double getValue() {

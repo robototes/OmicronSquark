@@ -1,8 +1,6 @@
 package com.shsrobotics.omicronsquark.commands;
 
-import com.shsrobotics.omicronsquark.Global;
 import com.shsrobotics.omicronsquark.Maps;
-import edu.wpi.first.wpilibj.DriverStation;
 
 public class LoaderForward extends CommandBase implements Maps {
 	
@@ -11,11 +9,7 @@ public class LoaderForward extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		if (DriverStation.getInstance().isAutonomous()) {
-			diskShooter.loadAutonomous();
-		} else {
-			diskShooter.loadTeleoperated();
-		}
+		diskShooter.setLoader(1.0);
 	}
 
 	protected void execute() { }

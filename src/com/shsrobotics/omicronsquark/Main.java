@@ -9,10 +9,8 @@ package com.shsrobotics.omicronsquark;
 
 import com.shsrobotics.omicronsquark.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,7 +33,6 @@ public class Main extends IterativeRobot implements Maps {
     public void autonomousInit() {
         stateMachine = (Command) position.getSelected();
         stateMachine.start();
-		System.out.println("a init");
     }
 	
 	public void autonomousPeriodic() {
@@ -45,12 +42,6 @@ public class Main extends IterativeRobot implements Maps {
     public void teleopInit() {
         if (stateMachine != null) {
 			stateMachine.cancel();
-			new ZeroFlywheels().start();
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException ex) { }
-			new LoaderOff().start();
-			System.out.println("t init");
 		}
     }
     

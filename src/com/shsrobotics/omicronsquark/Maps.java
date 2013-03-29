@@ -2,12 +2,17 @@ package com.shsrobotics.omicronsquark;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public interface Maps {
     Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
 	Joystick shooterJoystick = new Joystick(2); //						"			2nd USB port
+    
+    Relay.Value ON = Relay.Value.kForward;
+    Relay.Value OFF = Relay.Value.kOff;
+	Relay.Value REVERSE = Relay.Value.kReverse;
 
     DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
     DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
@@ -37,21 +42,6 @@ public interface Maps {
                 flywheelRear = 5, // PWM
                 loader = 7; // PWM
         }
-		
-        public static final class Climber {
-            public static final int // ports				
-                pistonLifterA = 1, // Solenoid
-                pistonLifterB = 2, // Solenoid
-                leftTalon = 7, // PWM
-                rightTalon = 8, // PWM
-				encoderA = 9,
-				encoderB = 8,
-				maxEncoderClicks = 2140;
-        }
-		
-		public static final int
-			compressorRelay = 3,
-			compressorPressureSwitch = 5;
     }
     public static final class Constants {
         
@@ -71,13 +61,12 @@ public interface Maps {
             spinLeft = -1.0,
             shooterSpeedIncrement = 0.05,
             rearMotorScaling = -0.85,
-			speedUpDelay = 4.5,
+			loadingDelay = 2.05,
 			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.30,
-			defaultShootingBehindPyramidValue = 0.49,
+			defaultShootingBehindPyramidValue = 0.5,
 			defaultShootingNextToPyramidValue = 0.94;
-
         
         public static final class aspectRatios {
             public static final double
@@ -99,21 +88,17 @@ public interface Maps {
 			dumpFudgeFactor = 1,
 			towerBackFudgeFactor = 2,
 			towerSideFudgeFactor = 4;
-		
-		public static final boolean
-			shootMode = true,
-			climbMode = false;
     }
     
     public static final class Buttons {
         public static final Button 
-			shoot = new JoystickButton(shooterJoystick, 1),
 			loaderReverse = new JoystickButton(shooterJoystick, 2),
 			loaderForwards = new JoystickButton(shooterJoystick, 3),
 			loaderForwardsD = new JoystickButton(driverJoystick, 1),
 			bringWheelsToSpeedToShootFromSide = new JoystickButton(shooterJoystick, 4),
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
+			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
 			override = new JoystickButton(shooterJoystick, 12);
 			
         

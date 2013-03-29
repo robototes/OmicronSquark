@@ -9,8 +9,8 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
 	
+    public static DriveTrain driveTrain = new DriveTrain();
 	public static DiskShooter diskShooter = new DiskShooter();	
-	public static DriveTrain driveTrain = new DriveTrain();
 	
     public static void init() {
         oi = new OI(); // REQUIRED

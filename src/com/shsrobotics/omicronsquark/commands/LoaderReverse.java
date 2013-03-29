@@ -9,7 +9,7 @@ public class LoaderReverse extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		diskShooter.loadReverse();
+		diskShooter.setLoader(-1.0);
 	}
 
 	protected void execute() { }
