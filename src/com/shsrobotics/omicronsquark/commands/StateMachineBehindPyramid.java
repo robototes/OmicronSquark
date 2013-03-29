@@ -12,4 +12,5 @@ public class StateMachineBehindPyramid extends CommandGroup implements Maps {
 			addSequential(new WaitCommand(Constants.speedUpDelay)); // wait for shooter to spin up
 		addSequential(new LoaderForward());
 	}
+	
 }

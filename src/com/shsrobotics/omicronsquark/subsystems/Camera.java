@@ -152,8 +152,7 @@ public class Camera extends Subsystem implements Maps {
         return white;
     }
     
-    public void initDefaultCommand() {
-	}
+    public void initDefaultCommand() { }
 	
 	
 	public static class Angles {		

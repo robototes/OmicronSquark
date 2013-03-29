@@ -2,17 +2,12 @@ package com.shsrobotics.omicronsquark;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public interface Maps {
     Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
 	Joystick shooterJoystick = new Joystick(2); //						"			2nd USB port
-    
-    Relay.Value ON = Relay.Value.kForward;
-    Relay.Value OFF = Relay.Value.kOff;
-	Relay.Value REVERSE = Relay.Value.kReverse;
 
     DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
     DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
@@ -40,9 +35,7 @@ public interface Maps {
             public static final int                
                 flywheelFront = 6, // PWM
                 flywheelRear = 5, // PWM
-                loader = 1, // Relay
-                frisbeeCounterSwitch = 1, // Digital IO
-                loaderRegulatorSwitch = 2; // Digital IO
+                loader = 7; // PWM
         }
 		
         public static final class Climber {
@@ -84,6 +77,7 @@ public interface Maps {
 			defaultDumpingValue = 0.30,
 			defaultShootingBehindPyramidValue = 0.49,
 			defaultShootingNextToPyramidValue = 0.94;
+
         
         public static final class aspectRatios {
             public static final double
@@ -113,10 +107,6 @@ public interface Maps {
     
     public static final class Buttons {
         public static final Button 
-			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
-			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
-			alignRobot = new JoystickButton(driverJoystick, 13),
-			zeroGyro = new JoystickButton(driverJoystick, 14),
 			shoot = new JoystickButton(shooterJoystick, 1),
 			loaderReverse = new JoystickButton(shooterJoystick, 2),
 			loaderForwards = new JoystickButton(shooterJoystick, 3),
@@ -124,18 +114,11 @@ public interface Maps {
 			bringWheelsToSpeedToShootFromSide = new JoystickButton(shooterJoystick, 4),
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
-			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
-			shootOrClimb = new JoystickButton(shooterJoystick, 8),
-			climberDown = new JoystickButton(shooterJoystick, 9),
-			climberUp = new JoystickButton(shooterJoystick, 10),
-			deployPistons = new JoystickButton(shooterJoystick, 11),
 			override = new JoystickButton(shooterJoystick, 12);
 			
         
         // buttons that are only read for values
         public static final int
-            scaleDriveCoordinates = 2,
-			reverseLoader = 4,
-			fieldCentric = 15;
+            scaleDriveCoordinates = 2;
     }
 }

@@ -9,7 +9,7 @@ public class LoaderOff extends CommandBase implements Maps {
 	}
 
 	protected void initialize() {
-		diskShooter.setLoader(OFF);
+		diskShooter.stopLoader();
 	}
 
 	protected void execute() { }

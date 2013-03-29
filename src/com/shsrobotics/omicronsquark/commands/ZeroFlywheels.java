@@ -7,7 +7,7 @@ public class ZeroFlywheels extends CommandBase {
 	}
 
 	protected void initialize() {
-		diskShooter.set(0.0);
+		diskShooter.setRaw(0.0);
 	}
 
 	protected void execute() { }

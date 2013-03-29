@@ -1,7 +1,6 @@
 package com.shsrobotics.omicronsquark.subsystems;
 
 import com.shsrobotics.omicronsquark.Maps;
-import com.shsrobotics.omicronsquark.commands.FillAirCanisters;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -16,7 +15,5 @@ public class AirCompressor extends Subsystem implements Maps {
 		compressor.stop();
 	}
 	
-	public void initDefaultCommand() {
-		setDefaultCommand(new FillAirCanisters());
-	}
+	public void initDefaultCommand() { }
 }

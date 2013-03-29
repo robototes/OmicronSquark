@@ -6,30 +6,16 @@ import com.sun.squawk.util.MathUtils;
 public class OI implements Maps {
 
     public OI() {
-        Buttons.zeroGyro.whenPressed(new ResetGyroscope());
-		Buttons.loaderForwards.whenActive(new LoaderForward());
-			Buttons.loaderForwards.whenInactive(new LoaderOff());
-		Buttons.loaderForwardsD.whenActive(new LoaderForward());
-			Buttons.loaderForwardsD.whenInactive(new LoaderOff());
-		Buttons.loaderReverse.whenActive(new LoaderReverse());			
-			Buttons.loaderReverse.whenInactive(new LoaderOff());
-		Buttons.climberUp.whileHeld(new MoveClimberUp());
-			Buttons.climberUp.whenReleased(new StopClimber());
-		Buttons.climberDown.whileHeld(new MoveClimberDown());		
-			Buttons.climberDown.whenReleased(new StopClimber());
-		Buttons.shoot.whenPressed(new Shoot());
+		Buttons.loaderForwards.whileHeld(new LoaderForward());
+			Buttons.loaderForwards.whenReleased(new LoaderOff());
+		Buttons.loaderReverse.whileHeld(new LoaderReverse());			
+			Buttons.loaderReverse.whenReleased(new LoaderOff());
 		Buttons.bringWheelsToSpeedToDump.whileHeld(new BringWheelsToSpeedForDumping());
 			Buttons.bringWheelsToSpeedToDump.whenReleased(new ZeroFlywheels());
 		Buttons.bringWheelsToSpeedToShootFromSide.whileHeld(new BringWheelsToSpeedForPyramidSide());
 			Buttons.bringWheelsToSpeedToShootFromSide.whenReleased(new ZeroFlywheels());
 		Buttons.bringWheelsToSpeedToShootFromBack.whileHeld(new BringWheelsToSpeedForPyramidBack());
 			Buttons.bringWheelsToSpeedToShootFromBack.whenReleased(new ZeroFlywheels());
-		Buttons.deployPistons.whenActive(new DeployPistons());
-		Buttons.deployPistons.whenInactive(new UnDeployPistons());
-		Buttons.idleShooterWheels.whenActive(new LoaderForward());
-			Buttons.idleShooterWheels.whenInactive(new LoaderOff());
-		Buttons.shootOrClimb.whenActive(new ShootMode());
-			Buttons.shootOrClimb.whenInactive(new ClimbMode());
 		Buttons.override.whileHeld(new Override());
     }
     

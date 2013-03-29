@@ -3,7 +3,7 @@ package com.shsrobotics.omicronsquark.subsystems;
 import com.shsrobotics.omicronsquark.Maps;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,7 +11,7 @@ public class DiskShooter extends Subsystem implements Maps {
     
     private Jaguar flywheelMotorFront = new Jaguar(Robot.Scorer.flywheelFront);
 	private Jaguar flywheelMotorRear = new Jaguar(Robot.Scorer.flywheelRear);
-	private Relay diskLoader = new Relay(Robot.Scorer.loader);
+	private Talon diskLoader = new Talon(Robot.Scorer.loader);
 
 	public static final double standardBatteryVoltage = 12.16;  // this number is made up, fix
 	
@@ -33,8 +33,8 @@ public class DiskShooter extends Subsystem implements Maps {
 	}
 	
     public void stop() {
-		set(0.0);
-		diskLoader.set(OFF);
+		stopWheels();
+		stopLoader();
     }
 	
 	public void stopWheels() {
@@ -47,18 +47,21 @@ public class DiskShooter extends Subsystem implements Maps {
 		set(currentValue);
 	}
 
-    public void shoot() {
-		set(currentValue);
-		diskLoader.set(ON);
-    } 
-	
-	public void load() {
-		diskLoader.set(ON);
+   	
+	public void loadAutonomous() {
+		diskLoader.set(1.0);
 	}
 	
-	public void setLoader(Relay.Value value) {
-		diskLoader.set(value);
-		setRaw(currentValue);
+	public void loadReverse() {
+		diskLoader.set(-1.0);
+	}
+	
+	public void stopLoader() {
+		diskLoader.set(0.0);
+	}
+	
+	public void loadTeleoperated() {
+		diskLoader.set(1.0);
 	}
 	
 	public double getValue() {
