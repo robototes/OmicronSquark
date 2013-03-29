@@ -8,7 +8,7 @@ public class StateMachineFront extends CommandGroup implements Maps {
     
     public StateMachineFront() {        
 		addSequential(new SetShooterWheelSpeed(1.0));
-			addSequential(new WaitCommand(Constants.loadingDelay));
+		addSequential(new WaitCommand(Constants.loadingDelay));
 		addSequential(new LoaderForward());
     }
     

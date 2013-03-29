@@ -65,7 +65,7 @@ public interface Maps {
 			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.30,
-			defaultShootingBehindPyramidValue = 0.5,
+			defaultShootingBehindPyramidValue = 0.52,
 			defaultShootingNextToPyramidValue = 0.94;
         
         public static final class aspectRatios {

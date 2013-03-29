@@ -9,8 +9,6 @@ public class StateMachineBehindPyramid extends CommandGroup implements Maps {
 
 	public StateMachineBehindPyramid() { // make to-do list
 			addSequential(new WaitCommand(Constants.loadingDelay));
-		addSequential(new SetShooterWheelSpeed(Constants.defaultShootingBehindPyramidValue + 0.025));
-			addSequential(new WaitCommand(Constants.loadingDelay));
 		addSequential(new SetShooterWheelSpeed(Constants.defaultShootingBehindPyramidValue + 0.01));
 	}
 }
