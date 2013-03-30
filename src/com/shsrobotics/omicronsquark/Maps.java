@@ -14,10 +14,10 @@ public interface Maps {
     Relay.Value OFF = Relay.Value.kOff;
 	Relay.Value REVERSE = Relay.Value.kReverse;
 
-    DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
-    DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-	
     public static final class Robot {
+		
+		public static final int blockerMotor = 1;
+		
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
                 frontLeftWheel = 3, // PWM
@@ -99,9 +99,10 @@ public interface Maps {
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
 			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
-			override = new JoystickButton(shooterJoystick, 12);
+			override = new JoystickButton(shooterJoystick, 12),
+			blockerUp = new JoystickButton(shooterJoystick, 10),
+			blockerDown = new JoystickButton(shooterJoystick, 9);
 			
-        
         // buttons that are only read for values
         public static final int
             scaleDriveCoordinates = 2;

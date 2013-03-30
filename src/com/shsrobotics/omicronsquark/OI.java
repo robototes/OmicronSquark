@@ -20,6 +20,10 @@ public class OI implements Maps {
 		Buttons.idleShooterWheels.whenActive(new LoaderForward());
 			Buttons.idleShooterWheels.whenInactive(new LoaderOff());
 		Buttons.override.whileHeld(new Override());
+		Buttons.blockerUp.whileHeld(new RaiseBlocker());
+			Buttons.blockerUp.whenReleased(new StopBlocker());
+		Buttons.blockerDown.whileHeld(new LowerBlocker());
+			Buttons.blockerDown.whenReleased(new StopBlocker());
     }
     
     public double getX() {
