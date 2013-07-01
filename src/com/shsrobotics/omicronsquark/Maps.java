@@ -3,16 +3,18 @@ package com.shsrobotics.omicronsquark;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import com.shsrobotics.library.Button;
+import com.shsrobotics.library.JoystickButton;
 
 public interface Maps {
     Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
 	Joystick shooterJoystick = new Joystick(2); //						"			2nd USB port
     
-    Relay.Value ON = Relay.Value.kForward;
-    Relay.Value OFF = Relay.Value.kOff;
-	Relay.Value REVERSE = Relay.Value.kReverse;
+    Relay.Value
+		FORWARD = Relay.Value.kForward,
+		ON = Relay.Value.kForward,
+		OFF = Relay.Value.kOff,
+		REVERSE = Relay.Value.kReverse;
 
     DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
     DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
@@ -27,14 +29,7 @@ public interface Maps {
                 gyroscope = 1; // Analog
             public static final double
                 driveCoordinateScale = 0.5,
-                normalScale = 1.0,
-                P = 0.025,
-                I = 0.0025,
-                D = 0.00,
-                absoluteTolerance = 0.75,
-                gyroVoltsPerDegreeSecond = 0.007;
-            public static final boolean
-                encoderReverseDirection = false;
+                normalScale = 1.0;
         } 
         public static final class Scorer {
             public static final int                
@@ -45,17 +40,6 @@ public interface Maps {
                 loaderRegulatorSwitch = 2; // Digital IO
         }
 		
-        public static final class Climber {
-            public static final int // ports				
-                pistonLifterA = 1, // Solenoid
-                pistonLifterB = 2, // Solenoid
-                leftTalon = 7, // PWM
-                rightTalon = 8, // PWM
-				encoderA = 9,
-				encoderB = 8,
-				maxEncoderClicks = 2140;
-        }
-		
 		public static final int
 			compressorRelay = 3,
 			compressorPressureSwitch = 5;
@@ -63,60 +47,25 @@ public interface Maps {
     public static final class Constants {
         
 		public static final double
-            fieldLength = 54, // feet
-            cameraHorizontalViewAngle = 47, // degrees
-            cameraVerticalViewAngle = 36, // degrees
-            shooterAngleAdjustment = -11,
-            shooterVerticalAngle = 37,		// degrees
-            significanceLevel_Angle = 1.8, //degrees
-            significanceLevel_Rectangularity = 42, //percent            
-            significanceLevel_Percent = 25, //percent            
-            joystickThreshold = 0.1,
-            momentumDelay = 0.075, // seconds
-            rotationStep = 15.0,
-            spinRight = 1.0,
-            spinLeft = -1.0,
-            shooterSpeedIncrement = 0.05,
+			speedUpDelay = 4.2,
             rearMotorScaling = -0.85,
-			speedUpDelay = 4.5,
 			idlePercent = 0.25,
 			dialMaximumChangePercentage = 0.10,
 			defaultDumpingValue = 0.30,
 			defaultShootingBehindPyramidValue = 0.49,
-			defaultShootingNextToPyramidValue = 0.94;
-        
-        public static final class aspectRatios {
-            public static final double
-                lowGoal = (29 + 8) / (24 + 8),
-                middleGoal = (54 + 8) / (21 + 8),
-                highGoal = (54 + 8) / (12 + 8);
-        }
+			defaultShootingNextToPyramidValue = 0.94,
+			fullPower = 1.0;
         
         public static final int
-            onTargetCount = 5,
-            failsAspectRatioTest = 0,
-            lowGoal = 1,
-            middleGoal = 2,
-            highGoal = 3,
-            groundLevel = 0,
-            firstLevel = 1,
-            secondLevel = 2,
-            thirdLevel = 3,
 			dumpFudgeFactor = 1,
 			towerBackFudgeFactor = 2,
-			towerSideFudgeFactor = 4;
-		
-		public static final boolean
-			shootMode = true,
-			climbMode = false;
+			towerSideFudgeFactor = 4,
+			TOWER_BACK = 1,
+			TOWER_FRONT = 2;
     }
     
     public static final class Buttons {
         public static final Button 
-			removeVirtualFrisbee = new JoystickButton(driverJoystick, 11),
-			addVirtualFrisbee = new JoystickButton(driverJoystick, 12),
-			alignRobot = new JoystickButton(driverJoystick, 13),
-			zeroGyro = new JoystickButton(driverJoystick, 14),
 			shoot = new JoystickButton(shooterJoystick, 1),
 			loaderReverse = new JoystickButton(shooterJoystick, 2),
 			loaderForwards = new JoystickButton(shooterJoystick, 3),
@@ -125,17 +74,7 @@ public interface Maps {
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
 			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
-			shootOrClimb = new JoystickButton(shooterJoystick, 8),
-			climberDown = new JoystickButton(shooterJoystick, 9),
-			climberUp = new JoystickButton(shooterJoystick, 10),
-			deployPistons = new JoystickButton(shooterJoystick, 11),
-			override = new JoystickButton(shooterJoystick, 12);
-			
-        
-        // buttons that are only read for values
-        public static final int
-            scaleDriveCoordinates = 2,
-			reverseLoader = 4,
-			fieldCentric = 15;
+			override = new JoystickButton(shooterJoystick, 12),
+			scaleDriveCoordinates = new JoystickButton(driverJoystick, 2);
     }
 }
