@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import com.shsrobotics.library.Button;
 import com.shsrobotics.library.JoystickButton;
+import com.shsrobotics.library.joysticks.Extreme3DController;
 
 public interface Maps {
     Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
@@ -69,12 +70,12 @@ public interface Maps {
 			shoot = new JoystickButton(shooterJoystick, 1),
 			loaderReverse = new JoystickButton(shooterJoystick, 2),
 			loaderForwards = new JoystickButton(shooterJoystick, 3),
-			loaderForwardsD = new JoystickButton(driverJoystick, 1),
+			loaderForwardsD = new JoystickButton(driverJoystick, Extreme3DController.trigger),
 			bringWheelsToSpeedToShootFromSide = new JoystickButton(shooterJoystick, 4),
 			bringWheelsToSpeedToShootFromBack = new JoystickButton(shooterJoystick, 5),
 			bringWheelsToSpeedToDump = new JoystickButton(shooterJoystick, 6),
 			idleShooterWheels = new JoystickButton(shooterJoystick, 7),
 			override = new JoystickButton(shooterJoystick, 12),
-			scaleDriveCoordinates = new JoystickButton(driverJoystick, 2);
+			scaleDriveCoordinates = new JoystickButton(driverJoystick, Extreme3DController.side);
     }
 }

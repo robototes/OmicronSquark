@@ -16,7 +16,6 @@ public interface Hardware {
 		private static Jaguar rearLeftJaguar = new Jaguar(Robot.Drive.rearLeftWheel);
 		private static Jaguar frontRightJaguar = new Jaguar(Robot.Drive.frontRightWheel);
 		private static Jaguar rearRightJaguar = new Jaguar(Robot.Drive.rearRightWheel);
-	
 	}
 	
 	public class Scorer {
