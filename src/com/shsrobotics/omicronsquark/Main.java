@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * @author FIRST Robotics Team 2412
  */
-public class Main extends IterativeRobot implements Maps, Hardware {
+public class Main extends IterativeRobot implements Hardware {
 
     SendableChooser position = new SendableChooser();
 	
@@ -39,7 +39,7 @@ public class Main extends IterativeRobot implements Maps, Hardware {
     }
 
     public void autonomousInit() {
-		switch (((Integer) position.getSelected()).intValue()) {
+		switch ( ((Integer) position.getSelected()).intValue() ) {
 			case Constants.TOWER_BACK:
 				setFlywheels(Constants.defaultShootingBehindPyramidValue + 0.05);
 				break;
@@ -71,7 +71,7 @@ public class Main extends IterativeRobot implements Maps, Hardware {
 		double X = driverJoystick.getX() * scaleFactor;
 		double Y = driverJoystick.getY() * scaleFactor;
 		double Z = driverJoystick.getZ() * scaleFactor;
-		drive.mecanumDrive_Cartesian(X, Y, Z, 0.0);
+		drive.mecanumDrive_Cartesian(X, Y, Z, noGyroscopeAngle);
 		
 		updateDashboard();
     }

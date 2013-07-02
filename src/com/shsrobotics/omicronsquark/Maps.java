@@ -4,46 +4,37 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import com.shsrobotics.library.Button;
+import com.shsrobotics.library.GLOBAL;
 import com.shsrobotics.library.JoystickButton;
 import com.shsrobotics.library.joysticks.Extreme3DController;
 
-public interface Maps {
-    Joystick driverJoystick = new Joystick(1); // the joystick is plugged in to the 1st USB port
-	Joystick shooterJoystick = new Joystick(2); //						"			2nd USB port
+public interface Maps extends GLOBAL {
+    Joystick driverJoystick = new Joystick(USB_1); 
+	Joystick shooterJoystick = new Joystick(USB_2);
     
-    Relay.Value
-		FORWARD = Relay.Value.kForward,
-		ON = Relay.Value.kForward,
-		OFF = Relay.Value.kOff,
-		REVERSE = Relay.Value.kReverse;
-
-    DoubleSolenoid.Value EXTENDED = DoubleSolenoid.Value.kForward;
-    DoubleSolenoid.Value RETRACTED = DoubleSolenoid.Value.kReverse;
-	
     public static final class Robot {
         public static final class Drive {
             public static final int // ports that motors, sensors, etc. are plugged into
-                frontLeftWheel = 3, // PWM
-                frontRightWheel = 2, // PWM
-                rearLeftWheel = 4, // PWM
-                rearRightWheel = 1, // PWM
-                gyroscope = 1; // Analog
+                frontLeftWheel = PWM_3,
+                rearLeftWheel = PWM_4,
+                frontRightWheel = PWM_2,
+                rearRightWheel = PWM_1;
             public static final double
                 driveCoordinateScale = 0.5,
                 normalScale = 1.0;
         } 
         public static final class Scorer {
             public static final int                
-                flywheelFront = 6, // PWM
-                flywheelRear = 5, // PWM
-                loader = 1, // Relay
-                frisbeeCounterSwitch = 1, // Digital IO
-                loaderRegulatorSwitch = 2; // Digital IO
+                flywheelFront = PWM_6, // PWM
+                flywheelRear = PWM_5, // PWM
+                loader = RELAY_1, // Relay
+                frisbeeCounterSwitch = DIGITAL_IO_1, // Digital IO
+                loaderRegulatorSwitch = DIGITAL_IO_2; // Digital IO
         }
 		
 		public static final int
-			compressorRelay = 3,
-			compressorPressureSwitch = 5;
+			compressorRelay = RELAY_3,
+			compressorPressureSwitch = DIGITAL_IO_5;
     }
     public static final class Constants {
         

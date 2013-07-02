@@ -2,7 +2,6 @@ package com.shsrobotics.omicronsquark;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import com.shsrobotics.omicronsquark.Maps.Robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Relay;
 
@@ -10,7 +9,7 @@ import edu.wpi.first.wpilibj.Relay;
  * Robot Hardware.
  * @author Team 2412 <first.robototes.com, github.com/robototes>
  */
-public interface Hardware {
+public interface Hardware extends Maps {
 	public class Wheels {
 		private static Jaguar frontLeftJaguar = new Jaguar(Robot.Drive.frontLeftWheel);
 		private static Jaguar rearLeftJaguar = new Jaguar(Robot.Drive.rearLeftWheel);
