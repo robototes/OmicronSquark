@@ -52,13 +52,14 @@ public class Main extends IterativeRobot implements Hardware {
     }
 	
     public void teleopPeriodic() {
+		// raw values translated to percents
 		dumpPercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.dumpFudgeFactor)) / 10;
 		backPercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor)) / 10;
 		sidePercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor)) / 10;
 		
 		
 		Scorer.diskLoader.set( (Buttons.loaderForwards.held() || Buttons.loaderForwardsD.held()) ? FORWARD : OFF );
-		Scorer.diskLoader.set( Buttons.loaderReverse.held() ? REVERSE : OFF );
+		Scorer.diskLoader.set(Buttons.loaderReverse.held() ? REVERSE : OFF);
 		
 		setFlywheels(Buttons.override.held() ? Constants.fullPower : 0.0);
 		setFlywheels(Buttons.bringWheelsToSpeedToDump.held() ? Constants.defaultDumpingValue + dumpPercent / 100 : 0.0);
@@ -71,18 +72,18 @@ public class Main extends IterativeRobot implements Hardware {
 		double X = driverJoystick.getX() * scaleFactor;
 		double Y = driverJoystick.getY() * scaleFactor;
 		double Z = driverJoystick.getZ() * scaleFactor;
-		drive.mecanumDrive_Cartesian(X, Y, Z, noGyroscopeAngle);
+		drive.mecanumDrive_Cartesian(X, Y, Z, noGyroscope);
 		
 		updateDashboard();
     }
 	
 	public void updateDashboard() {
-		SmartDashboard.putString("DUMP Adjustment", dumpPercent + "%");
-		SmartDashboard.putNumber("DUMP Adjustment Factor", dumpPercent);
-		SmartDashboard.putString("BACK Adjustment", backPercent + "%");
-		SmartDashboard.putNumber("BACK Adjustment Factor", backPercent);
-		SmartDashboard.putString("SIDE Adjustment", sidePercent + "%");
-		SmartDashboard.putNumber("SIDE Adjustment Factor", sidePercent);
+		SmartDashboard.putString("DUMP Adjustment", dumpPercent + "%");		// numeric value
+		SmartDashboard.putNumber("DUMP Adjustment Factor", dumpPercent);	// slider bar
+		SmartDashboard.putString("BACK Adjustment", backPercent + "%");		// numberic value
+		SmartDashboard.putNumber("BACK Adjustment Factor", backPercent);	// slider bar
+		SmartDashboard.putString("SIDE Adjustment", sidePercent + "%");		// numberic value
+		SmartDashboard.putNumber("SIDE Adjustment Factor", sidePercent);	// slider bar
 	}
 	
 	public void setFlywheels(double power) {
