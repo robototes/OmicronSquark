@@ -79,14 +79,14 @@
                 </context-menu>
             </view>
             <subprojects>
-                <project>C:\Users\Cory McCartan\Documents\NetBeansProjects\Team2412Library</project>
+                <project>C:\Users\Max\Desktop\NetBeans\Git\Team2412Library</project>
             </subprojects>
         </general-data>
         <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/3">
             <compilation-unit>
                 <package-root>src</package-root>
                 <classpath mode="boot">${sunspot.home}\lib\squawk.jar</classpath>
-                <classpath mode="compile">C:/Users/Cory McCartan/sunspotfrcsdk\lib\wpilibj.jar;C:/Users/Cory McCartan/sunspotfrcsdk\lib\networktables-crio.jar;C:\Users\Cory McCartan\Documents\NetBeansProjects\Team2412Library\dist\Team2412Library.jar</classpath>
+                <classpath mode="compile">C:\Users\Max\Desktop\NetBeans\Git\Team2412Library\dist\Team2412Library.jar;C:\Users\Max\sunspotfrcsdk\lib\wpilibj.jar</classpath>
                 <built-to>build</built-to>
                 <source-level>1.7</source-level>
             </compilation-unit>
