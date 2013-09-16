@@ -26,9 +26,9 @@ public class Main extends IterativeRobot implements Hardware {
 
     SendableChooser position = new SendableChooser();
 	
-	double dumpPercent;
-	double backPercent;
-	double sidePercent;
+    double dumpPercent;
+    double backPercent;
+    double sidePercent;
     
     public void robotInit() {
         position.addDefault("Behind Pyramid", new Integer(Constants.TOWER_BACK));
