@@ -8,7 +8,7 @@
 package com.shsrobotics.omicronsquark;
 
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import com.shsrobotics.library.FRCRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * @author FIRST Robotics Team 2412
  */
-public class Main extends IterativeRobot implements Hardware {
+public class Main extends FRCRobot implements Hardware {
 
     SendableChooser position = new SendableChooser();
 	
@@ -31,6 +31,8 @@ public class Main extends IterativeRobot implements Hardware {
     double sidePercent;
     
     public void robotInit() {
+		super.robotInit();
+		
         position.addDefault("Behind Pyramid", new Integer(Constants.TOWER_BACK));
         position.addObject("In Front of Pyramid", new Integer(Constants.TOWER_FRONT));
 		SmartDashboard.putData("Robot Starting Position", position);
@@ -57,16 +59,31 @@ public class Main extends IterativeRobot implements Hardware {
 		backPercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerBackFudgeFactor)) / 10;
 		sidePercent = -2.5 - Math.floor(100 * shooterJoystick.getRawAxis(Constants.towerSideFudgeFactor)) / 10;
 		
+		// Disk loader
+		if (Buttons.loaderForwards.held() || Buttons.loaderForwardsD.held()) {		// forward
+			Scorer.diskLoader.set(FORWARD);
+		} else if (Buttons.loaderReverse.held()) {									// reverse
+			Scorer.diskLoader.set(REVERSE);
+		} else {
+			Scorer.diskLoader.set(OFF);
+		}
 		
-		Scorer.diskLoader.set( (Buttons.loaderForwards.held() || Buttons.loaderForwardsD.held()) ? FORWARD : OFF );
-		Scorer.diskLoader.set(Buttons.loaderReverse.held() ? REVERSE : OFF);
+		// Flywheels
+		if (Buttons.idleShooterWheels.held()) {										// idle
+			setFlywheels(Constants.fullPower);
+		}
 		
-		setFlywheels(Buttons.override.held() ? Constants.fullPower : 0.0);
-		setFlywheels(Buttons.bringWheelsToSpeedToDump.held() ? Constants.defaultDumpingValue + dumpPercent / 100 : 0.0);
-		setFlywheels(Buttons.bringWheelsToSpeedToShootFromBack.held() ? Constants.defaultShootingBehindPyramidValue + backPercent / 100 : 0.0);
-		setFlywheels(Buttons.bringWheelsToSpeedToShootFromSide.held() ? Constants.defaultShootingNextToPyramidValue + sidePercent / 100 : 0.0);
-		setFlywheels(Buttons.idleShooterWheels.held() ? Constants.idlePercent : 0.0);
-		
+		if (Buttons.bringWheelsToSpeedToDump.held()) {											// dumping speed
+			setFlywheels(Constants.defaultDumpingValue + dumpPercent / 100);
+		} else if (Buttons.bringWheelsToSpeedToShootFromBack.held()) {							// pyramid back speed
+			setFlywheels(Constants.defaultShootingBehindPyramidValue + backPercent / 100);
+		} else if (Buttons.bringWheelsToSpeedToShootFromSide.held()) {							// pyramid side speed
+			setFlywheels(Constants.defaultShootingNextToPyramidValue + sidePercent / 100);
+		} else if (Buttons.override.held()) {													// override
+			setFlywheels(Constants.idlePercent);
+		} else {
+			setFlywheels(0.0);
+		}		
 		
 		double scaleFactor = Buttons.scaleDriveCoordinates.held() ? Robot.Drive.driveCoordinateScale : Robot.Drive.normalScale;
 		double X = driverJoystick.getX() * scaleFactor;
