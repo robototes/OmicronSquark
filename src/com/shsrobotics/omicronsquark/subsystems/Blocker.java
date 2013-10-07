@@ -9,11 +9,11 @@ public class Blocker extends Subsystem implements Maps {
 	private Relay blockerMotor = new Relay(Robot.blockerMotor);
 	
 	public void raise() {
-		blockerMotor.set(ON);
+		blockerMotor.set(REVERSE);
 	}
 	
 	public void lower() {
-		blockerMotor.set(REVERSE);
+		blockerMotor.set(ON);
 	}
 	
 	public void stop() {
